@@ -1,16 +1,26 @@
 import "dotenv/config"
 import sequelize from "./config/db.js";
-import User from "./models/user-model.js";
+import Pengumuman from "./models/pengumuman-model.js";
+import express from "express";
+import router from "./routes/user-route.js";
 
-try {
-  await sequelize.authenticate();
-  console.log("connection established")
+const app = express();
+app.use(express.json());
+// try {
+//   await sequelize.authenticate();
+//   console.log("connection established")
 
-  await sequelize.sync();
+//   await sequelize.sync();
 
-  const user = await User.findAll();
+//   const user = await Pengumuman.findAll();
 
-  console.log(user);
-} catch (error) {
-  console.error("unable to connect bzir")
-}
+//   console.log(Pengumuman);
+// } catch (error) {
+//   console.error("unable to connect bzir")
+// }
+
+app.use("/api", router);
+
+app.listen(3000, () =>{
+  console.log("server is running")
+})
