@@ -3,9 +3,11 @@ import sequelize from "./config/db.js";
 import Pengumuman from "./models/pengumuman-model.js";
 import express from "express";
 import router from "./routes/user-route.js";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 // try {
 //   await sequelize.authenticate();
 //   console.log("connection established")
