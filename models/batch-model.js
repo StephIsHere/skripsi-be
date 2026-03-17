@@ -12,9 +12,6 @@ const Batch = sequelize.define(
     nama_batch: {
       type: DataTypes.STRING,
       allowNull: false
-    }, 
-    deskripsi: {
-      type: DataTypes.TEXT
     },
     status: {
       type: DataTypes.BOOLEAN

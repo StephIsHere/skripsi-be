@@ -14,11 +14,8 @@ const Pengumuman = sequelize.define(
       allowNull: false
     }, 
     isi: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT('long')
     },
-    is_broadcast: {
-      type: DataTypes.BOOLEAN
-    }, 
     tanggal_pengumuman: {
       type: DataTypes.DATE
     },
