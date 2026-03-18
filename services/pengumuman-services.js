@@ -27,7 +27,7 @@ class PengumumanService {
 
     if(!pengumuman) return null;
 
-    await Pengumuman.destroy();
+    await pengumuman.destroy();
     return pengumuman;
   }
 }
