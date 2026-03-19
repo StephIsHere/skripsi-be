@@ -22,5 +22,10 @@ const Batch = sequelize.define(
     tanggal_selesai: {
       type: DataTypes.DATE
     }
+  },
+  {
+    tableName: "batch",
   }
 )
+
+export default Batch;
