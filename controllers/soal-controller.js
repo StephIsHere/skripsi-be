@@ -40,7 +40,6 @@ class SoalController {
   }
 
   async createSoal(req,res){
-    console.log("BODY:", req.body);
     try {
       const soal = await soalServices.createSoal(req.body);
       return res.status(201).json({
