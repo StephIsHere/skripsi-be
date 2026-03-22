@@ -9,6 +9,10 @@ class PengumumanService {
     return await Pengumuman.findOne({ where: { id_pengumuman: id } });
   }
 
+  async getPengumumanByIdBatch(id) {
+    return await Pengumuman.findAll({ where: { id_batch: id } });
+  }
+
   async createPengumuman(data) {
     return await Pengumuman.create(data);
   }
@@ -27,7 +31,7 @@ class PengumumanService {
 
     if(!pengumuman) return null;
 
-    await Pengumuman.destroy();
+    await pengumuman.destroy();
     return pengumuman;
   }
 }

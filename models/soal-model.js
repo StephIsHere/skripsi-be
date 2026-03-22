@@ -1,31 +1,28 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
-const Batch = sequelize.define(
-  'Batch', {
-    id_batch: {
+const Soal = sequelize.define(
+  'Soal', {
+    id_soal: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     }, 
-    nama_batch: {
+    judul: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    status: {
-      type: DataTypes.BOOLEAN
-    }, 
-    tanggal_mulai: {
-      type: DataTypes.DATE
+    deskripsi: {
+      type: DataTypes.TEXT('long')
     },
-    tanggal_selesai: {
-      type: DataTypes.DATE
+    bobot: {
+      type: DataTypes.INTEGER
     }
   },
   {
-    tableName: "batch",
+    tableName: "soal",
   }
 )
 
-export default Batch;
+export default Soal;
