@@ -2,7 +2,9 @@ import Soal from "../models/soal-model.js";
 
 class SoalService {
   async getAllSoal() {
-    return await Soal.findAll();
+    return await Soal.findAll({
+      order: [['createdAt', 'DESC']]
+    });
   }
 
   async getSoalById(id) {
