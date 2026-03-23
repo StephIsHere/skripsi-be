@@ -2,7 +2,9 @@ import Batch from "../models/batch-model.js";
 
 class Batchservice {
   async getAllBatch() {
-    return await Batch.findAll();
+    return await Batch.findAll({
+      order: [['createdAt', 'DESC']]
+    });
   }
 
   async getBatchById(id) {
