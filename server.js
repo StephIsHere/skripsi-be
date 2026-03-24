@@ -8,6 +8,7 @@ import userRoute from "./routes/user-route.js";
 import pengumumanRoute from "./routes/pengumuman-route.js";
 import batchRoute from "./routes/batch-route.js";
 import soalRoute from "./routes/soal-route.js"
+import pesertaRoute from "./routes/peserta-route.js"
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use("/api", userRoute);
 app.use("/api", pengumumanRoute);
 app.use("/api", batchRoute);
 app.use("/api", soalRoute);
+app.use("/api", pesertaRoute);
 
 sequelize.sync({ alter: true })
   .then(() => {

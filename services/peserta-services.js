@@ -1,0 +1,39 @@
+import Peserta from "../models/peserta-model.js";
+
+class PesertaService {
+  async getAllPeserta() {
+    return await Peserta.findAll();
+  }
+
+  async getPesertaById(id) {
+    return await Peserta.findOne({ where: { id_peserta : id } });
+  }
+
+  async createPeserta(data) {
+    return await Peserta.create(data);
+  }
+
+  async updatePeserta(id, data) {
+    const peserta = await Peserta.findOne({ where: { id_peserta: id } });
+
+    if (!peserta) return null;
+
+    await peserta.update(data);
+    return peserta;
+  }
+
+  async deletePeserta(id) {
+    const peserta = await Peserta.findOne({ where: { id_peserta: id } });
+
+    if(!peserta) return null;
+
+    await peserta.destroy();
+    return peserta;
+  }
+
+  async getPesertaByBatch(id) {
+    return await Peserta.findOne({ where: { id_batch : id } });
+  }
+}
+
+export default new PesertaService();
