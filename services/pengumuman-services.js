@@ -1,4 +1,5 @@
 import Pengumuman from "../models/pengumuman-model.js";
+import User from "../models/user-model.js"; 
 
 class PengumumanService {
   async getAllPengumuman() {
@@ -10,7 +11,15 @@ class PengumumanService {
   }
 
   async getPengumumanByIdBatch(id) {
-    return await Pengumuman.findAll({ where: { id_batch: id } });
+    return await Pengumuman.findAll({ 
+      where: { id_batch: id },
+      include: [
+        {
+          model: User,
+          attributes: ["nama"]
+        }
+      ]
+    });
   }
 
   async createPengumuman(data) {

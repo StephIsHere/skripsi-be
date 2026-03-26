@@ -22,6 +22,14 @@ const Pengumuman = sequelize.define(
   id_batch: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  id_user: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  is_broadcast: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
   }
 },
   {

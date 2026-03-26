@@ -1,7 +1,7 @@
-import Batch from "../models/batch-model";
-import Pengumuman from "../models/pengumuman-model";
-import Peserta from "../models/peserta-model";
-import User from "../models/user-model";
+import Batch from "../models/batch-model.js";
+import Pengumuman from "../models/pengumuman-model.js";
+import Peserta from "../models/peserta-model.js";
+import User from "../models/user-model.js";
 
 // relasi batch - pengumuman
 Batch.hasMany(Pengumuman, {
@@ -11,7 +11,6 @@ Batch.hasMany(Pengumuman, {
 Pengumuman.belongsTo(Batch, {
   foreignKey: "id_batch"
 });
-
 
 // relasi peserta - batch
 Batch.hasMany(Peserta, {
@@ -28,5 +27,14 @@ User.hasMany(Peserta, {
 })
 
 Peserta.belongsTo(User, {
+  foreignKey: "id_user"
+})
+
+// relasi pengumuman - user
+User.hasMany(Pengumuman, {
+  foreignKey: "id_user"
+})
+
+Pengumuman.belongsTo(User,{
   foreignKey: "id_user"
 })

@@ -9,6 +9,7 @@ import pengumumanRoute from "./routes/pengumuman-route.js";
 import batchRoute from "./routes/batch-route.js";
 import soalRoute from "./routes/soal-route.js"
 import pesertaRoute from "./routes/peserta-route.js"
+import "./config/relation.js"; 
 
 const app = express();
 

@@ -7,7 +7,7 @@ router.get('/pengumuman', pengumumanController.getPengumuman);
 
 router.get('/pengumuman/:id', pengumumanController.getPengumumanById);
 
-router.get('/pengumuman/batch/:id', pengumumanController.getPengumumanById);
+router.get('/pengumuman/batch/:id', pengumumanController.getPengumumanByIdBatch);
 
 router.post('/pengumuman/', pengumumanController.createPengumuman);
 
