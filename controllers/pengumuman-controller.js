@@ -58,6 +58,27 @@ class PengumumanController {
       })
     }
   }
+  
+  async getPengumumanByIdUser(req, res) {
+    try {
+      const pengumuman = await pengumumanServices.getPengumumanByUser(req.params.id);
+      if (!pengumuman) {
+        return res.status(404).json({
+          success: false,
+          message: "Pengumuman not found"
+        });
+      }
+      return res.json({
+        success: true,
+        pengumuman: pengumuman
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      })
+    }
+  }
 
   async createPengumuman(req, res) {
     try {

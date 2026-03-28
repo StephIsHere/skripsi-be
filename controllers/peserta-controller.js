@@ -102,17 +102,16 @@ class PesertaController {
 
   async getPesertaByBatch(req,res){
     try {
-      const peserta = await pesertaServices.getPesertaById(req.params.id_batch);
+      const peserta = await pesertaServices.getPesertaByBatch(req.params.id);
       if(!peserta){
         return res.status(404).json({
           success: false,
           message: "Peserta not found"
         });
       }
-
       return res.json({
         success: true,
-        data: peserta
+        peserta: peserta
       })
     } catch (error) {
       return res.status(500).json({

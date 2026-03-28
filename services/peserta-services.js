@@ -1,4 +1,5 @@
 import Peserta from "../models/peserta-model.js";
+import User from "../models/user-model.js";
 
 class PesertaService {
   async getAllPeserta() {
@@ -32,7 +33,15 @@ class PesertaService {
   }
 
   async getPesertaByBatch(id) {
-    return await Peserta.findOne({ where: { id_batch : id } });
+    return await Peserta.findAll({ 
+      where: { id_batch : id },
+      include: [
+        {
+          model: User,
+          attributes: ['nama']
+        }
+      ],
+    });
   }
 }
 

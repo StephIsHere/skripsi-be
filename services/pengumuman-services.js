@@ -10,36 +10,65 @@ class PengumumanService {
     return await Pengumuman.findOne({ where: { id_pengumuman: id } });
   }
 
+  async getPengumumanByUser(id){
+    return await Pengumuman.findAll({
+      include: [{
+        model: User,
+        attributes: ["id_user", "nama"],
+        through: { attributes: [] },
+        required: true,
+        where:{ id_user }
+      }]
+    });
+  }
+
   async getPengumumanByIdBatch(id) {
     return await Pengumuman.findAll({ 
       where: { id_batch: id },
       include: [
         {
           model: User,
-          attributes: ["nama"]
+          as: "penerima",
+          attributes: ["id_user", "nama"],
+          through: { attributes: []}
+        },
+        {
+          model: User,
+          as: "pembuat",
+          attributes: ["id_user", "nama"],
         }
-      ]
+      ],
+      order: [['createdAt', 'DESC']]
     });
   }
 
   async createPengumuman(data) {
-    return await Pengumuman.create(data);
-  }
-
-  async updatePengumuman(id, data) {
-    const pengumuman = await Pengumuman.findOne({ where: { id_pengumuman: id } })
-
-    if (!pengumuman) return null;
-
-    await pengumuman.update(data);
+  try {
+    const { penerima, ...pengumumanData } = data;
+    const pengumuman = await Pengumuman.create(pengumumanData);
+    if (penerima?.length > 0) {
+      await pengumuman.setPenerima(penerima);
+    }
     return pengumuman;
+  } catch (error) {
+    console.error('CREATE ERROR:', error);
   }
+}
+
+async updatePengumuman(id, data) {
+  const { penerima, ...pengumumanData } = data;
+  const pengumuman = await Pengumuman.findOne({ where: { id_pengumuman: id } });
+  if (!pengumuman) return null;
+  await pengumuman.update(pengumumanData);
+  if (penerima) {
+    await pengumuman.setPenerima(penerima);
+  }
+  return pengumuman;
+}
 
   async deletePengumuman(id) {
     const pengumuman = await Pengumuman.findOne({ where: { id_pengumuman: id } })
-
     if(!pengumuman) return null;
-
     await pengumuman.destroy();
     return pengumuman;
   }
