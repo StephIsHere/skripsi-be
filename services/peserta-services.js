@@ -38,7 +38,7 @@ class PesertaService {
       include: [
         {
           model: User,
-          attributes: ['nama']
+          attributes: ['nama', 'email', 'nomor_identitas']
         }
       ],
     });
