@@ -17,6 +17,8 @@ class PesertaService {
   async updatePeserta(id, data) {
     const peserta = await Peserta.findOne({ where: { id_peserta: id } });
 
+    console.log(peserta);
+
     if (!peserta) return null;
 
     await peserta.update(data);
