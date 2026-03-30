@@ -4,6 +4,7 @@ import Peserta from "../models/peserta-model.js";
 import User from "../models/user-model.js";
 import PenerimaPengumuman from "../models/penerima-pengumuman-model.js";
 import KomentarPengumuman from "../models/komentar_pengumuman-model.js";
+import Kehadiran from "../models/kehadiran-model.js";
 
 
 // relasi batch - pengumuman
@@ -79,3 +80,11 @@ KomentarPengumuman.belongsTo(User, {
   foreignKey: "id_user",
 })
 
+// relasi peserta - kehadiran
+Peserta.hasMany(Kehadiran, {
+  foreignKey: "id_peserta",
+})
+
+Kehadiran.belongsTo(Peserta, {
+  foreignKey: "id_peserta",
+})
