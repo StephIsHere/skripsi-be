@@ -8,6 +8,9 @@ import userRoute from "./routes/user-route.js";
 import pengumumanRoute from "./routes/pengumuman-route.js";
 import batchRoute from "./routes/batch-route.js";
 import soalRoute from "./routes/soal-route.js"
+import pesertaRoute from "./routes/peserta-route.js"
+import komentarPengumumanRoute from "./routes/komentar-pengumuman-route.js"
+import "./config/relation.js"; 
 
 const app = express();
 
@@ -18,6 +21,8 @@ app.use("/api", userRoute);
 app.use("/api", pengumumanRoute);
 app.use("/api", batchRoute);
 app.use("/api", soalRoute);
+app.use("/api", pesertaRoute);
+app.use("/api", komentarPengumumanRoute);
 
 sequelize.sync({ alter: true })
   .then(() => {

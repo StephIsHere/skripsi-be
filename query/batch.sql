@@ -1,21 +1,12 @@
 INSERT INTO batch (nama_batch, status, tanggal_mulai, tanggal_selesai, "createdAt", "updatedAt") VALUES
-('Batch Pelatihan 2021A', false, '2021-01-01', '2021-03-01', NOW(), NOW()),
-('Batch Pelatihan 2021B', false, '2021-04-01', '2021-06-01', NOW(), NOW()),
+-- Batch 2024 (Normal)
+('Batch Pelatihan 2024', false, '2024-06-03', '2024-08-09', '2024-03-12 10:15:23.456789+07', '2024-05-20 14:22:11.123456+07'),
 
-('Batch Pelatihan 2022A', false, '2022-01-01', '2022-03-01', NOW(), NOW()),
-('Batch Pelatihan 2022B', false, '2022-04-01', '2022-06-01', NOW(), NOW()),
+-- Batch 2025 Ganjil
+('Batch Pelatihan 2025 Ganjil', false, '2025-01-06', '2025-02-14', '2024-11-10 08:45:12.654321+07', '2024-12-20 16:30:45.987654+07'),
 
-('Batch Pelatihan 2023A', false, '2023-01-01', '2023-03-01', NOW(), NOW()),
-('Batch Pelatihan 2023B', false, '2023-04-01', '2023-06-01', NOW(), NOW()),
+-- Batch 2025 Genap
+('Batch Pelatihan 2025 Genap', false, '2025-06-02', '2025-08-08', '2025-02-18 09:12:33.112233+07', '2025-04-25 11:55:44.556677+07'),
 
-('Batch Pelatihan 2024A', false, '2024-01-01', '2024-03-01', NOW(), NOW()),
-('Batch Pelatihan 2024B', false, '2024-04-01', '2024-06-01', NOW(), NOW()),
-
-('Batch Pelatihan 2025A', false, '2025-01-01', '2025-03-01', NOW(), NOW()),
-('Batch Pelatihan 2025B', false, '2025-04-01', '2025-06-01', NOW(), NOW()),
-
-('Batch Pelatihan 2026A', false, '2026-01-01', '2026-03-01', NOW(), NOW()),
-('Batch Pelatihan 2026B', false, '2026-04-01', '2026-06-01', NOW(), NOW()),
-
-('Batch Pelatihan 2027A', false, '2027-01-01', '2027-03-01', NOW(), NOW()),
-('Batch Pelatihan 2027B', false, '2027-04-01', '2027-06-01', NOW(), NOW());
+-- Batch 2026 (Normal)
+('Batch Pelatihan 2026', false, '2026-06-01', '2026-08-14', '2026-01-05 07:25:18.998877+07', '2026-03-10 13:40:29.334455+07');

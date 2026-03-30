@@ -7,9 +7,11 @@ router.get('/pengumuman', pengumumanController.getPengumuman);
 
 router.get('/pengumuman/:id', pengumumanController.getPengumumanById);
 
-router.get('/pengumuman/batch/:id', pengumumanController.getPengumumanById);
+router.get('/pengumuman/batch/:id', pengumumanController.getPengumumanByIdBatch);
 
-router.post('/pengumuman/', pengumumanController.createPengumuman);
+router.get('/pengumuman/user/:id', pengumumanController.getPengumumanByIdUser);
+
+router.post('/pengumuman', pengumumanController.createPengumuman);
 
 router.patch('/pengumuman/:id', pengumumanController.updatePengumuman);
 
