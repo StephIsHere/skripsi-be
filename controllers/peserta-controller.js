@@ -120,6 +120,27 @@ class PesertaController {
       })
     }
   }
+
+  async getPesertaByIdUser(req,res){
+    try {
+      const peserta = await pesertaServices.getPesertaByIdUser(req.params.id);
+      if(!peserta){
+        return res.status(404).json({
+          success: false,
+          message: "Peserta not found"
+        });
+      }
+      return res.json({
+        success: true,
+        peserta: peserta
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      })
+    }
+  }
 }
 
 export default new PesertaController();
