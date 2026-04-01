@@ -10,6 +10,7 @@ class KehadiranService {
   }
 
   async updateKehadiran(id, data) {
+    console.log('masuk pak eko : ', data)
     const kehadiran = await Kehadiran.findOne({ where: { id_kehadiran: id } });
 
     if (!kehadiran) return null;

@@ -14,7 +14,7 @@ class KehadiranController {
 
       return res.json({
         success: true,
-        data: kehadiran
+        kehadiran: kehadiran
       })
     } catch (error) {
       return res.status(500).json({
@@ -51,7 +51,7 @@ class KehadiranController {
 
       return res.json({
         success: true,
-        data: kehadiran
+        kehadiran: kehadiran
       });
 
     } catch (error) {
