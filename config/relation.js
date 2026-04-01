@@ -4,6 +4,10 @@ import Peserta from "../models/peserta-model.js";
 import User from "../models/user-model.js";
 import PenerimaPengumuman from "../models/penerima-pengumuman-model.js";
 import KomentarPengumuman from "../models/komentar_pengumuman-model.js";
+import Kehadiran from "../models/kehadiran-model.js";
+import Penugasan from "../models/penugasan-model.js";
+import Soal from "../models/soal-model.js";
+import KomentarTugas from "../models/komentar-tugas-model.js";
 
 
 // relasi batch - pengumuman
@@ -79,3 +83,59 @@ KomentarPengumuman.belongsTo(User, {
   foreignKey: "id_user",
 })
 
+// relasi peserta - kehadiran
+Peserta.hasMany(Kehadiran, {
+  foreignKey: "id_peserta",
+})
+
+Kehadiran.belongsTo(Peserta, {
+  foreignKey: "id_peserta",
+})
+
+// relasi peserta - penugasan
+Peserta.hasMany(Penugasan, {
+  foreignKey: "id_peserta"
+})
+
+Penugasan.belongsTo(Peserta, {
+  foreignKey: "id_peserta"
+})
+
+// relasi user - penugasan
+User.hasMany(Penugasan, {
+  foreignKey: "id_user"
+})
+
+Penugasan.belongsTo(User, {
+  foreignKey: "id_user"
+})
+
+// relasi soal - penugasan
+Soal.hasMany(Penugasan, {
+  foreignKey: "id_soal"
+})
+
+Penugasan.belongsTo(Soal, {
+  foreignKey: "id_soal"
+})
+
+// relasi penugasan - komentar tugas
+Penugasan.hasMany(KomentarTugas, {
+  foreignKey: "id_penugasan",
+  onDelete: "CASCADE"
+})
+
+KomentarTugas.belongsTo(Penugasan, {
+  foreignKey: "id_penugasan"
+})
+
+
+// relasi user - komentar tugas
+User.hasMany(KomentarTugas, {
+  foreignKey: "id_user",
+  onDelete: "CASCADE"
+})
+
+KomentarTugas.belongsTo(User, {
+  foreignKey: "id_user",
+})

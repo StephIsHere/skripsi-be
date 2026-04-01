@@ -10,6 +10,9 @@ import batchRoute from "./routes/batch-route.js";
 import soalRoute from "./routes/soal-route.js"
 import pesertaRoute from "./routes/peserta-route.js"
 import komentarPengumumanRoute from "./routes/komentar-pengumuman-route.js"
+import kehadiranRoute from "./routes/kehadiran-route.js"
+import penugasanRoute from "./routes/penugasan-route.js"
+
 import "./config/relation.js"; 
 
 const app = express();
@@ -23,6 +26,8 @@ app.use("/api", batchRoute);
 app.use("/api", soalRoute);
 app.use("/api", pesertaRoute);
 app.use("/api", komentarPengumumanRoute);
+app.use("/api", kehadiranRoute);
+app.use("/api", penugasanRoute);
 
 sequelize.sync({ alter: true })
   .then(() => {
