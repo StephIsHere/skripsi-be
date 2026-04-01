@@ -7,7 +7,28 @@ class PesertaService {
   }
 
   async getPesertaById(id) {
-    return await Peserta.findOne({ where: { id_peserta : id } });
+    return await Peserta.findOne({ where: { id_peserta: id } });
+  }
+
+  async getPesertaByIdUser(id) {
+    const results = await Peserta.findOne({
+      where: { id_peserta: id },
+      attributes: ['id_peserta'],
+      include: [
+        {
+          model: User,
+          attributes: ['nama', 'email', 'nomor_identitas']
+        }
+      ],
+      raw: true
+    });
+
+    return {
+      id_peserta: results.id_peserta,
+      nama: results['User.nama'],
+      email: results['User.email'],
+      nomor_identitas: results['User.nomor_identitas'],
+    };
   }
 
   async createPeserta(data) {
@@ -28,15 +49,15 @@ class PesertaService {
   async deletePeserta(id) {
     const peserta = await Peserta.findOne({ where: { id_peserta: id } });
 
-    if(!peserta) return null;
+    if (!peserta) return null;
 
     await peserta.destroy();
     return peserta;
   }
 
   async getPesertaByBatch(id) {
-    return await Peserta.findAll({ 
-      where: { id_batch : id },
+    return await Peserta.findAll({
+      where: { id_batch: id },
       include: [
         {
           model: User,
