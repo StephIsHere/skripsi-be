@@ -17,6 +17,10 @@ const Penugasan = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    id_so: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     id_user: {
       type: DataTypes.INTEGER,
       allowNull: false

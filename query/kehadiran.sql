@@ -1,5 +1,5 @@
 INSERT INTO
-  nama_tabel (
+  kehadiran (
     id_kehadiran,
     id_peserta,
     laporan,

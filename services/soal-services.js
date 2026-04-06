@@ -16,7 +16,8 @@ class SoalService {
   }
 
   async updateSoal(id, data) {
-    const soal = await Soal.findOne({ where: { id_soal: id } })
+
+    const soal = await Soal.findOne({ where: { id_soal: id } });
 
     if (!soal) return null;
 
@@ -25,9 +26,9 @@ class SoalService {
   }
 
   async deleteSoal(id) {
-    const soal = await Soal.findOne({ where: { id_soal: id } })
+    const soal = await Soal.findOne({ where: { id_soal: id } });
 
-    if(!soal) return null;
+    if (!soal) return null;
 
     await soal.destroy();
     return soal;

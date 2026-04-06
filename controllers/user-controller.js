@@ -55,7 +55,6 @@ class UserController {
   }
 
   async updateUser(req,res){
-    console.log('masuk update')
     try {
       const user = await userServices.updateUser(req.params.id, req.body);
       if (!user) {

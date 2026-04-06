@@ -12,6 +12,7 @@ import pesertaRoute from "./routes/peserta-route.js"
 import komentarPengumumanRoute from "./routes/komentar-pengumuman-route.js"
 import kehadiranRoute from "./routes/kehadiran-route.js"
 import penugasanRoute from "./routes/penugasan-route.js"
+import sistemOperasiRoute from "./routes/sistem-operasi-route.js"
 
 import "./config/relation.js"; 
 
@@ -28,6 +29,7 @@ app.use("/api", pesertaRoute);
 app.use("/api", komentarPengumumanRoute);
 app.use("/api", kehadiranRoute);
 app.use("/api", penugasanRoute);
+app.use("/api", sistemOperasiRoute);
 
 sequelize.sync({ alter: true })
   .then(() => {

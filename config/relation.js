@@ -8,6 +8,7 @@ import Kehadiran from "../models/kehadiran-model.js";
 import Penugasan from "../models/penugasan-model.js";
 import Soal from "../models/soal-model.js";
 import KomentarTugas from "../models/komentar-tugas-model.js";
+import SistemOperasi from "../models/sistem-operasi-model.js";
 
 
 // relasi batch - pengumuman
@@ -117,6 +118,15 @@ Soal.hasMany(Penugasan, {
 
 Penugasan.belongsTo(Soal, {
   foreignKey: "id_soal"
+})
+
+// relasi sistem operasi - penugasan 
+SistemOperasi.hasMany(Penugasan, {
+  foreignKey: "id_so"
+})
+
+Penugasan.belongsTo(SistemOperasi, {
+  foreignKey: "id_so"
 })
 
 // relasi penugasan - komentar tugas

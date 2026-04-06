@@ -10,7 +10,6 @@ class KehadiranService {
   }
 
   async updateKehadiran(id, data) {
-    console.log('masuk pak eko : ', data)
     const kehadiran = await Kehadiran.findOne({ where: { id_kehadiran: id } });
 
     if (!kehadiran) return null;
@@ -22,7 +21,7 @@ class KehadiranService {
   async deleteKehadiran(id) {
     const kehadiran = await Kehadiran.findOne({ where: { id_kehadiran: id } });
 
-    if(!kehadiran) return null;
+    if (!kehadiran) return null;
 
     await kehadiran.destroy();
     return kehadiran;

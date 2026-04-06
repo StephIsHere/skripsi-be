@@ -25,7 +25,7 @@ class UserService {
   async deleteUser(id) {
     const user = await User.findOne({ where: { id_user: id } });
 
-    if(!user) return null;
+    if (!user) return null;
 
     await user.destroy();
     return user;

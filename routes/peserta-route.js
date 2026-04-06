@@ -15,6 +15,4 @@ router.delete('/peserta/:id', pesertaController.deletePeserta);
 
 router.get('/peserta/batch/:id', pesertaController.getPesertaByBatch);
 
-router.get('/peserta/user/:id', pesertaController.getPesertaByIdUser);
-
 export default router;
