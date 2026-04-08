@@ -7,93 +7,6 @@ import KomentarTugas from "../models/komentar-tugas-model.js";
 import SistemOperasi from "../models/sistem-operasi-model.js";
 
 class PenugasanService {
-  // async getPenugasanByIdBatch(idBatch) {
-  //   const results = await User.findAll({
-  //     attributes: [
-  //       'nama',
-  //       // gw mau nambahin ini gimana caranya??
-  //       [Sequelize.fn('SUM', Sequelize.col('Peserta.Penugasans.Soal.bobot')), 'totalBobot'],
-  //       // [Sequelize.fn('SUM', Sequelize.col('Peserta.Penugasans.SistemOperasi.bobot')), 'totalBobot2'],
-  //       [
-  //         Sequelize.fn('COUNT',
-  //           Sequelize.literal("CASE WHEN \"Peserta->Penugasans\".\"status\" = 'Selesai' THEN 1 ELSE NULL END")
-  //         ),
-  //         'totalTugasSelesai'
-  //       ]
-  //     ],
-  //     include: [
-  //       {
-  //         model: Peserta,
-  //         where: { id_batch: idBatch },
-  //         attributes: ['id_peserta'],
-  //         include: [
-  //           {
-  //             model: Penugasan,
-  //             as: 'Penugasans',
-  //             attributes: [],
-  //             include: [
-  //               {
-  //                 model: Soal,
-  //                 attributes: [],
-  //               }
-  //             ]
-  //           }
-  //         ]
-  //       }
-  //     ],
-  //     group: ['User.id_user', 'User.email', 'User.nomor_identitas', 'User.nama', 'Peserta.id_peserta'],
-  //     raw: true,
-  //     subQuery: false
-  //   });
-
-  //   // Jika tidak ada hasil, langsung return array kosong
-  //   if (!results || results.length === 0) return [];
-
-  //   // Ambil daftar id_peserta dari hasil query pertama
-  //   const pesertaIds = results.map(res => res['Peserta.id_peserta']);
-
-  //   // ------------------------------------------------------------------
-  //   // STEP 2: Query Penugasan terakhir per peserta
-  //   // ------------------------------------------------------------------
-  //   const penugasans = await Penugasan.findAll({
-  //     where: {
-  //       // Asumsi foreign key ke Peserta bernama 'id_peserta'
-  //       id_peserta: pesertaIds
-  //     },
-  //     // Urutkan dari yang terbaru ke yang paling lama
-  //     order: [['createdAt', 'DESC']],
-  //     raw: true
-  //   });
-
-  //   // Buat Hash Map agar proses pencocokan lebih cepat (O(N))
-  //   const latestPenugasanMap = {};
-  //   penugasans.forEach(p => {
-  //     // Karena data sudah diurutkan DESC, data pertama yang kita looping 
-  //     // untuk setiap id_peserta pasti adalah data yang paling akhir dibuat.
-  //     if (!latestPenugasanMap[p.id_peserta]) {
-  //       latestPenugasanMap[p.id_peserta] = p;
-  //     }
-  //   });
-
-  //   // ------------------------------------------------------------------
-  //   // STEP 3: Gabungkan (Merge) hasil agregasi dengan object penugasannya
-  //   // ------------------------------------------------------------------
-  //   return results.map(res => {
-  //     const idPeserta = res['Peserta.id_peserta'];
-  //     return {
-  //       id_peserta: idPeserta,
-  //       nama: res.nama,
-  //       email: res.email,
-  //       nomor_identitas: res.nomor_identitas,
-  //       totalBobot: res.totalBobot ? Number(res.totalBobot) : 0,
-  //       totalTugas: res.totalTugasSelesai ? Number(res.totalTugasSelesai) : 0,
-
-  //       // Sisipkan object penugasan terbaru di sini
-  //       penugasanTerakhir: latestPenugasanMap[idPeserta] || null
-  //     };
-  //   });
-  // }
-
   async getPenugasanByIdBatch(idBatch) {
     try {
       const dataPesertaBatch = await Peserta.findAll({
@@ -145,8 +58,8 @@ class PenugasanService {
     }
   }
 
-async getPenugasanByIdBatchAndByIdPeserta(idBatch, idPeserta) {
-  console.log(',asil')
+  async getPenugasanByIdBatchAndByIdPeserta(idBatch, idPeserta) {
+    console.log(',asil')
     try {
       const peserta = await Peserta.findOne({
         where: {
@@ -198,42 +111,26 @@ async getPenugasanByIdBatchAndByIdPeserta(idBatch, idPeserta) {
     }
   }
 
-  // done
-  async getPenugasanByIdPeserta(id) {
-    const results = await Penugasan.findAll({
-      attributes: ['id_penugasan', 'status', 'tanggal_beri'],
-      where: { id_peserta: id },
-      include: [
-        {
-          model: Peserta,
-          attributes: [],
-          include: [
-            {
-              model: User,
-              attributes: ['nama']
-            }
-          ]
-        },
-        {
-          model: User,
-          attributes: ['nama']
-        },
-        {
-          model: Soal,
-          attributes: ['judul', 'bobot']
-        },
-        {
-          model: SistemOperasi,
-          attributes: ['nama', 'bobot']
-        }
-      ]
-    });
-    return results;
+  async createPenugasan(data){
+    return await Penugasan.create(data);
   }
 
-  // done
+  async updatePenugasan(id, data){
+    const penugasan = await Penugasan.findOne({where: {id_penugasan:id} });
+    if(!penugasan) return null;
+    await penugasan.update(data);
+    return penugasan;
+  }
+
+  async deletePenugasan(id) {
+    const penugasan = await Penugasan.findOne({where:{id_penugasan:id}});
+    if(!penugasan) return null;
+    await penugasan.destroy();
+    return penugasan;
+  }
+
   async getPenugasanByIdPenugasan(id) {
-    const results = await Penugasan.findAll({
+    const results = await Penugasan.findOne({
       attributes: ['id_penugasan', 'status', 'tanggal_beri', 'tanggal_kumpul'],
       where: { id_penugasan: id },
       include: [

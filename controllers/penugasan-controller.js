@@ -48,17 +48,93 @@ class PenugasanController {
   async getPenugasanByIdPenugasan(req, res) {
     try {
       const penugasan = await penugasanService.getPenugasanByIdPenugasan(req.params.id);
-      return res.json({
+
+      if (!penugasan) {
+        return res.status(404).json({
+          success: false,
+          message: 'Data penugasan peserta tidak ditemukan pada batch tersebut'
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        penugasan: penugasan
+      });
+
+    } catch (error) {
+      console.error('Error di controller getPenugasanByIdPeserta:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Terjadi kesalahan pada server',
+        error: error.message
+      });
+    }
+  }
+
+  async createPenugasan(req, res) {
+    try {
+      const penugasan = await penugasanService.createPenugasan(req.body);
+      return res.status(200).json({
         success: true,
         penugasan: penugasan
       });
     } catch (error) {
+      console.error("error:",error)
+
+      return res.status(500).json({
+        success: false,
+        message: 'Terjadi kesalahan pada server',
+        error: error.message
+      });
+    }
+  }
+
+  async updatePenugasan(req, res) {
+    try {
+      const penugasan = await penugasanService.updatePenugasan(req.params.id, req.body);
+      if (!penugasan) {
+        return res.status(404).json({
+          success: false,
+          message: "Penugasan not found"
+        });
+      }
+
+      return res.json({
+        success: true,
+        penugasan: penugasan
+      });
+
+    } catch (error) {
       return res.status(500).json({
         success: false,
         message: error.message
-      })
+      });
     }
   }
+
+  async deletePenugasan(req, res) {
+    try {
+      const penugasan = await penugasanService.deletePenugasan(req.params.id);
+      if (!penugasan) {
+        return res.status(404).json({
+          success: false,
+          message: "Penugasan not found"
+        });
+      }
+
+      return res.json({
+        success: true,
+        message: "Penugasan deleted successfully"
+      });
+
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      });
+    }
+  }
+
 }
 
 export default new PenugasanController();

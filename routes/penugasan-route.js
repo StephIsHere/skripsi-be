@@ -5,8 +5,15 @@ const router = express.Router();
 
 router.get('/penugasan/batch/:id', penugasanController.getPenugasanByIdBatch);
 
+router.get('/penugasan/:id', penugasanController.getPenugasanByIdPenugasan);
+
 router.get('/penugasan/:idBatch/:idPeserta', penugasanController.getPenugasanByIdBatchAndIdPeserta);
 
-router.get('/penugasan/detail/:id', penugasanController.getPenugasanByIdPenugasan);
+router.post('/penugasan', penugasanController.createPenugasan);
+
+router.patch('/penugasan/:id', penugasanController.updatePenugasan);
+
+router.delete('/penugasan/:id', penugasanController.deletePenugasan);
+
 
 export default router;
