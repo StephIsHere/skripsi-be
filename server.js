@@ -14,6 +14,7 @@ import kehadiranRoute from "./routes/kehadiran-route.js"
 import penugasanRoute from "./routes/penugasan-route.js"
 import sistemOperasiRoute from "./routes/sistem-operasi-route.js"
 import komentarTugasRoute from "./routes/komentar-tugas-route.js"
+import uploadRoute from "./routes/upload-route.js";
 
 import "./config/relation.js"; 
 
@@ -32,6 +33,8 @@ app.use("/api", kehadiranRoute);
 app.use("/api", penugasanRoute);
 app.use("/api", sistemOperasiRoute);
 app.use("/api", komentarTugasRoute);
+app.use("/api", uploadRoute);
+app.use("/uploads", express.static("public/uploads"));
 
 sequelize.sync({ alter: true })
   .then(() => {
