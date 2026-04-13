@@ -130,6 +130,7 @@ class PenugasanService {
   }
 
   async getPenugasanByIdPenugasan(id) {
+    console.log('masuk123 123 123')
     const results = await Penugasan.findOne({
       attributes: ['id_penugasan', 'status', 'tanggal_beri', 'tanggal_kumpul'],
       where: { id_penugasan: id },

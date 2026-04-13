@@ -38,17 +38,35 @@ class PengumumanService {
     return result;
   }
 
-  async getPengumumanByUser(id) {
-    return await Pengumuman.findAll({
-      include: [{
+async getPengumumanByUser(id) {
+  return await Pengumuman.findAll({
+    include: [
+      {
         model: User,
+        as: "penerima",
         attributes: ["id_user", "nama"],
         through: { attributes: [] },
         required: true,
         where: { id_user: id }
-      }]
-    });
-  }
+      },
+      {
+        model: User,
+        as: "pembuat",
+        attributes: ["id_user", "nama"],
+      },
+      {
+        model: KomentarPengumuman,
+        attributes: ["id_komentar_pengumuman", "isi_komentar", "createdAt"],
+        include: [
+          {
+            model: User,
+            attributes: ["id_user", "nama"]
+          }
+        ]
+      }
+    ]
+  });
+}
 
   async getPengumumanByIdBatch(id) {
     return await Pengumuman.findAll({
