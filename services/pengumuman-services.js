@@ -38,35 +38,35 @@ class PengumumanService {
     return result;
   }
 
-async getPengumumanByUser(id) {
-  return await Pengumuman.findAll({
-    include: [
-      {
-        model: User,
-        as: "penerima",
-        attributes: ["id_user", "nama"],
-        through: { attributes: [] },
-        required: true,
-        where: { id_user: id }
-      },
-      {
-        model: User,
-        as: "pembuat",
-        attributes: ["id_user", "nama"],
-      },
-      {
-        model: KomentarPengumuman,
-        attributes: ["id_komentar_pengumuman", "isi_komentar", "createdAt"],
-        include: [
-          {
-            model: User,
-            attributes: ["id_user", "nama"]
-          }
-        ]
-      }
-    ]
-  });
-}
+  async getPengumumanByIdUser(id) {
+    return await Pengumuman.findAll({
+      include: [
+        {
+          model: User,
+          as: "penerima",
+          attributes: ["id_user", "nama"],
+          through: { attributes: [] },
+          required: true,
+          where: { id_user: id }
+        },
+        {
+          model: User,
+          as: "pembuat",
+          attributes: ["id_user", "nama"],
+        },
+        {
+          model: KomentarPengumuman,
+          attributes: ["id_komentar_pengumuman", "isi_komentar", "createdAt"],
+          include: [
+            {
+              model: User,
+              attributes: ["id_user", "nama"]
+            }
+          ]
+        }
+      ]
+    });
+  }
 
   async getPengumumanByIdBatch(id) {
     return await Pengumuman.findAll({
@@ -75,6 +75,27 @@ async getPengumumanByUser(id) {
         {
           model: User,
           as: "penerima",
+          attributes: ["id_user", "nama"],
+          through: { attributes: [] }
+        },
+        {
+          model: User,
+          as: "pembuat",
+          attributes: ["id_user", "nama"],
+        }
+      ],
+      order: [['createdAt', 'DESC']]
+    });
+  }
+
+  async getPengumumanByIdBatchAndIdUser(id_batch, id_user) {
+    return await Pengumuman.findAll({
+      where: { id_batch: id_batch },
+      include: [
+        {
+          model: User,
+          as: "penerima",
+          where: {id_user: id_user},
           attributes: ["id_user", "nama"],
           through: { attributes: [] }
         },

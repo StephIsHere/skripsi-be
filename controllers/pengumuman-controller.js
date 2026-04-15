@@ -58,10 +58,32 @@ class PengumumanController {
       })
     }
   }
+
+  async getPengumumanByIdBatchAndIdUser(req, res) {
+    try {
+      const { idBatch, idUser } = req.params;
+      const pengumuman = await pengumumanServices.getPengumumanByIdBatchAndIdUser(idBatch, idUser);
+      if (!pengumuman) {
+        return res.status(404).json({
+          success: false,
+          message: "Pengumuman not found"
+        });
+      }
+      return res.json({
+        success: true,
+        pengumuman: pengumuman
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      })
+    }
+  }
   
   async getPengumumanByIdUser(req, res) {
     try {
-      const pengumuman = await pengumumanServices.getPengumumanByUser(req.params.id);
+      const pengumuman = await pengumumanServices.getPengumumanByIdUser(req.params.id);
       if (!pengumuman) {
         return res.status(404).json({
           success: false,
@@ -94,7 +116,6 @@ class PengumumanController {
       })
     }
   }
-
 
   async updatePengumuman(req, res) {
     try {

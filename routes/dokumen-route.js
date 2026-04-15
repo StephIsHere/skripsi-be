@@ -10,7 +10,7 @@ router.post("/laporan/:id_peserta", uploadDokumen, async (req, res) => {
 
     const filePaths = {};
     for (const [field, fileArr] of Object.entries(req.files)) {
-      filePaths[field] = `/uploads/${id_peserta}/${fileArr[0].filename}`;
+      filePaths[field] = `/uploads/peserta/${id_peserta}/dokumen/${fileArr[0].filename}`;
     }
 
     await Dokumen.create({

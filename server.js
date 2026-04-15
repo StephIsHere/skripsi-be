@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 
 import sequelize from "./config/db.js";
+import generateKehadiranCron from "./cron/generateKehadiran.js"
 
 import userRoute from "./routes/user-route.js";
 import pengumumanRoute from "./routes/pengumuman-route.js";
@@ -20,6 +21,8 @@ import dokumenRoute from "./routes/dokumen-route.js"
 import "./config/relation.js"; 
 
 const app = express();
+
+generateKehadiranCron();
 
 app.use(express.json());
 app.use(cors());

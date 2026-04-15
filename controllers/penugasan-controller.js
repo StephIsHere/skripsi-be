@@ -79,7 +79,7 @@ class PenugasanController {
         penugasan: penugasan
       });
     } catch (error) {
-      console.error("error:",error)
+      console.error("error:", error)
 
       return res.status(500).json({
         success: false,
@@ -135,6 +135,43 @@ class PenugasanController {
     }
   }
 
+  async uploadFilePengumpulan(req, res) {
+    try {
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: "File tidak ditemukan. Upload file PDF atau Word.",
+        });
+      }
+
+      const { id_peserta,id_penugasan } = req.params;
+      const filePath = `/uploads/peserta/${id_peserta}/penugasan/${id_penugasan}/${req.file.filename}`;
+
+      const penugasan = await penugasanService.uploadFilePengumpulan(
+        id_penugasan,
+        filePath
+      );
+
+      if (!penugasan) {
+        return res.status(404).json({
+          success: false,
+          message: "Penugasan tidak ditemukan",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "File berhasil dikumpulkan",
+        penugasan,
+      });
+    } catch (error) {
+      console.error("Error upload file pengumpulan:", error);
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
 }
 
 export default new PenugasanController();

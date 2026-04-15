@@ -1,9 +1,12 @@
 import express from 'express';
 import penugasanController from '../controllers/penugasan-controller.js';
+import { uploadPengumpulan } from "../config/multer.js";
 
 const router = express.Router();
 
 router.get('/penugasan/batch/:id', penugasanController.getPenugasanByIdBatch);
+
+router.patch("/penugasan/:id_peserta/:id_penugasan/upload",uploadPengumpulan,penugasanController.uploadFilePengumpulan);
 
 router.get('/penugasan/:id', penugasanController.getPenugasanByIdPenugasan);
 

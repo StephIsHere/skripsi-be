@@ -2,7 +2,6 @@ import Penugasan from "../models/penugasan-model.js";
 import User from "../models/user-model.js";
 import Peserta from "../models/peserta-model.js";
 import Soal from "../models/soal-model.js";
-import { Sequelize } from "sequelize";
 import KomentarTugas from "../models/komentar-tugas-model.js";
 import SistemOperasi from "../models/sistem-operasi-model.js";
 
@@ -111,28 +110,27 @@ class PenugasanService {
     }
   }
 
-  async createPenugasan(data){
+  async createPenugasan(data) {
     return await Penugasan.create(data);
   }
 
-  async updatePenugasan(id, data){
-    const penugasan = await Penugasan.findOne({where: {id_penugasan:id} });
-    if(!penugasan) return null;
+  async updatePenugasan(id, data) {
+    const penugasan = await Penugasan.findOne({ where: { id_penugasan: id } });
+    if (!penugasan) return null;
     await penugasan.update(data);
     return penugasan;
   }
 
   async deletePenugasan(id) {
-    const penugasan = await Penugasan.findOne({where:{id_penugasan:id}});
-    if(!penugasan) return null;
+    const penugasan = await Penugasan.findOne({ where: { id_penugasan: id } });
+    if (!penugasan) return null;
     await penugasan.destroy();
     return penugasan;
   }
 
   async getPenugasanByIdPenugasan(id) {
-    console.log('masuk123 123 123')
     const results = await Penugasan.findOne({
-      attributes: ['id_penugasan', 'status', 'tanggal_beri', 'tanggal_kumpul'],
+      attributes: ['id_penugasan', 'status', 'tanggal_beri', 'tanggal_kumpul', 'file_pengumpulan'],
       where: { id_penugasan: id },
       include: [
         {
@@ -156,6 +154,21 @@ class PenugasanService {
       ],
     });
     return results;
+  }
+
+  async uploadFilePengumpulan(idPenugasan, filePath) {
+    const penugasan = await Penugasan.findOne({
+      where: { id_penugasan: idPenugasan },
+    });
+    if (!penugasan) return null;
+
+    await penugasan.update({
+      file_pengumpulan: filePath,
+      status: "Selesai",
+      tanggal_kumpul: new Date(),
+    });
+
+    return penugasan;
   }
 }
 

@@ -2,11 +2,36 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
+// ── Helper ──────────────────────────────────────────────────────────
 const ensureDir = (dir) => fs.mkdirSync(dir, { recursive: true });
 
+// ── Allowed MIME Types ──────────────────────────────────────────────
+const ALLOWED_DOKUMEN = {
+  cv: [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ],
+  foto: ["image/jpeg", "image/png", "image/webp"],
+  ktm: ["application/pdf", "image/jpeg", "image/png"],
+  transkrip: ["application/pdf"],
+  motivation_letter: [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ],
+};
+
+const ALLOWED_PENGUMPULAN = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
+
+// ── Storage Configurations ──────────────────────────────────────────
 const storageTinymce = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = "public/uploads";
+    const dir = "public/uploads/TinyMce";
     ensureDir(dir);
     cb(null, dir);
   },
@@ -18,7 +43,7 @@ const storageTinymce = multer.diskStorage({
 
 const storageDokumen = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = `public/uploads/${req.params.id_peserta}`;
+    const dir = `public/uploads/peserta/${req.params.id_peserta}/dokumen`;
     ensureDir(dir);
     cb(null, dir);
   },
@@ -28,22 +53,25 @@ const storageDokumen = multer.diskStorage({
   },
 });
 
+const storagePengumpulan = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = `public/uploads/peserta/${req.params.id_peserta}/penugasan/${req.params.id_penugasan}`;
+    ensureDir(dir);
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `pengumpulan-${Date.now()}${ext}`);
+  },
+});
+
+// ── File Filters ────────────────────────────────────────────────────
 const filterTinymce = (req, file, cb) => {
   if (file.mimetype.startsWith("image/")) {
     cb(null, true);
   } else {
     cb(new Error("File harus gambar!"), false);
   }
-};
-
-const ALLOWED_DOKUMEN = {
-  cv: ["application/pdf", "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
-  foto: ["image/jpeg", "image/png", "image/webp"],
-  ktm: ["application/pdf", "image/jpeg", "image/png"],
-  transkrip: ["application/pdf"],
-  motivation_letter: ["application/pdf", "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
 };
 
 const filterDokumen = (req, file, cb) => {
@@ -55,6 +83,15 @@ const filterDokumen = (req, file, cb) => {
   }
 };
 
+const filterPengumpulan = (req, file, cb) => {
+  if (ALLOWED_PENGUMPULAN.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("File harus berupa PDF atau Word document!"), false);
+  }
+};
+
+// ── Multer Exports ──────────────────────────────────────────────────
 export const uploadTinymce = multer({
   storage: storageTinymce,
   fileFilter: filterTinymce,
@@ -71,3 +108,9 @@ export const uploadDokumen = multer({
   { name: "transkrip", maxCount: 1 },
   { name: "motivation_letter", maxCount: 1 },
 ]);
+
+export const uploadPengumpulan = multer({
+  storage: storagePengumpulan,
+  fileFilter: filterPengumpulan,
+  limits: { fileSize: 10 * 1024 * 1024 },
+}).single("file_pengumpulan");
