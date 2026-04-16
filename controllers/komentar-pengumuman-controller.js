@@ -1,4 +1,5 @@
 import komentarPengumumanServices from "../services/komentar-pengumuman-services.js";
+import { log } from "../utils/loggers.js";
 
 class KomentarPengumumanController {
   async getKomentarPengumuman(req,res){
@@ -25,6 +26,14 @@ class KomentarPengumumanController {
   async createKomentar(req, res) {
     try {
       const komentar = await komentarPengumumanServices.createKomentar(req.body);
+      console.log(req.body)
+      await log({
+        id_user: req.body.id_user,
+        aksi: "CREATE",
+        entitas: "komentar_pengumuman",
+        id_entitas: komentar.id_komentar_pengumuman,
+        deskripsi: komentar.isi_komentar,
+      });
       return res.status(201).json({
         success: true,
         komentar: komentar

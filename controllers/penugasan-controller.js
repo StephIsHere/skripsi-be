@@ -1,4 +1,5 @@
 import penugasanService from "../services/penugasan-service.js";
+import { log } from "../utils/loggers.js";
 
 class PenugasanController {
 
@@ -36,7 +37,7 @@ class PenugasanController {
       });
 
     } catch (error) {
-      console.error('Error di controller getPenugasanByIdPeserta:', error);
+      console.error('Error di controller getPenugasanByIdBatchAndIdPeserta:', error);
       return res.status(500).json({
         success: false,
         message: 'Terjadi kesalahan pada server',
@@ -71,9 +72,45 @@ class PenugasanController {
     }
   }
 
+  async getPenugasanByIdKelompok(req, res) {
+    try {
+      const { id_kelompok } = req.params;
+
+      const penugasan = await penugasanService.getPenugasanByIdKelompok(
+        id_kelompok
+      );
+
+      if (!penugasan) {
+        return res.status(404).json({
+          success: false,
+          message: "Data penugasan kelompok tidak ditemukan",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        penugasan: penugasan,
+      });
+    } catch (error) {
+      console.error("Error di controller getPenugasanByIdKelompok:", error);
+      return res.status(500).json({
+        success: false,
+        message: "Terjadi kesalahan pada server",
+        error: error.message,
+      });
+    }
+  }
+
   async createPenugasan(req, res) {
     try {
       const penugasan = await penugasanService.createPenugasan(req.body);
+      await log({
+        id_user: req.body.id_user,
+        aksi: "CREATE",
+        entitas: "penugasan",
+        id_entitas: penugasan.id_penugasan,
+        deskripsi: "Membuat tugas untuk id_peserta :" + req.body.id_peserta,
+      });
       return res.status(200).json({
         success: true,
         penugasan: penugasan
@@ -144,11 +181,12 @@ class PenugasanController {
         });
       }
 
-      const { id_peserta,id_penugasan } = req.params;
+      const { id_peserta, id_penugasan } = req.params;
       const filePath = `/uploads/peserta/${id_peserta}/penugasan/${id_penugasan}/${req.file.filename}`;
 
       const penugasan = await penugasanService.uploadFilePengumpulan(
         id_penugasan,
+        id_peserta,
         filePath
       );
 

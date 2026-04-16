@@ -4,6 +4,7 @@ import Peserta from "../models/peserta-model.js";
 import Soal from "../models/soal-model.js";
 import KomentarTugas from "../models/komentar-tugas-model.js";
 import SistemOperasi from "../models/sistem-operasi-model.js";
+import Kelompok from "../models/kelompok-model.js"
 
 class PenugasanService {
   async getPenugasanByIdBatch(idBatch) {
@@ -58,54 +59,109 @@ class PenugasanService {
   }
 
   async getPenugasanByIdBatchAndByIdPeserta(idBatch, idPeserta) {
-    console.log(',asil')
     try {
       const peserta = await Peserta.findOne({
-        where: {
-          id_batch: idBatch,
-          id_peserta: idPeserta
-        },
+        where: { id_batch: idBatch, id_peserta: idPeserta },
+        include: [
+          { model: User, attributes: ["nama", "email", "nomor_identitas"] },
+          {
+            model: Penugasan, // tugas individu
+            include: [
+              { model: Soal, attributes: ["judul", "deskripsi", "bobot"] },
+              { model: SistemOperasi, attributes: ["nama", "bobot"] },
+            ],
+          },
+          {
+            model: Kelompok,
+            include: [
+              {
+                model: Penugasan, // tugas kelompok
+                include: [
+                  { model: Soal, attributes: ["judul", "deskripsi", "bobot"] },
+                  { model: SistemOperasi, attributes: ["nama", "bobot"] },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
+      if (!peserta) return null;
+
+      const tugasIndividu = peserta.Penugasans || [];
+      const tugasKelompok = peserta.Kelompok?.Penugasans || [];
+
+      // gabung dan urutkan berdasarkan tanggal terbaru
+      const riwayatPenugasan = [...tugasIndividu, ...tugasKelompok].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      const statusTugasTerakhir =
+        riwayatPenugasan.length > 0 ? riwayatPenugasan[0].status : "Belum ada tugas";
+
+      return {
+        id_peserta: peserta.id_peserta,
+        id_batch: peserta.id_batch,
+        profil: peserta.User,
+        kelompok: peserta.Kelompok || null,
+        status_tugas_terakhir: statusTugasTerakhir,
+        riwayat_penugasan: riwayatPenugasan,
+      };
+    } catch (error) {
+      console.error(`Error fetch peserta ${idPeserta} batch ${idBatch}:`, error);
+      throw error;
+    }
+  }
+
+  async getPenugasanByIdKelompok(idKelompok) {
+    try {
+      const kelompok = await Kelompok.findOne({
+        where: { id_kelompok: idKelompok },
         include: [
           {
-            model: User,
-            attributes: ['nama', 'email', 'nomor_identitas'],
+            model: Peserta,
+            include: [
+              {
+                model: User,
+                attributes: ["nama", "email", "nomor_identitas"],
+              },
+            ],
           },
           {
             model: Penugasan,
             include: [
               {
                 model: Soal,
-                attributes: ['judul', 'deskripsi', 'bobot'],
+                attributes: ["judul", "deskripsi", "bobot"],
               },
               {
                 model: SistemOperasi,
-                attributes: ['nama', 'bobot'],
-              }
-            ]
-          }
+                attributes: ["nama", "bobot"],
+              },
+            ],
+          },
         ],
-        order: [
-          [Penugasan, 'createdAt', 'DESC']
-        ]
+        order: [[Penugasan, "createdAt", "DESC"]],
       });
 
-      if (!peserta) {
-        return null;
-      }
+      if (!kelompok) return null;
 
-      const listPenugasan = peserta.Penugasans || [];
-      const statusTugasTerakhir = listPenugasan.length > 0 ? listPenugasan[0].status : 'Belum ada tugas';
+      const riwayatPenugasan = kelompok.Penugasans || [];
+      const statusTugasTerakhir =
+        riwayatPenugasan.length > 0
+          ? riwayatPenugasan[0].status
+          : "Belum ada tugas";
 
       return {
-        id_peserta: peserta.id_peserta,
-        id_batch: peserta.id_batch,
-        profil: peserta.User,
+        id_kelompok: kelompok.id_kelompok,
+        nama_kelompok: kelompok.nama_kelompok,
+        id_batch: kelompok.id_batch,
+        anggota: kelompok.Peserta || [],
         status_tugas_terakhir: statusTugasTerakhir,
-        riwayat_penugasan: listPenugasan
+        riwayat_penugasan: riwayatPenugasan,
       };
-
     } catch (error) {
-      console.error(`Error saat fetch data peserta ${idPeserta} di batch ${idBatch}:`, error);
+      console.error(`Error fetch penugasan kelompok ${idKelompok}:`, error);
       throw error;
     }
   }
@@ -130,37 +186,80 @@ class PenugasanService {
 
   async getPenugasanByIdPenugasan(id) {
     const results = await Penugasan.findOne({
-      attributes: ['id_penugasan', 'status', 'tanggal_beri', 'tanggal_kumpul', 'file_pengumpulan'],
+      attributes: [
+        "id_penugasan",
+        "status",
+        "tanggal_beri",
+        "tanggal_kumpul",
+        "file_pengumpulan",
+      ],
       where: { id_penugasan: id },
       include: [
         {
           model: Soal,
-          attributes: ['judul', 'bobot', 'deskripsi']
+          attributes: ["judul", "bobot", "deskripsi"],
         },
         {
           model: SistemOperasi,
-          attributes: ['nama', 'bobot']
+          attributes: ["nama", "bobot"],
         },
         {
           model: KomentarTugas,
-          attributes: ['id_komentar_tugas', 'isi_komentar', 'createdAt'],
+          attributes: ["id_komentar_tugas", "isi_komentar", "createdAt"],
           include: [
             {
               model: User,
-              attributes: ['id_user', 'nama']
-            }
-          ]
-        }
+              attributes: ["id_user", "nama"],
+            },
+          ],
+        },
+        {
+          model: Kelompok,
+          attributes: ["id_kelompok", "nama_kelompok"],
+          include: [
+            {
+              model: Peserta,
+              attributes: ["id_peserta"],
+              include: [
+                {
+                  model: User,
+                  attributes: ["id_user", "nama", "email"],
+                },
+              ],
+            },
+          ],
+        },        
+        {
+          model: Peserta,
+          attributes: ["id_peserta"],
+          include: [
+            {
+              model: User,
+              attributes: ["id_user", "nama", "email"],
+            },
+          ],
+        },
       ],
     });
     return results;
   }
 
-  async uploadFilePengumpulan(idPenugasan, filePath) {
+  async uploadFilePengumpulan(idPenugasan, idPeserta, filePath) {
     const penugasan = await Penugasan.findOne({
       where: { id_penugasan: idPenugasan },
     });
     if (!penugasan) return null;
+
+    if (penugasan.id_kelompok) {
+      const peserta = await Peserta.findOne({
+        where: { id_peserta: idPeserta },
+      });
+      if (!peserta || peserta.id_kelompok !== penugasan.id_kelompok) {
+        throw new Error("Anda bukan anggota kelompok penerima tugas ini");
+      }
+    } else if (penugasan.id_peserta !== Number(idPeserta)) {
+      throw new Error("Tugas ini bukan milik Anda");
+    }
 
     await penugasan.update({
       file_pengumpulan: filePath,

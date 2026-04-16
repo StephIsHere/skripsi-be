@@ -2,10 +2,10 @@ import kehadiranServices from "../services/kehadiran-services.js";
 
 class KehadiranController {
 
-  async getKehadiranByIdPeserta(req,res){
+  async getKehadiranByIdPeserta(req, res) {
     try {
       const kehadiran = await kehadiranServices.getKehadiranByIdPeserta(req.params.id);
-      if(!kehadiran){
+      if (!kehadiran) {
         return res.status(404).json({
           success: false,
           message: "Kehadiran not found"
@@ -24,9 +24,16 @@ class KehadiranController {
     }
   }
 
-  async createKehadiran(req,res){
+  async createKehadiran(req, res) {
     try {
       const kehadiran = await kehadiranServices.createKehadiran(req.body);
+      // await log({
+      //   id_user: req.body.id_user,
+      //   aksi: "CREATE",
+      //   entitas: "kehadiran",
+      //   id_entitas: kehadiran.id_kehadiran,
+      //   deskripsi: kehadiran.isi_komentar,
+      // });
       return res.status(201).json({
         success: true,
         data: kehadiran
@@ -39,7 +46,7 @@ class KehadiranController {
     }
   }
 
-  async updateKehadiran(req,res){
+  async updateKehadiran(req, res) {
     try {
       const kehadiran = await kehadiranServices.updateKehadiran(req.params.id, req.body);
       if (!kehadiran) {
@@ -62,10 +69,10 @@ class KehadiranController {
     }
   }
 
-  async deleteKehadiran(req,res) {
+  async deleteKehadiran(req, res) {
     try {
       const kehadiran = await kehadiranServices.deleteKehadiran(req.params.id);
-      if(!kehadiran){
+      if (!kehadiran) {
         return res.status(404).json({
           success: false,
           message: "Kehadiran not found"

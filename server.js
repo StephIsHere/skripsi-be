@@ -17,6 +17,8 @@ import sistemOperasiRoute from "./routes/sistem-operasi-route.js"
 import komentarTugasRoute from "./routes/komentar-tugas-route.js"
 import tinyMceRoute from "./routes/tinymce-route.js";
 import dokumenRoute from "./routes/dokumen-route.js"
+import kelompokRoute from "./routes/kelompok-route.js"
+import logRoute from "./routes/log-route.js"
 
 import "./config/relation.js"; 
 
@@ -39,6 +41,8 @@ app.use("/api", sistemOperasiRoute);
 app.use("/api", komentarTugasRoute);
 app.use("/api", tinyMceRoute);
 app.use("/api", dokumenRoute);
+app.use("/api", kelompokRoute);
+app.use("/api", logRoute);
 app.use("/uploads", express.static("public/uploads"));
 
 sequelize.sync({ alter: true })

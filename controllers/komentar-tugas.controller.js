@@ -1,7 +1,8 @@
 import komentarTugasServices from "../services/komentar-tugas.services.js";
+import { log } from "../utils/loggers.js";
 
 class KomentarTugasController {
-  async getKomentarTugas(req,res){
+  async getKomentarTugas(req, res) {
     try {
       const komentar = await komentarTugasServices.getKomentarByIdTugas(req.params.id);
       if (!komentar) {
@@ -25,6 +26,13 @@ class KomentarTugasController {
   async createKomentar(req, res) {
     try {
       const komentar = await komentarTugasServices.createKomentar(req.body);
+      await log({
+        id_user: req.body.id_user,
+        aksi: "CREATE",
+        entitas: "komentar_tugas",
+        id_entitas: komentar.id_komentar_tugas,
+        deskripsi: "Menulis Komentar : " + komentar.isi_komentar,
+      });
       return res.status(201).json({
         success: true,
         komentar: komentar
