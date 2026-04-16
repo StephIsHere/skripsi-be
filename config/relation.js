@@ -8,6 +8,9 @@ import Kehadiran from "../models/kehadiran-model.js";
 import Penugasan from "../models/penugasan-model.js";
 import Soal from "../models/soal-model.js";
 import KomentarTugas from "../models/komentar-tugas-model.js";
+import SistemOperasi from "../models/sistem-operasi-model.js";
+import Kelompok from "../models/kelompok-model.js";
+import Log from "../models/log-model.js";
 
 
 // relasi batch - pengumuman
@@ -119,6 +122,15 @@ Penugasan.belongsTo(Soal, {
   foreignKey: "id_soal"
 })
 
+// relasi sistem operasi - penugasan 
+SistemOperasi.hasMany(Penugasan, {
+  foreignKey: "id_so"
+})
+
+Penugasan.belongsTo(SistemOperasi, {
+  foreignKey: "id_so"
+})
+
 // relasi penugasan - komentar tugas
 Penugasan.hasMany(KomentarTugas, {
   foreignKey: "id_penugasan",
@@ -139,3 +151,35 @@ User.hasMany(KomentarTugas, {
 KomentarTugas.belongsTo(User, {
   foreignKey: "id_user",
 })
+
+// relasi batch - kelompok
+Batch.hasMany(Kelompok, {
+  foreignKey: "id_batch",
+});
+
+Kelompok.belongsTo(Batch, {
+  foreignKey: "id_batch",
+});
+
+// relasi kelompok - peserta (1 kelompok punya banyak peserta, 1 peserta hanya 1 kelompok)
+Kelompok.hasMany(Peserta, {
+  foreignKey: "id_kelompok",
+});
+
+Peserta.belongsTo(Kelompok, {
+  foreignKey: "id_kelompok",
+});
+
+// relasi kelompok - penugasan (1 kelompok bisa dapat banyak tugas)
+Kelompok.hasMany(Penugasan, {
+  foreignKey: "id_kelompok",
+});
+
+Penugasan.belongsTo(Kelompok, {
+  foreignKey: "id_kelompok",
+});
+
+// relasi user - log
+User.hasMany(Log, { foreignKey: "id_user" });
+
+Log.belongsTo(User, { foreignKey: "id_user" });

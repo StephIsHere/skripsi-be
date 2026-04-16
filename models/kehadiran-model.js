@@ -29,6 +29,6 @@ const Kehadiran = sequelize.define(
   {
     tableName: "kehadiran",
   }
-)
+);
 
 export default Kehadiran;

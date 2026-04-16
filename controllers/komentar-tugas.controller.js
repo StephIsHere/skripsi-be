@@ -1,10 +1,10 @@
-import komentarPengumumanServices from "../services/komentar-pengumuman-services.js";
+import komentarTugasServices from "../services/komentar-tugas.services.js";
 import { log } from "../utils/loggers.js";
 
-class KomentarPengumumanController {
-  async getKomentarPengumuman(req,res){
+class KomentarTugasController {
+  async getKomentarTugas(req, res) {
     try {
-      const komentar = await komentarPengumumanServices.getKomentarByPengumuman(req.params.id);
+      const komentar = await komentarTugasServices.getKomentarByIdTugas(req.params.id);
       if (!komentar) {
         return res.status(404).json({
           success: false,
@@ -25,14 +25,13 @@ class KomentarPengumumanController {
 
   async createKomentar(req, res) {
     try {
-      const komentar = await komentarPengumumanServices.createKomentar(req.body);
-      console.log(req.body)
+      const komentar = await komentarTugasServices.createKomentar(req.body);
       await log({
         id_user: req.body.id_user,
         aksi: "CREATE",
-        entitas: "komentar_pengumuman",
-        id_entitas: komentar.id_komentar_pengumuman,
-        deskripsi: komentar.isi_komentar,
+        entitas: "komentar_tugas",
+        id_entitas: komentar.id_komentar_tugas,
+        deskripsi: "Menulis Komentar : " + komentar.isi_komentar,
       });
       return res.status(201).json({
         success: true,
@@ -48,7 +47,7 @@ class KomentarPengumumanController {
 
   async deleteKomentarPengumuman(req, res) {
     try {
-      const komentar = await komentarPengumumanServices.deleteKomentar(req.params.id);
+      const komentar = await komentarTugasServices.deleteKomentar(req.params.id);
       if (!komentar) {
         return res.status(404).json({
           success: false,
@@ -70,4 +69,4 @@ class KomentarPengumumanController {
   }
 }
 
-export default new KomentarPengumumanController();
+export default new KomentarTugasController();

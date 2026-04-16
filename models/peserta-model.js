@@ -18,6 +18,10 @@ const Peserta = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    id_kelompok: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     status: {
       type: DataTypes.STRING,
       allowNull: false
