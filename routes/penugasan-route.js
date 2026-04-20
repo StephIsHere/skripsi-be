@@ -1,24 +1,25 @@
 import express from 'express';
 import penugasanController from '../controllers/penugasan-controller.js';
 import { uploadPengumpulan } from "../config/multer.js";
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/penugasan/batch/:id', penugasanController.getPenugasanByIdBatch);
+router.get('/penugasan/batch/:id',auth("Kalab","Super Admin"), penugasanController.getPenugasanByIdBatch);
 
-router.get("/penugasan/kelompok/:id_kelompok",penugasanController.getPenugasanByIdKelompok);
+router.get("/penugasan/kelompok/:id_kelompok",auth("Kalab","Super Admin"),penugasanController.getPenugasanByIdKelompok);
 
-router.patch("/penugasan/:id_peserta/:id_penugasan/upload",uploadPengumpulan,penugasanController.uploadFilePengumpulan);
+router.patch("/penugasan/:id_peserta/:id_penugasan/upload",auth("Kalab","Super Admin"),uploadPengumpulan,penugasanController.uploadFilePengumpulan);
 
-router.get('/penugasan/:id', penugasanController.getPenugasanByIdPenugasan);
+router.get('/penugasan/:id',auth("Kalab","Super Admin"), penugasanController.getPenugasanByIdPenugasan);
 
-router.get('/penugasan/:idBatch/:idPeserta', penugasanController.getPenugasanByIdBatchAndIdPeserta);
+router.get('/penugasan/:idBatch/:idPeserta',auth("Kalab","Super Admin"), penugasanController.getPenugasanByIdBatchAndIdPeserta);
 
-router.post('/penugasan', penugasanController.createPenugasan);
+router.post('/penugasan',auth("Kalab","Super Admin"), penugasanController.createPenugasan);
 
-router.patch('/penugasan/:id', penugasanController.updatePenugasan);
+router.patch('/penugasan/:id',auth("Kalab","Super Admin"), penugasanController.updatePenugasan);
 
-router.delete('/penugasan/:id', penugasanController.deletePenugasan);
+router.delete('/penugasan/:id',auth("Kalab","Super Admin"), penugasanController.deletePenugasan);
 
 
 export default router;

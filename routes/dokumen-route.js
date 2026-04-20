@@ -1,10 +1,11 @@
 import express from "express";
 import { uploadDokumen } from "../config/multer.js";
 import Dokumen from "../models/dokumen-model.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/laporan/:id_peserta", uploadDokumen, async (req, res) => {
+router.post("/laporan/:id_peserta",auth("Kalab","Super Admin"), uploadDokumen, async (req, res) => {
   try {
     const { id_peserta } = req.params;
 
@@ -28,7 +29,7 @@ router.post("/laporan/:id_peserta", uploadDokumen, async (req, res) => {
   }
 });
 
-router.get("/laporan/:id_peserta", async (req, res) => {
+router.get("/laporan/:id_peserta",auth("Kalab","Super Admin"), async (req, res) => {
   try {
     const dokumen = await Dokumen.findOne({
       where: { id_peserta: req.params.id_peserta },
