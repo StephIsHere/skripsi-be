@@ -1,6 +1,9 @@
 import "dotenv/config"
 import express from "express";
 import cors from "cors";
+import session from "express-session";
+import passport from "./config/passport.js";
+import authRoutes from "./routes/auth-route.js";
 
 import sequelize from "./config/db.js";
 import generateKehadiranCron from "./cron/generateKehadiran.js"
@@ -20,15 +23,39 @@ import dokumenRoute from "./routes/dokumen-route.js"
 import kelompokRoute from "./routes/kelompok-route.js"
 import logRoute from "./routes/log-route.js"
 
-import "./config/relation.js"; 
+import "./config/relation.js";
 
 const app = express();
 
 generateKehadiranCron();
 
-app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })); 
 
+app.use(express.json());
+
+app.use(
+  session({
+    name: 'SessionCookie',
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax", 
+      maxAge: 1000 * 60 * 60 * 24 * 1,
+    },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/api/auth", authRoutes);
 app.use("/api", userRoute);
 app.use("/api", pengumumanRoute);
 app.use("/api", batchRoute);

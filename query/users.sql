@@ -1,3 +1,4 @@
+## perlu ubah bagian role jadi ("Peserta", "Admin", "Kalab", "Super Admin")
 INSERT INTO
   "users" (
     "nama",
