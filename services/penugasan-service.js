@@ -11,8 +11,8 @@ class PenugasanService {
     try {
       const dataPesertaBatch = await Peserta.findAll({
         where: {
-          id_batch: idBatch
-        },
+          id_batch: idBatch, status: "Pelatihan"
+        },        
         include: [
           {
             model: User,
@@ -39,7 +39,7 @@ class PenugasanService {
 
       const hasilRekapBatch = dataPesertaBatch.map(peserta => {
         const listPenugasan = peserta.Penugasans || [];
-        const statusTugasTerakhir = listPenugasan.length > 0 ? listPenugasan[0].status : 'Belum ada tugas';
+        const statusTugasTerakhir = listPenugasan.length > 0 ? listPenugasan[0].status : 'Belum Ada Tugas';
 
         return {
           id_peserta: peserta.id_peserta,
@@ -58,15 +58,17 @@ class PenugasanService {
     }
   }
 
+  // kayanya ganti idPeserta aja deh?
   async getPenugasanByIdBatchAndByIdPeserta(idBatch, idPeserta) {
     try {
       const peserta = await Peserta.findOne({
         where: { id_batch: idBatch, id_peserta: idPeserta },
         include: [
-          { model: User, attributes: ["nama", "email", "nomor_identitas"] },
+          { model: User, attributes: ["nama", "email", "nomor_identitas","foto"] },
           {
-            model: Penugasan, // tugas individu
+            model: Penugasan, 
             include: [
+              { model: User, attributes: ["nama","foto"] },
               { model: Soal, attributes: ["judul", "deskripsi", "bobot"] },
               { model: SistemOperasi, attributes: ["nama", "bobot"] },
             ],
@@ -74,9 +76,10 @@ class PenugasanService {
           {
             model: Kelompok,
             include: [
-              {
-                model: Penugasan, // tugas kelompok
+              {                
+                model: Penugasan,
                 include: [
+                  { model: User, attributes: ["nama","foto"] },
                   { model: Soal, attributes: ["judul", "deskripsi", "bobot"] },
                   { model: SistemOperasi, attributes: ["nama", "bobot"] },
                 ],
@@ -97,7 +100,7 @@ class PenugasanService {
       );
 
       const statusTugasTerakhir =
-        riwayatPenugasan.length > 0 ? riwayatPenugasan[0].status : "Belum ada tugas";
+        riwayatPenugasan.length > 0 ? riwayatPenugasan[0].status : "Belum Ada Tugas";
 
       return {
         id_peserta: peserta.id_peserta,
@@ -150,7 +153,7 @@ class PenugasanService {
       const statusTugasTerakhir =
         riwayatPenugasan.length > 0
           ? riwayatPenugasan[0].status
-          : "Belum ada tugas";
+          : "Belum Ada Tugas";
 
       return {
         id_kelompok: kelompok.id_kelompok,
@@ -196,6 +199,10 @@ class PenugasanService {
       where: { id_penugasan: id },
       include: [
         {
+          model: User,
+          attributes: ["nama","foto"]
+        },
+        {
           model: Soal,
           attributes: ["judul", "bobot", "deskripsi"],
         },
@@ -205,11 +212,13 @@ class PenugasanService {
         },
         {
           model: KomentarTugas,
+          separate: true,
+          order: [["createdAt","ASC"]],
           attributes: ["id_komentar_tugas", "isi_komentar", "createdAt"],
           include: [
             {
               model: User,
-              attributes: ["id_user", "nama"],
+              attributes: ["id_user", "nama","foto"],
             },
           ],
         },
@@ -263,7 +272,7 @@ class PenugasanService {
 
     await penugasan.update({
       file_pengumpulan: filePath,
-      status: "Selesai",
+      status: "Menunggu Verifikasi",
       tanggal_kumpul: new Date(),
     });
 

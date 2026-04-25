@@ -4,7 +4,7 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/upload",auth("Kalab","Super Admin"), uploadTinymce.single("file"), (req, res) => {
+router.post("/upload",auth("Peserta","Admin","Kalab","Super Admin"), uploadTinymce.single("file"), (req, res) => {
   try {
     const fileUrl = `http://localhost:3000/uploads/TinyMce/${req.file.filename}`;
     res.json({ location: fileUrl });

@@ -10,7 +10,7 @@ router.get('/batch/active',auth("Peserta","Kalab","Super Admin"), batchControlle
 
 router.get('/batch/:id',auth("Kalab","Super Admin"), batchController.getBatchById);
 
-router.post('/batch/',auth("Kalab","Super Admin"), batchController.createBatch);
+router.post('/batch',auth("Kalab","Super Admin"), batchController.createBatch);
 
 router.patch('/batch/:id',auth("Kalab","Super Admin"), batchController.updateBatch);
 

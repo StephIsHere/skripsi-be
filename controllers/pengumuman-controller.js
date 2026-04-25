@@ -1,15 +1,26 @@
+import Pengumuman from "../models/pengumuman-model.js";
+import User from "../models/user-model.js";
 import pengumumanServices from "../services/pengumuman-services.js";
 import userServices from "../services/user-services.js";
 import { log } from "../utils/loggers.js";
 
 class PengumumanController {
-  async getPengumuman(req, res) {
-    try {
-      const pengumumans = await pengumumanServices.getAllPengumuman();
+  async getPengumumanByIdBatchAndIdUser(req, res) {
+    try {      
+      const { id_batch, id_user} = req.user;
+      const pengumuman = await pengumumanServices.getPengumumanByIdBatchAndIdUser(id_batch, id_user);
+
+      if (!pengumuman) {
+        return res.status(404).json({
+          success: false,
+          message: "Pengumuman not found"
+        });
+      }
+      
       return res.json({
         success: true,
-        pengumuman: pengumumans
-      });
+        pengumuman: pengumuman
+      })
     } catch (error) {
       return res.status(500).json({
         success: false,
@@ -20,7 +31,36 @@ class PengumumanController {
 
   async getPengumumanById(req, res) {
     try {
-      const pengumuman = await pengumumanServices.getPengumumanById(req.params.id);
+      const id_pengumuman = req.params.id;
+      const { id_batch, id_user, role} = req.user;
+
+      // cek peserta!
+      if(role === "Peserta"){
+        // cek apakah pengumuman ini tuh punya peserta tersebut.
+        const pengumuman = await Pengumuman.findOne({
+          where: {id_pengumuman: id_pengumuman},
+          include: [
+            {
+              model: User,
+              as: "penerima",
+              where: {id_user: id_user},
+              attributes: [],
+              through: { attributes: [] }
+            }
+          ]
+        })
+        
+        // kalo gada pengumumanya, artinya dia bukan penerimanya, jadi return 403
+        if(!pengumuman){
+          return res.status(403).json({
+            success: false,
+            message: "Unauthorized"
+          });
+        }
+      }
+
+      const pengumuman = await pengumumanServices.getPengumumanById(id_pengumuman);
+
       if (!pengumuman) {
         return res.status(404).json({
           success: false,
@@ -43,49 +83,6 @@ class PengumumanController {
   async getPengumumanByIdBatch(req, res) {
     try {
       const pengumuman = await pengumumanServices.getPengumumanByIdBatch(req.params.id);
-      if (!pengumuman) {
-        return res.status(404).json({
-          success: false,
-          message: "Pengumuman not found"
-        });
-      }
-      return res.json({
-        success: true,
-        pengumuman: pengumuman
-      })
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: error.message
-      })
-    }
-  }
-
-  async getPengumumanByIdBatchAndIdUser(req, res) {
-    try {
-      const { idBatch, idUser } = req.params;
-      const pengumuman = await pengumumanServices.getPengumumanByIdBatchAndIdUser(idBatch, idUser);
-      if (!pengumuman) {
-        return res.status(404).json({
-          success: false,
-          message: "Pengumuman not found"
-        });
-      }
-      return res.json({
-        success: true,
-        pengumuman: pengumuman
-      })
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: error.message
-      })
-    }
-  }
-
-  async getPengumumanByIdUser(req, res) {
-    try {
-      const pengumuman = await pengumumanServices.getPengumumanByIdUser(req.params.id);
       if (!pengumuman) {
         return res.status(404).json({
           success: false,

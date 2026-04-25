@@ -1,32 +1,26 @@
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import crypto from "crypto";
 
 // ── Helper ──────────────────────────────────────────────────────────
 const ensureDir = (dir) => fs.mkdirSync(dir, { recursive: true });
 
+// Generate filename
+const randomName = () => crypto.randomBytes(16).toString("hex");
+
 // ── Allowed MIME Types ──────────────────────────────────────────────
+const ALLOWED_IMAGE = ["image/jpeg", "image/png", "image/webp"];
+
 const ALLOWED_DOKUMEN = {
-  cv: [
-    "application/pdf",
-    "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  ],
-  foto: ["image/jpeg", "image/png", "image/webp"],
-  ktm: ["application/pdf", "image/jpeg", "image/png"],
-  transkrip: ["application/pdf"],
-  motivation_letter: [
-    "application/pdf",
-    "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  ],
+  cv:               ["application/pdf", ...ALLOWED_IMAGE],
+  foto:             ["application/pdf",...ALLOWED_IMAGE],
+  ktm:              ["application/pdf", ...ALLOWED_IMAGE],
+  transkrip:        ["application/pdf"],
+  motivation_letter:["application/pdf"],
 };
 
-const ALLOWED_PENGUMPULAN = [
-  "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-];
+const ALLOWED_PENGUMPULAN = ["application/pdf"];
 
 // ── Storage Configurations ──────────────────────────────────────────
 const storageTinymce = multer.diskStorage({
@@ -37,31 +31,31 @@ const storageTinymce = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, Date.now() + ext);
+    cb(null, `${randomName()}${ext}`); 
   },
 });
 
 const storageDokumen = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = `public/uploads/peserta/${req.params.id_peserta}/dokumen`;
+    const dir = `public/uploads/batch/${req.user.nama_batch}/peserta/${req.user.nama}/dokumen`;
     ensureDir(dir);
     cb(null, dir);
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, `${file.fieldname}-${Date.now()}${ext}`);
+    cb(null, `${randomName()}${ext}`); 
   },
 });
 
 const storagePengumpulan = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = `public/uploads/peserta/${req.params.id_peserta}/penugasan/${req.params.id_penugasan}`;
+    const dir = `public/uploads/batch/${req.user.nama_batch}/peserta/${req.user.nama}/laporan`;
     ensureDir(dir);
     cb(null, dir);
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, `pengumpulan-${Date.now()}${ext}`);
+    cb(null, `${randomName()}${ext}`); 
   },
 });
 
@@ -112,5 +106,5 @@ export const uploadDokumen = multer({
 export const uploadPengumpulan = multer({
   storage: storagePengumpulan,
   fileFilter: filterPengumpulan,
-  limits: { fileSize: 10 * 1024 * 1024 },
+  limits: { fileSize: 5 * 1024 * 1024 },
 }).single("file_pengumpulan");

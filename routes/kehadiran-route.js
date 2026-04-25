@@ -8,7 +8,7 @@ router.get('/kehadiran/:id',auth("Peserta","Kalab","Super Admin"), kehadiranCont
 
 router.post('/kehadiran',auth("Kalab","Super Admin"), kehadiranController.createKehadiran);
 
-router.patch('/kehadiran/:id',auth("Kalab","Super Admin"), kehadiranController.updateKehadiran);
+router.patch('/kehadiran/:id',auth("Peserta","Kalab","Super Admin"), kehadiranController.updateKehadiran);
 
 router.delete('/kehadiran/:id',auth("Kalab","Super Admin"), kehadiranController.deleteKehadiran);
 

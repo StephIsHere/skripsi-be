@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/komentar-tugas/:id',auth("Kalab","Super Admin"), komentarTugasController.getKomentarTugas);
 
-router.post('/komentar-tugas',auth("Kalab","Super Admin"), komentarTugasController.createKomentar);
+router.post('/komentar-tugas',auth("Peserta","Kalab","Super Admin"), komentarTugasController.createKomentar);
 
 router.delete('/komentar-tugas/:id',auth("Kalab","Super Admin"), komentarTugasController.deleteKomentarPengumuman);
 

@@ -26,7 +26,6 @@ class KomentarPengumumanController {
   async createKomentar(req, res) {
     try {
       const komentar = await komentarPengumumanServices.createKomentar(req.body);
-      console.log(req.body)
       await log({
         id_user: req.body.id_user,
         aksi: "CREATE",

@@ -1,0 +1,14 @@
+SELECT setval('"sistem_operasi_id_so_seq"', (SELECT MAX("id_so") FROM "sistem_operasi"));
+SELECT setval('"soal_id_soal_seq"', (SELECT MAX("id_soal") FROM "soal"));
+SELECT setval('"batch_id_batch_seq"', (SELECT MAX("id_batch") FROM "batch"));
+SELECT setval('"users_id_user_seq"', (SELECT MAX("id_user") FROM "users"));
+SELECT setval('"kelompok_id_kelompok_seq"', (SELECT MAX("id_kelompok") FROM "kelompok"));
+SELECT setval('"peserta_id_peserta_seq"', (SELECT MAX("id_peserta") FROM "peserta"));
+SELECT setval('"pengumuman_id_pengumuman_seq"', (SELECT MAX("id_pengumuman") FROM "pengumuman"));
+SELECT setval('"penerima_pengumuman_id_penerima_pengumuman_seq"', (SELECT MAX("id_penerima_pengumuman") FROM "penerima_pengumuman"));
+SELECT setval('"komentar_pengumuman_id_komentar_pengumuman_seq"', (SELECT MAX("id_komentar_pengumuman") FROM "komentar_pengumuman"));
+SELECT setval('"kehadiran_id_kehadiran_seq"', (SELECT MAX("id_kehadiran") FROM "kehadiran"));
+SELECT setval('"penugasan_id_penugasan_seq"', (SELECT MAX("id_penugasan") FROM "penugasan"));
+SELECT setval('"komentar_tugas_id_komentar_tugas_seq"', (SELECT MAX("id_komentar_tugas") FROM "komentar_tugas"));
+SELECT setval('"dokumen_id_dokumen_seq"', (SELECT MAX("id_dokumen") FROM "dokumen"));
+SELECT setval('"log_id_log_seq"', (SELECT MAX("id_log") FROM "log"));

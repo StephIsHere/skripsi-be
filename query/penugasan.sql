@@ -1,24 +1,15 @@
-INSERT INTO penugasan (
-    id_peserta, 
-    id_soal, 
-    id_so,
-    status, 
-    tanggal_beri, 
-    tanggal_kumpul, 
-    file_pengumpulan, 
-    "createdAt", 
-    "updatedAt", 
-    id_user
-) VALUES 
-
-(23, 1, 2, 'Selesai', '2025-07-10 10:00:00+07', '2025-07-13 10:00:00+07', 'public/uploads/peserta_23/soal_1.pdf', '2025-07-10 10:00:00+07', '2025-07-13 10:00:00+07', 1),
-(23, 2, 5, 'Belum Selesai', '2025-07-11 08:30:00+07', '2025-07-14 08:30:00+07', 'public/uploads/peserta_23/draft_soal_2.pdf', '2025-07-11 08:30:00+07', '2025-07-12 09:15:00+07', 1),
-(23, 5, 1, 'Selesai', '2025-07-15 13:00:00+07', '2025-07-18 13:00:00+07', 'public/uploads/peserta_23/soal_5.pdf', '2025-07-15 13:00:00+07', '2025-07-18 13:00:00+07', 1),
-(23, 8, 4, 'Belum Selesai', '2025-07-20 09:00:00+07', '2025-07-23 09:00:00+07', 'public/uploads/peserta_23/draft_soal_8.pdf', '2025-07-20 09:00:00+07', '2025-07-21 10:00:00+07', 1),
-(23, 11, 3, 'Selesai', '2025-07-25 15:00:00+07', '2025-07-28 15:00:00+07', 'public/uploads/peserta_23/soal_11.pdf', '2025-07-25 15:00:00+07', '2025-07-28 15:00:00+07', 1),
-
-(24, 3, 2, 'Selesai', '2025-07-10 10:00:00+07', '2025-07-13 10:00:00+07', 'public/uploads/peserta_24/soal_3.pdf', '2025-07-10 10:00:00+07', '2025-07-13 10:00:00+07', 1),
-(25, 4, 4, 'Belum Selesai', '2025-07-12 11:00:00+07', '2025-07-15 11:00:00+07', 'public/uploads/peserta_25/draft_soal_4.pdf', '2025-07-12 11:00:00+07', '2025-07-13 14:00:00+07', 1),
-(26, 6, 1, 'Selesai', '2025-07-14 09:30:00+07', '2025-07-17 09:30:00+07', 'public/uploads/peserta_26/soal_6.pdf', '2025-07-14 09:30:00+07', '2025-07-17 09:30:00+07', 1),
-(27, 7, 5, 'Belum Selesai', '2025-07-16 14:00:00+07', '2025-07-19 14:00:00+07', 'public/uploads/peserta_27/draft_soal_7.pdf', '2025-07-16 14:00:00+07', '2025-07-17 16:30:00+07', 1),
-(28, 10, 3, 'Selesai', '2025-07-18 10:00:00+07', '2025-07-21 10:00:00+07', 'public/uploads/peserta_28/soal_10.pdf', '2025-07-18 10:00:00+07', '2025-07-21 10:00:00+07', 1);
+INSERT INTO "penugasan" ("id_penugasan", "id_peserta", "id_soal", "id_so", "id_user", "id_kelompok", "status", "tanggal_beri", "tanggal_kumpul", "file_pengumpulan", "createdAt", "updatedAt") VALUES
+(1, 1, 1, 1, 2, NULL, 'Menunggu Verifikasi', '2024-02-10 08:00:00', '2024-02-17 22:45:00', '/uploads/peserta/1/tugas/laporan_instalasi_rizky.pdf', '2024-02-10 08:00:00', '2024-02-18 09:00:00'),
+(2, 2, 2, 2, 2, NULL, 'Menunggu Verifikasi', '2024-02-10 08:00:00', '2024-02-17 20:30:00', '/uploads/peserta/2/tugas/laporan_dns_aisyah.pdf', '2024-02-10 08:00:00', '2024-02-18 09:00:00'),
+(3, 3, 3, 1, 4, NULL, 'Menunggu Verifikasi', '2024-02-24 08:00:00', '2024-03-02 21:15:00', '/uploads/peserta/3/tugas/laporan_nginx_bambang.pdf', '2024-02-24 08:00:00', '2024-03-03 09:00:00'),
+(4, 4, 1, 3, 4, NULL, 'Menunggu Verifikasi', '2024-02-24 08:00:00', '2024-03-02 19:45:00', '/uploads/peserta/4/tugas/laporan_centos_citra.pdf', '2024-02-24 08:00:00', '2024-03-03 09:00:00'),
+(5, 6, 2, 2, 4, NULL, 'Menungggu Verifikasi', '2024-02-24 08:00:00', '2024-03-10 23:55:00', '/uploads/peserta/6/tugas/laporan_dns_eka.pdf', '2024-02-24 08:00:00', '2024-03-11 09:00:00'),
+(6, NULL, 4, 2, 2, 1, 'Menunggu Verifikasi', '2024-03-15 08:00:00', '2024-04-05 22:00:00', '/uploads/kelompok/1/tugas/laporan_mailserver_kelompok_a.pdf', '2024-03-15 08:00:00', '2024-04-06 09:00:00'),
+(7, NULL, 5, 5, 2, 2, 'Menunggu Verifikasi', '2024-03-15 08:00:00', '2024-04-05 21:30:00', '/uploads/kelompok/2/tugas/laporan_iptables_kelompok_b.pdf', '2024-03-15 08:00:00', '2024-04-06 09:00:00'),
+(8, 8, 1, 1, 3, NULL, 'Menunggu Verifikasi', '2025-02-20 08:00:00', '2025-02-27 20:00:00', '/uploads/peserta/8/tugas/laporan_instalasi_galih.pdf', '2025-02-20 08:00:00', '2025-02-28 09:00:00'),
+(9, 9, 2, 2, 3, NULL, 'Menunggu Verifikasi', '2025-02-20 08:00:00', '2025-02-27 22:00:00', '/uploads/peserta/9/tugas/laporan_dns_hana.pdf', '2025-02-20 08:00:00', '2025-02-28 09:00:00'),
+(10, 10, 3, 3, 3, NULL, 'Menungggu Verifikasi', '2025-03-10 08:00:00', '2025-03-17 23:00:00', '/uploads/peserta/10/tugas/laporan_nginx_indra.pdf', '2025-03-10 08:00:00', '2025-03-17 23:00:00'),
+(11, 11, 1, 4, 5, NULL, 'Menungggu Verifikasi', '2025-03-10 08:00:00', '2025-03-17 22:45:00', '/uploads/peserta/11/tugas/laporan_fedora_jihan.pdf', '2025-03-10 08:00:00', '2025-03-17 22:45:00'),
+(12, 12, 2, 5, 5, NULL, 'Menungggu Verifikasi', '2025-03-10 08:00:00', '2025-03-17 21:15:00', '/uploads/peserta/12/tugas/laporan_dns_krisna.pdf', '2025-03-10 08:00:00', '2025-03-17 21:15:00'),
+(13, NULL, 6, 1, 3, 3, 'Menungggu Verifikasi', '2025-04-01 08:00:00', '2025-04-22 23:00:00', '/uploads/kelompok/3/tugas/laporan_haproxy_alpha.pdf', '2025-04-01 08:00:00', '2025-04-22 23:00:00'),
+(14, NULL, 5, 2, 3, 4, 'Diberikan', '2025-04-01 08:00:00', NULL, NULL, '2025-04-01 08:00:00', '2025-04-01 08:00:00');

@@ -1,123 +1,22 @@
-## perlu ubah bagian role jadi ("Peserta", "Admin", "Kalab", "Super Admin")
-INSERT INTO
-  "users" (
-    "nama",
-    "email",
-    "role",
-    "nomor_identitas",
-    "createdAt",
-    "updatedAt"
-  )
-VALUES
-  (
-    'Raymond',
-    'raymond@unpar.ac.id',
-    'Kalab',
-    '61821010057',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Steven Febrian',
-    '6182201084@student.unpar.ac.id',
-    'Admin Lab',
-    '6182201084',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Shawn Jonathan Chandra',
-    '6182201021@student.unpar.ac.id',
-    'Admin Lab',
-    '6182201021',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Benediktus Kristiadi Arya Wiguna',
-    '6182201032@student.unpar.ac.id',
-    'Admin Lab',
-    '6182201032',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Imanuel Alexander Here',
-    '6182201013@student.unpar.ac.id',
-    'Admin Lab',
-    '6182201013',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Alfonsus',
-    '6182301042@student.unpar.ac.id',
-    'Peserta',
-    '6182301042',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Andrew',
-    '6182301089@student.unpar.ac.id',
-    'Peserta',
-    '6182301089',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Christofer',
-    '6182301015@student.unpar.ac.id',
-    'Peserta',
-    '6182301015',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Gregorius',
-    '6182301076@student.unpar.ac.id',
-    'Peserta',
-    '6182301076',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Kenneth',
-    '6182301023@student.unpar.ac.id',
-    'Peserta',
-    '6182301023',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Lelipaly',
-    '6182301094@student.unpar.ac.id',
-    'Peserta',
-    '6182301094',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Rafael',
-    '6182301008@student.unpar.ac.id',
-    'Peserta',
-    '6182301008',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  ),
-  (
-    'Vandyka',
-    '6182301061@student.unpar.ac.id',
-    'Peserta',
-    '6182301061',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  );
-  (
-    'Fabrianus',
-    '6181901075@student.unpar.ac.id',
-    'Admin Lab',
-    '6182301075',
-    '2026-03-24 22:38:24.982046+07',
-    '2026-03-24 22:38:24.982046+07'
-  );
+
+INSERT INTO "users" ("id_user", "nama", "email", "google_id", "foto", "role", "nomor_identitas", "createdAt", "updatedAt") VALUES
+(1, 'Steven Febrian', '6182201084@student.unpar.ac.id', '7777777', NULL, 'Super Admin', 'https://lh3.googleusercontent.com/a/ACg8ocLXsoVyHIh48AXAZuhQHtAadDshe2aDnvF30M42egKeJzllGw=s96-c', '2024-01-05 07:00:00', '2024-01-05 07:00:00'),
+(2, 'Siti Nurhaliza', 'siti.nurhaliza@lab.ac.id', 'google_100000000002', NULL, 'Kalab', '197502152000032001', '2024-01-05 07:05:00', '2024-01-05 07:05:00'),
+(3, 'Ahmad Dahlan', 'ahmad.dahlan@lab.ac.id', 'google_100000000003', NULL, 'Kalab', '198003202005011002', '2024-01-05 07:10:00', '2024-01-05 07:10:00'),
+(4, 'Joko Prasetyo', 'joko.prasetyo@lab.ac.id', 'google_100000000004', NULL, 'Admin', '198506102010121003', '2024-01-05 07:15:00', '2024-01-05 07:15:00'),
+(5, 'Dewi Lestari', 'dewi.lestari@lab.ac.id', 'google_100000000005', NULL, 'Admin', '198811252015042004', '2024-01-05 07:20:00', '2024-01-05 07:20:00'),
+(6, 'Rizky Pratama', 'rizky.pratama@student.ac.id', 'google_100000000006', NULL, 'Peserta', '18223001', '2024-01-20 09:00:00', '2024-01-20 09:00:00'),
+(7, 'Aisyah Putri', 'aisyah.putri@student.ac.id', 'google_100000000007', NULL, 'Peserta', '18223002', '2024-01-20 09:05:00', '2024-01-20 09:05:00'),
+(8, 'Bambang Sutrisno', 'bambang.sutrisno@student.ac.id', 'google_100000000008', NULL, 'Peserta', '18223003', '2024-01-20 09:10:00', '2024-01-20 09:10:00'),
+(9, 'Citra Dewi', 'citra.dewi@student.ac.id', 'google_100000000009', NULL, 'Peserta', '18223004', '2024-01-20 09:15:00', '2024-01-20 09:15:00'),
+(10, 'Dian Wijaya', 'dian.wijaya@student.ac.id', 'google_100000000010', NULL, 'Peserta', '18223005', '2024-01-20 09:20:00', '2024-01-20 09:20:00'),
+(11, 'Eka Saputra', 'eka.saputra@student.ac.id', 'google_100000000011', NULL, 'Peserta', '18223006', '2024-01-20 09:25:00', '2024-01-20 09:25:00'),
+(12, 'Fitri Handayani', 'fitri.handayani@student.ac.id', 'google_100000000012', NULL, 'Peserta', '18223007', '2024-01-20 09:30:00', '2024-01-20 09:30:00'),
+(13, 'Galih Ramadhan', 'galih.ramadhan@student.ac.id', 'google_100000000013', NULL, 'Peserta', '18224001', '2025-01-18 09:00:00', '2025-01-18 09:00:00'),
+(14, 'Hana Permata', 'hana.permata@student.ac.id', 'google_100000000014', NULL, 'Peserta', '18224002', '2025-01-18 09:05:00', '2025-01-18 09:05:00'),
+(15, 'Indra Maulana', 'indra.maulana@student.ac.id', 'google_100000000015', NULL, 'Peserta', '18224003', '2025-01-18 09:10:00', '2025-01-18 09:10:00'),
+(16, 'Jihan Safira', 'jihan.safira@student.ac.id', 'google_100000000016', NULL, 'Peserta', '18224004', '2025-01-18 09:15:00', '2025-01-18 09:15:00'),
+(17, 'Krisna Aditya', 'krisna.aditya@student.ac.id', 'google_100000000017', NULL, 'Peserta', '18224005', '2025-01-18 09:20:00', '2025-01-18 09:20:00'),
+(18, 'Lia Anggraini', 'lia.anggraini@student.ac.id', 'google_100000000018', NULL, 'Peserta', '18224006', '2025-01-18 09:25:00', '2025-01-18 09:25:00'),
+(19, 'Mochamad Rizal', 'mochamad.rizal@student.ac.id', 'google_100000000019', NULL, 'Peserta', '18224007', '2025-01-18 09:30:00', '2025-01-18 09:30:00'),
+(20, 'Nadia Khairunnisa', 'nadia.khairunnisa@student.ac.id', 'google_100000000020', NULL, 'Peserta', '18224008', '2025-01-18 09:35:00', '2025-01-18 09:35:00');

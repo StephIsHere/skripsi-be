@@ -1,0 +1,18 @@
+INSERT INTO "log" ("id_log", "id_user", "aksi", "entitas", "id_entitas", "deskripsi", "createdAt") VALUES
+(1, 2, 'CREATE', 'Batch', 1, 'Membuat batch baru: Batch 2024', '2024-01-15 08:00:00'),
+(2, 2, 'CREATE', 'Pengumuman', 1, 'Membuat pengumuman: Pembukaan Asistensi Batch 2024', '2024-02-01 08:00:00'),
+(3, 4, 'CREATE', 'Penugasan', 1, 'Memberikan penugasan instalasi Linux kepada peserta Rizky Pratama', '2024-02-10 08:00:00'),
+(4, 2, 'CREATE', 'Kelompok', 1, 'Membuat kelompok baru: Kelompok A - Infrastruktur', '2024-02-05 08:00:00'),
+(5, 2, 'UPLOAD', 'Penugasan', 6, 'Mengunggah file revisi penugasan kelompok mail server', '2024-04-05 22:00:00'),
+(6, 4, 'UPDATE', 'Penugasan', 1, 'Memperbarui status penugasan menjadi Dinilai', '2024-02-18 09:00:00'),
+(7, 3, 'CREATE', 'Batch', 2, 'Membuat batch baru: Batch 2025', '2025-01-15 08:00:00'),
+(8, 3, 'CREATE', 'Pengumuman', 4, 'Membuat pengumuman: Pembukaan Asistensi Batch 2025', '2025-02-01 08:00:00'),
+(9, 3, 'CREATE', 'Kelompok', 3, 'Membuat kelompok baru: Kelompok Alpha - Networking', '2025-02-05 08:00:00'),
+(10, 5, 'CREATE', 'Penugasan', 10, 'Memberikan penugasan Nginx kepada peserta Indra Maulana', '2025-03-10 08:00:00'),
+(11, 5, 'UPLOAD', 'Penugasan', 10, 'Mengunggah file pengumpulan laporan Nginx', '2025-03-17 23:00:00'),
+(12, 3, 'UPDATE', 'Peserta', 15, 'Memperbarui status peserta Nadia menjadi Nonaktif', '2025-04-15 00:00:00'),
+(13, 1, 'CREATE', 'User', 20, 'Menambahkan user baru: Nadia Khairunnisa', '2025-01-18 09:35:00'),
+(14, 1, 'CREATE', 'Batch', 3, 'Membuat batch baru: Batch 2026 Ganjil', '2026-01-20 08:00:00'),
+(15, 1, 'CREATE', 'Batch', 4, 'Membuat batch baru: Batch 2026 Genap', '2026-04-10 08:00:00'),
+(16, 3, 'DELETE', 'KomentarPengumuman', 11, 'Menghapus komentar tidak relevan', '2025-03-01 14:30:00'),
+(17, 2, 'UPDATE', 'Batch', 1, 'Menonaktifkan Batch 2024 setelah selesai', '2024-09-01 00:00:00');

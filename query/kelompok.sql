@@ -1,5 +1,5 @@
-INSERT INTO kelompok (id_kelompok, nama_kelompok, id_batch, "createdAt", "updatedAt")
-VALUES
-(1, 'Kelompok 1', 4, '2026-03-24 22:38:24.982046+07', '2026-03-24 22:38:24.982046+07'),
-(2, 'Kelompok 2', 4, '2026-03-24 22:38:24.982046+07', '2026-03-24 22:38:24.982046+07'),
-(3, 'Kelompok 3', 4, '2026-03-24 22:38:24.982046+07', '2026-03-24 22:38:24.982046+07');
+INSERT INTO "kelompok" ("id_kelompok", "nama_kelompok", "id_batch", "createdAt", "updatedAt") VALUES
+(1, 'Kelompok A - Infrastruktur', 1, '2024-02-05 08:00:00', '2024-02-05 08:00:00'),
+(2, 'Kelompok B - Keamanan', 1, '2024-02-05 08:10:00', '2024-02-05 08:10:00'),
+(3, 'Kelompok Alpha - Networking', 2, '2025-02-05 08:00:00', '2025-02-05 08:00:00'),
+(4, 'Kelompok Beta - Server Management', 2, '2025-02-05 08:10:00', '2025-02-05 08:10:00');

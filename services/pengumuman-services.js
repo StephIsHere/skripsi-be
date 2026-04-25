@@ -4,10 +4,6 @@ import User from "../models/user-model.js";
 
 class PengumumanService {
 
-  async getAllPengumuman() {
-    return await Pengumuman.findAll();
-  }
-
   async getPengumumanById(id) {
     const result = await Pengumuman.findOne({
       where: { id_pengumuman: id },
@@ -21,7 +17,7 @@ class PengumumanService {
         {
           model: User,
           as: "pembuat",
-          attributes: ["id_user", "nama"],
+          attributes: ["id_user", "nama", "foto"],
         },
         {
           model: KomentarPengumuman,
@@ -29,43 +25,13 @@ class PengumumanService {
           include: [
             {
               model: User,
-              attributes: ["id_user", "nama"]
+              attributes: ["id_user", "nama", "foto"]
             }
           ]
         }
       ],
     });
     return result;
-  }
-
-  async getPengumumanByIdUser(id) {
-    return await Pengumuman.findAll({
-      include: [
-        {
-          model: User,
-          as: "penerima",
-          attributes: ["id_user", "nama"],
-          through: { attributes: [] },
-          required: true,
-          where: { id_user: id }
-        },
-        {
-          model: User,
-          as: "pembuat",
-          attributes: ["id_user", "nama"],
-        },
-        {
-          model: KomentarPengumuman,
-          attributes: ["id_komentar_pengumuman", "isi_komentar", "createdAt"],
-          include: [
-            {
-              model: User,
-              attributes: ["id_user", "nama"]
-            }
-          ]
-        }
-      ]
-    });
   }
 
   async getPengumumanByIdBatch(id) {
@@ -81,7 +47,7 @@ class PengumumanService {
         {
           model: User,
           as: "pembuat",
-          attributes: ["id_user", "nama"],
+          attributes: ["id_user", "nama", "foto"],
         }
       ],
       order: [['createdAt', 'DESC']]
@@ -96,13 +62,13 @@ class PengumumanService {
           model: User,
           as: "penerima",
           where: {id_user: id_user},
-          attributes: ["id_user", "nama"],
+          attributes: ["id_user", "nama",],
           through: { attributes: [] }
         },
         {
           model: User,
           as: "pembuat",
-          attributes: ["id_user", "nama"],
+          attributes: ["id_user", "nama","foto"],
         }
       ],
       order: [['createdAt', 'DESC']]

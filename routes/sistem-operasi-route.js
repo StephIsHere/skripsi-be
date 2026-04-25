@@ -4,14 +4,14 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/so',auth("Kalab","Super Admin"), sistemOperasiController.getAllSistemOperasi);
+router.get('/so',auth("Admin","Kalab","Super Admin"), sistemOperasiController.getAllSistemOperasi);
 
-router.get('/so/:id',auth("Kalab","Super Admin"), sistemOperasiController.getSistemOperasiById);
+router.get('/so/:id',auth("Admin","Kalab","Super Admin"), sistemOperasiController.getSistemOperasiById);
 
-router.post('/so/',auth("Kalab","Super Admin"), sistemOperasiController.createSistemOperasi);
+router.post('/so/',auth("Admin","Kalab","Super Admin"), sistemOperasiController.createSistemOperasi);
 
-router.patch('/so/:id',auth("Kalab","Super Admin"), sistemOperasiController.updateSistemOperasi);
+router.patch('/so/:id',auth("Admin","Kalab","Super Admin"), sistemOperasiController.updateSistemOperasi);
 
-router.delete('/so/:id',auth("Kalab","Super Admin"), sistemOperasiController.deleteSistemOperasi);
+router.delete('/so/:id',auth("Admin","Kalab","Super Admin"), sistemOperasiController.deleteSistemOperasi);
 
 export default router;

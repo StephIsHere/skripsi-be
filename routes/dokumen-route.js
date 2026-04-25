@@ -5,13 +5,13 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/laporan/:id_peserta",auth("Kalab","Super Admin"), uploadDokumen, async (req, res) => {
+router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "Super Admin"), uploadDokumen, async (req, res) => {
   try {
-    const { id_peserta } = req.params;
+    const { id_peserta } = req.user;
 
     const filePaths = {};
     for (const [field, fileArr] of Object.entries(req.files)) {
-      filePaths[field] = `/uploads/peserta/${id_peserta}/dokumen/${fileArr[0].filename}`;
+      filePaths[field] = `/uploads/batch/${req.user.nama_batch}/peserta/${req.user.nama}/dokumen/${fileArr[0].filename}`;
     }
 
     await Dokumen.create({
@@ -29,9 +29,16 @@ router.post("/laporan/:id_peserta",auth("Kalab","Super Admin"), uploadDokumen, a
   }
 });
 
-router.get("/laporan/:id_peserta",auth("Kalab","Super Admin"), async (req, res) => {
+router.get("/laporan/:id_peserta", auth("Peserta", "Kalab", "Super Admin"), async (req, res) => {
   try {
-    const dokumen = await Dokumen.findOne({
+    let dokumen;
+    if (req.user.role === "Peserta") {
+      dokumen = await Dokumen.findOne({
+        where: { id_peserta: req.user.id_peserta },
+      });
+    }
+
+    dokumen = await Dokumen.findOne({
       where: { id_peserta: req.params.id_peserta },
     });
 
