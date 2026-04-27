@@ -4,6 +4,6 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get("/log",auth("Kalab","Super Admin"), logController.getAllLog);
+router.get("/log",auth("Kalab","SA"), logController.getAllLog);
 
 export default router;

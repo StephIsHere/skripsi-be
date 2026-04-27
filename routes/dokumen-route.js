@@ -7,7 +7,7 @@ import User from "../models/user-model.js";
 
 const router = express.Router();
 
-router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "Super Admin"), uploadDokumen, async (req, res) => {
+router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "SA"), uploadDokumen, async (req, res) => {
   try {
     const { id_peserta } = req.user;
 
@@ -31,7 +31,7 @@ router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "Super Adm
   }
 });
 
-router.get("/laporan/:id_peserta", auth("Peserta", "Kalab", "Super Admin"), async (req, res) => {
+router.get("/laporan/:id_peserta", auth("Peserta", "Kalab", "SA"), async (req, res) => {
   try {
     let id_peserta;
 

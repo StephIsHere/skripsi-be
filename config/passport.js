@@ -21,7 +21,7 @@ passport.use(
         let user = await User.findOne({ where: { email } });
 
         if (user) {
-          if (["Admin", "Kalab", "Super Admin"].includes(user.role)) {
+          if (["Admin", "Kalab", "SA"].includes(user.role)) {
             return done(null, user);
           }
 

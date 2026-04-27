@@ -4,14 +4,14 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/users',auth("Super Admin"), userController.getUsers);
+router.get('/users',auth("SA"), userController.getUsers);
 
-router.get('/users/:id',auth("Super Admin"), userController.getUserById);
+router.get('/users/:id',auth("SA"), userController.getUserById);
 
-router.post('/users/',auth("Super Admin"), userController.createUser);
+router.post('/users/',auth("SA"), userController.createUser);
 
-router.patch('/users/:id',auth("Super Admin"), userController.updateUser);
+router.patch('/users/:id',auth("SA"), userController.updateUser);
 
-router.delete('/users/:id',auth("Super Admin"), userController.deleteUser);
+router.delete('/users/:id',auth("SA"), userController.deleteUser);
 
 export default router;

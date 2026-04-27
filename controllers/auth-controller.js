@@ -20,7 +20,11 @@ export const googleCallback = (req, res, next) => {
 
     req.logIn(user, (err) => {
       if (err) return next(err);
-      return res.redirect(`${process.env.CLIENT_URL}/${user.role}/pengumuman`);
+      if (user.role === "Peserta") {
+        return res.redirect(`${process.env.CLIENT_URL}/peserta/pengumuman`);
+      } else {
+        return res.redirect(`${process.env.CLIENT_URL}/admin/pengumuman`);
+      }
     });
   })(req, res, next);
 };
