@@ -59,6 +59,7 @@ passport.use(
 
         const newUser = await User.create({
           email,
+          nomor_identitas: email.substring(0,10),
           nama: profile.displayName,
           foto: profile.photos?.[0]?.value,
           role: "Peserta",

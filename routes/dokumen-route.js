@@ -2,6 +2,8 @@ import express from "express";
 import { uploadDokumen } from "../config/multer.js";
 import Dokumen from "../models/dokumen-model.js";
 import auth from "../middleware/auth.js";
+import Peserta from "../models/peserta-model.js";
+import User from "../models/user-model.js";
 
 const router = express.Router();
 
@@ -31,20 +33,34 @@ router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "Super Adm
 
 router.get("/laporan/:id_peserta", auth("Peserta", "Kalab", "Super Admin"), async (req, res) => {
   try {
-    let dokumen;
+    let id_peserta;
+
     if (req.user.role === "Peserta") {
-      dokumen = await Dokumen.findOne({
-        where: { id_peserta: req.user.id_peserta },
-      });
+      id_peserta = req.user.id_peserta; 
+    } else {
+      id_peserta = req.params.id_peserta;
     }
 
-    dokumen = await Dokumen.findOne({
-      where: { id_peserta: req.params.id_peserta },
+    const dokumen = await Dokumen.findOne({
+      where: { id_peserta },
+      include: [
+        {
+          model: Peserta,
+          attributes: ["id_peserta"],
+          include: [
+            {
+              model: User,
+              attributes: ["id_user", "nama", "foto"],
+            },
+          ],
+        },
+      ],
     });
 
     if (!dokumen) {
       return res.status(404).json({ message: "Dokumen tidak ditemukan" });
     }
+
     res.json(dokumen);
   } catch (err) {
     res.status(500).json({ message: err.message });

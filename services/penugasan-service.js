@@ -244,7 +244,7 @@ class PenugasanService {
           include: [
             {
               model: User,
-              attributes: ["id_user", "nama", "email"],
+              attributes: ["id_user", "nama", "email","foto"],
             },
           ],
         },

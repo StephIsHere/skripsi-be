@@ -12,7 +12,8 @@ const Dokumen = sequelize.define(
     },
     id_peserta: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     ktm: {
       type: DataTypes.STRING,

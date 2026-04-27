@@ -20,7 +20,7 @@ export const googleCallback = (req, res, next) => {
 
     req.logIn(user, (err) => {
       if (err) return next(err);
-      return res.redirect(`${process.env.CLIENT_URL}/`);
+      return res.redirect(`${process.env.CLIENT_URL}/${user.role}/pengumuman`);
     });
   })(req, res, next);
 };

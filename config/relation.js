@@ -11,6 +11,7 @@ import KomentarTugas from "../models/komentar-tugas-model.js";
 import SistemOperasi from "../models/sistem-operasi-model.js";
 import Kelompok from "../models/kelompok-model.js";
 import Log from "../models/log-model.js";
+import Dokumen from "../models/dokumen-model.js";
 
 
 // relasi batch - pengumuman
@@ -178,6 +179,10 @@ Kelompok.hasMany(Penugasan, {
 Penugasan.belongsTo(Kelompok, {
   foreignKey: "id_kelompok",
 });
+
+// relasi peserta - dokumen
+Peserta.hasOne(Dokumen, { foreignKey: "id_peserta" });
+Dokumen.belongsTo(Peserta, { foreignKey: "id_peserta" });
 
 // relasi user - log
 User.hasMany(Log, { foreignKey: "id_user" });
