@@ -1,6 +1,5 @@
 import penugasanService from "../services/penugasan-service.js";
 import Penugasan from "../models/penugasan-model.js";
-import Peserta from "../models/peserta-model.js";
 import { log } from "../utils/loggers.js";
 
 class PenugasanController {
@@ -69,11 +68,11 @@ class PenugasanController {
     try {
       const penugasan = await penugasanService.createPenugasan(req.body);
       await log({
-        id_user: req.body.id_user,
+        id_user: req.user.id_user,
         aksi: "CREATE",
         entitas: "penugasan",
         id_entitas: penugasan.id_penugasan,
-        deskripsi: "Membuat tugas untuk id_peserta: " + req.body.id_peserta,
+        deskripsi: "Membuat tugas untuk peserta",
       });
       return res.status(200).json({ success: true, penugasan });
     } catch (error) {
@@ -84,11 +83,18 @@ class PenugasanController {
 
   async updatePenugasan(req, res) {
     try {
-      const { idPenugasan } = req.params; // ✅ was: req.params.id
+      const { idPenugasan } = req.params;
       const penugasan = await penugasanService.updatePenugasan(idPenugasan, req.body);
       if (!penugasan) {
         return res.status(404).json({ success: false, message: "Penugasan not found" });
       }
+      await log({
+        id_user: req.user.id_user,
+        aksi: "UPDATE",
+        entitas: "penugasan",
+        id_entitas: penugasan.id_penugasan,
+        deskripsi: "Mengubah tugas milik peserta",
+      });
       return res.json({ success: true, penugasan });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -97,11 +103,18 @@ class PenugasanController {
 
   async deletePenugasan(req, res) {
     try {
-      const { idPenugasan } = req.params; // ✅ was: req.params.id
+      const { idPenugasan } = req.params;
       const penugasan = await penugasanService.deletePenugasan(idPenugasan);
       if (!penugasan) {
         return res.status(404).json({ success: false, message: "Penugasan not found" });
       }
+      await log({
+        id_user: req.user.id_user,
+        aksi: "DELETE",
+        entitas: "penugasan",
+        id_entitas: penugasan.id_penugasan,
+        deskripsi: "Menghapus tugas milik peserta",
+      });
       return res.json({ success: true, message: "Penugasan deleted successfully" });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -121,6 +134,13 @@ class PenugasanController {
       if (!penugasan) {
         return res.status(404).json({ success: false, message: "Penugasan tidak ditemukan" });
       }
+      await log({
+        id_user: req.user.id_user,
+        aksi: "UPDATE",
+        entitas: "penugasan",
+        id_entitas: penugasan.id_penugasan,
+        deskripsi: "Peserta telah mengumpulkan tugas",
+      });
 
       return res.status(200).json({ success: true, message: "File berhasil dikumpulkan", penugasan });
     } catch (error) {

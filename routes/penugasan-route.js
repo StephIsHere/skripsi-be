@@ -8,22 +8,22 @@ const router = express.Router();
 // =====================
 // GET
 // =====================
-router.get('/penugasan/batch/:idBatch', auth('Kalab', 'Super Admin'), penugasanController.getPenugasanByIdBatch);
-router.get('/penugasan/kelompok/:idKelompok', auth('Kalab', 'Super Admin'), penugasanController.getPenugasanByIdKelompok);
-router.get('/penugasan/batch/:idBatch/peserta/:idPeserta', auth('Peserta', 'Admin', 'Kalab', 'Super Admin'), penugasanController.getPenugasanByIdBatchAndIdPeserta);
-router.get('/penugasan/:idPenugasan', auth('Peserta', 'Kalab', 'Super Admin'), penugasanController.getPenugasanByIdPenugasan);
+router.get('/penugasan/batch/:idBatch', auth('Kalab', "SA"), penugasanController.getPenugasanByIdBatch);
+router.get('/penugasan/kelompok/:idKelompok', auth('Kalab', "SA"), penugasanController.getPenugasanByIdKelompok);
+router.get('/penugasan/batch/:idBatch/peserta/:idPeserta', auth('Peserta', 'Admin', 'Kalab', "SA"), penugasanController.getPenugasanByIdBatchAndIdPeserta);
+router.get('/penugasan/:idPenugasan', auth('Peserta', 'Kalab', "SA"), penugasanController.getPenugasanByIdPenugasan);
 
 // =====================
 // UPLOAD
 // =====================
-router.patch('/penugasan/:idPenugasan/peserta/:idPeserta/upload', auth('Peserta', 'Kalab', 'Super Admin'), uploadPengumpulan, penugasanController.uploadFilePengumpulan);
+router.patch('/penugasan/:idPenugasan/peserta/:idPeserta/upload', auth('Peserta', 'Kalab', "SA"), uploadPengumpulan, penugasanController.uploadFilePengumpulan);
 
 // =====================
 // CRUD
 // =====================
-router.post('/penugasan', auth('Kalab', 'Super Admin'), penugasanController.createPenugasan);
-router.patch('/penugasan/:idPenugasan', auth('Kalab', 'Super Admin'), penugasanController.updatePenugasan);
-router.delete('/penugasan/:idPenugasan', auth('Kalab', 'Super Admin'), penugasanController.deletePenugasan);
+router.post('/penugasan', auth('Kalab', "SA"), penugasanController.createPenugasan);
+router.patch('/penugasan/:idPenugasan', auth('Kalab', "SA"), penugasanController.updatePenugasan);
+router.delete('/penugasan/:idPenugasan', auth('Kalab', "SA"), penugasanController.deletePenugasan);
 
 
 export default router;

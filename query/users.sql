@@ -1,6 +1,6 @@
 
 INSERT INTO "users" ("id_user", "nama", "email", "google_id", "foto", "role", "nomor_identitas", "createdAt", "updatedAt") VALUES
-(1, 'Steven Febrian', '6182201084@student.unpar.ac.id', '7777777', NULL, 'Super Admin', 'https://lh3.googleusercontent.com/a/ACg8ocLXsoVyHIh48AXAZuhQHtAadDshe2aDnvF30M42egKeJzllGw=s96-c', '2024-01-05 07:00:00', '2024-01-05 07:00:00'),
+(1, 'Steven Febrian', '6182201084@student.unpar.ac.id', '7777777', NULL, "SA", 'https://lh3.googleusercontent.com/a/ACg8ocLXsoVyHIh48AXAZuhQHtAadDshe2aDnvF30M42egKeJzllGw=s96-c', '2024-01-05 07:00:00', '2024-01-05 07:00:00'),
 (2, 'Siti Nurhaliza', 'siti.nurhaliza@lab.ac.id', 'google_100000000002', NULL, 'Kalab', '197502152000032001', '2024-01-05 07:05:00', '2024-01-05 07:05:00'),
 (3, 'Ahmad Dahlan', 'ahmad.dahlan@lab.ac.id', 'google_100000000003', NULL, 'Kalab', '198003202005011002', '2024-01-05 07:10:00', '2024-01-05 07:10:00'),
 (4, 'Joko Prasetyo', 'joko.prasetyo@lab.ac.id', 'google_100000000004', NULL, 'Admin', '198506102010121003', '2024-01-05 07:15:00', '2024-01-05 07:15:00'),

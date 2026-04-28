@@ -27,7 +27,7 @@ class KomentarPengumumanController {
     try {
       const komentar = await komentarPengumumanServices.createKomentar(req.body);
       await log({
-        id_user: req.body.id_user,
+        id_user: req.user.id_user,
         aksi: "CREATE",
         entitas: "komentar_pengumuman",
         id_entitas: komentar.id_komentar_pengumuman,

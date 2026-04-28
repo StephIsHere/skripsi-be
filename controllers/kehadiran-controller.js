@@ -1,4 +1,5 @@
 import kehadiranServices from "../services/kehadiran-services.js";
+import { log } from "../utils/loggers.js";
 
 class KehadiranController {
 
@@ -27,13 +28,6 @@ class KehadiranController {
   async createKehadiran(req, res) {
     try {
       const kehadiran = await kehadiranServices.createKehadiran(req.body);
-      // await log({
-      //   id_user: req.body.id_user,
-      //   aksi: "CREATE",
-      //   entitas: "kehadiran",
-      //   id_entitas: kehadiran.id_kehadiran,
-      //   deskripsi: kehadiran.isi_komentar,
-      // });
       return res.status(201).json({
         success: true,
         data: kehadiran
@@ -55,7 +49,13 @@ class KehadiranController {
           message: "Kehadiran not found"
         });
       }
-
+      await log({
+        id_user: req.user.id_user,
+        aksi: "UPDATE",
+        entitas: "kehadiran",
+        id_entitas: kehadiran.id_kehadiran,
+        deskripsi: "Mengubah detail kehadiran",
+      });
       return res.json({
         success: true,
         kehadiran: kehadiran
@@ -78,7 +78,13 @@ class KehadiranController {
           message: "Kehadiran not found"
         });
       }
-
+      await log({
+        id_user: req.user.id_user,
+        aksi: "DELETE",
+        entitas: "kehadiran",
+        id_entitas: kehadiran.id_kehadiran,
+        deskripsi: "Menghapus detail kehadiran",
+      });
       return res.json({
         success: true,
         message: "Kehadiran deleted successfully"

@@ -1,8 +1,9 @@
 import soalServices from "../services/soal-services.js";
+import { log } from "../utils/loggers.js";
 
 class SoalController {
 
-  async getSoal(req,res){
+  async getSoal(req, res) {
     try {
       const soal = await soalServices.getAllSoal();
       return res.json({
@@ -17,10 +18,10 @@ class SoalController {
     }
   }
 
-  async getSoalById(req,res){
+  async getSoalById(req, res) {
     try {
       const soal = await soalServices.getSoalById(req.params.id);
-      if(!soal){
+      if (!soal) {
         return res.status(404).json({
           success: false,
           message: "Soal not found"
@@ -39,9 +40,16 @@ class SoalController {
     }
   }
 
-  async createSoal(req,res){
+  async createSoal(req, res) {
     try {
       const soal = await soalServices.createSoal(req.body);
+      await log({
+        id_user: req.user.id_user,
+        aksi: "CREATE",
+        entitas: "soal",
+        id_entitas: soal.id_soal,
+        deskripsi: "Membuat soal",
+      });
       return res.status(201).json({
         success: true,
         soal: soal
@@ -54,9 +62,16 @@ class SoalController {
     }
   }
 
-  async updateSoal(req,res){
+  async updateSoal(req, res) {
     try {
       const soal = await soalServices.updateSoal(req.params.id, req.body);
+      await log({
+        id_user: req.user.id_user,
+        aksi: "UPDATE",
+        entitas: "soal",
+        id_entitas: soal.id_soal,
+        deskripsi: "Mengubah detail soal",
+      });
       if (!soal) {
         return res.status(404).json({
           success: false,
@@ -77,16 +92,22 @@ class SoalController {
     }
   }
 
-  async deleteSoal(req,res) {
+  async deleteSoal(req, res) {
     try {
       const soal = await soalServices.deleteSoal(req.params.id);
-      if(!soal){
+      if (!soal) {
         return res.status(404).json({
           success: false,
           message: "Soal not found"
         });
       }
-
+      await log({
+        id_user: req.user.id_user,
+        aksi: "DELETE",
+        entitas: "soal",
+        id_entitas: soal.id_soal,
+        deskripsi: "Menghapus data soal",
+      });
       return res.json({
         success: true,
         message: "Soal deleted successfully"

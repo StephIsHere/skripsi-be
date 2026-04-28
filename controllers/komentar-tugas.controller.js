@@ -27,11 +27,11 @@ class KomentarTugasController {
     try {
       const komentar = await komentarTugasServices.createKomentar(req.body);
       await log({
-        id_user: req.body.id_user,
+        id_user: req.user.id_user,
         aksi: "CREATE",
         entitas: "komentar_tugas",
         id_entitas: komentar.id_komentar_tugas,
-        deskripsi: "Menulis Komentar : " + komentar.isi_komentar,
+        deskripsi: komentar.isi_komentar,
       });
       return res.status(201).json({
         success: true,

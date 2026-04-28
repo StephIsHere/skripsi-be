@@ -4,11 +4,6 @@ export const googleLogin = passport.authenticate("google", {
   scope: ["profile", "email"],
 });
 
-// export const googleCallback = passport.authenticate("google", {
-//   successRedirect: `${process.env.CLIENT_URL}/`,
-//   failureRedirect: `${process.env.CLIENT_URL}/login?error=auth_failed`,
-// });
-
 export const googleCallback = (req, res, next) => {
   passport.authenticate("google", (err, user, info) => {
     if (err) return next(err);

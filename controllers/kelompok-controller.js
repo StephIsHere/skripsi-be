@@ -1,9 +1,17 @@
 import kelompokServices from "../services/kelompok-services.js";
+import { log } from "../utils/loggers.js";
 
 class KelompokController {
   async createKelompok(req, res) {
     try {
       const kelompok = await kelompokServices.createKelompok(req.body);
+      await log({
+        id_user: req.user.id_user,
+        aksi: "CREATE",
+        entitas: "kelompok",
+        id_entitas: kelompok.id_kelompok,
+        deskripsi: "Membuat kelompok baru",
+      });
       return res.status(200).json({
         success: true,
         kelompok: kelompok,
@@ -70,7 +78,13 @@ class KelompokController {
           message: "Kelompok tidak ditemukan",
         });
       }
-
+      await log({
+        id_user: req.user.id_user,
+        aksi: "UPDATE",
+        entitas: "kelompok",
+        id_entitas: kelompok.id_kelompok,
+        deskripsi: "Mengubah detail kelompok",
+      });
       return res.json({
         success: true,
         kelompok: kelompok,
@@ -92,7 +106,13 @@ class KelompokController {
           message: "Kelompok tidak ditemukan",
         });
       }
-
+      await log({
+        id_user: req.user.id_user,
+        aksi: "DELETE",
+        entitas: "kelompok",
+        id_entitas: kelompok.id_kelompok,
+        deskripsi: "Menghapus kelompok",
+      });
       return res.json({
         success: true,
         message: "Kelompok berhasil dihapus",
@@ -116,6 +136,13 @@ class KelompokController {
           message: result.error,
         });
       }
+      await log({
+        id_user: req.user.id_user,
+        aksi: "UPDATE",
+        entitas: "kelompok",
+        id_entitas: kelompok.id_kelompok,
+        deskripsi: "Menambahkan anggota ke kelompok",
+      });
 
       return res.status(200).json({
         success: true,
@@ -142,7 +169,13 @@ class KelompokController {
           message: "Peserta bukan anggota kelompok ini",
         });
       }
-
+      await log({
+        id_user: req.user.id_user,
+        aksi: "DELETE",
+        entitas: "kelompok",
+        id_entitas: kelompok.id_kelompok,
+        deskripsi: "Menghapus anggota dari kelompok",
+      });
       return res.status(200).json({
         success: true,
         message: "Peserta berhasil dikeluarkan dari kelompok",
