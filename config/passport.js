@@ -21,6 +21,10 @@ passport.use(
         let user = await User.findOne({ where: { email } });
 
         if (user) {
+          const newPhoto = profile.photos?.[0]?.value;
+          if (newPhoto && user.foto !== newPhoto) {
+            await user.update({ foto: newPhoto });
+          }
           if (["Admin", "Kalab", "SA"].includes(user.role)) {
             return done(null, user);
           }
@@ -59,7 +63,7 @@ passport.use(
 
         const newUser = await User.create({
           email,
-          nomor_identitas: email.substring(0,10),
+          nomor_identitas: email.substring(0, 10),
           nama: profile.displayName,
           foto: profile.photos?.[0]?.value,
           role: "Peserta",
