@@ -79,6 +79,28 @@ class PengumumanController {
     }
   }
 
+  async getPublicPengumuman(req, res) {
+    try {
+      const pengumuman = await pengumumanServices.getPengumumanPublic();
+      if (!pengumuman) {
+        return res.status(404).json({
+          success: false,
+          message: "Pengumuman not found"
+        });
+      }
+      return res.json({
+        success: true,
+        pengumuman: pengumuman
+      })
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      })
+    }
+  }
+
   async getPengumumanByIdBatch(req, res) {
     try {
       const pengumuman = await pengumumanServices.getPengumumanByIdBatch(req.params.id);

@@ -16,7 +16,7 @@ class PenugasanService {
         include: [
           {
             model: User,
-            attributes: ['nama', 'email', 'nomor_identitas'],
+            attributes: ['nama', 'email', 'nomor_identitas','foto'],
           },
           {
             model: Penugasan,
@@ -58,7 +58,6 @@ class PenugasanService {
     }
   }
 
-  // kayanya ganti idPeserta aja deh?
   async getPenugasanByIdBatchAndByIdPeserta(idBatch, idPeserta) {
     try {
       const peserta = await Peserta.findOne({
@@ -232,7 +231,7 @@ class PenugasanService {
               include: [
                 {
                   model: User,
-                  attributes: ["id_user", "nama", "email"],
+                  attributes: ["id_user", "nama", "email","foto"],
                 },
               ],
             },

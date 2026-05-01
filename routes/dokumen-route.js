@@ -31,7 +31,7 @@ router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "SA"), upl
   }
 });
 
-router.get("/laporan/:id_peserta", auth("Peserta", "Kalab", "SA"), async (req, res) => {
+router.get("/laporan/:id_peserta", auth("Peserta","Admin", "Kalab", "SA"), async (req, res) => {
   try {
     let id_peserta;
 

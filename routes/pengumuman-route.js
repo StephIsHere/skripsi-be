@@ -4,6 +4,9 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
+// Buat ambil pengumuman public
+router.get('/pengumuman/public', pengumumanController.getPublicPengumuman);
+
 // Buat ambil detail pengumuman
 router.get('/pengumuman/:id',auth("Peserta","Kalab","SA"), pengumumanController.getPengumumanById);
 
@@ -12,6 +15,7 @@ router.get('/pengumuman/batch/:idBatch/:idUser',auth("Peserta","Kalab","SA"), pe
 
 // Buat ambil pengumuman di batch tertentu
 router.get('/pengumuman/batch/:id',auth("Admin","Kalab","SA"), pengumumanController.getPengumumanByIdBatch);
+
 
 // Post buat bikin pengumuman baru
 router.post('/pengumuman',auth("Admin","Kalab","SA"), pengumumanController.createPengumuman);
@@ -23,5 +27,3 @@ router.patch('/pengumuman/:id',auth("Admin","Kalab","SA"), pengumumanController.
 router.delete('/pengumuman/:id',auth("Admin","Kalab","SA"), pengumumanController.deletePengumuman);
 
 export default router;
-
-// done

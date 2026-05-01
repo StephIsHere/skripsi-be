@@ -1,6 +1,7 @@
 import KomentarPengumuman from "../models/komentar_pengumuman-model.js";
 import Pengumuman from "../models/pengumuman-model.js";
 import User from "../models/user-model.js";
+import Batch from "../models/batch-model.js";
 
 class PengumumanService {
 
@@ -54,6 +55,36 @@ class PengumumanService {
     });
   }
 
+  async getPengumumanPublic() {
+    return await Pengumuman.findAll({
+      where: {
+        '$penerima.id_user$': null
+      },
+      include: [
+        {
+          model: Batch,
+          as: "Batch",
+          where: { status: true }, 
+          attributes: ["id_batch", "status", "nama_batch"],
+          required: true
+        },
+        {
+          model: User,
+          as: "penerima",
+          attributes: ["id_user", "nama"],
+          through: { attributes: [] },
+          required: false
+        },
+        {
+          model: User,
+          as: "pembuat",
+          attributes: ["id_user", "nama", "foto"],
+        }
+      ],
+      order: [['createdAt', 'DESC']]
+    });
+  }
+
   async getPengumumanByIdBatchAndIdUser(id_batch, id_user) {
     return await Pengumuman.findAll({
       where: { id_batch: id_batch },
@@ -61,14 +92,14 @@ class PengumumanService {
         {
           model: User,
           as: "penerima",
-          where: {id_user: id_user},
+          where: { id_user: id_user },
           attributes: ["id_user", "nama",],
           through: { attributes: [] }
         },
         {
           model: User,
           as: "pembuat",
-          attributes: ["id_user", "nama","foto"],
+          attributes: ["id_user", "nama", "foto"],
         }
       ],
       order: [['createdAt', 'DESC']]
