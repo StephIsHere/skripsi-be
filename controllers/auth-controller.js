@@ -15,11 +15,14 @@ export const googleCallback = (req, res, next) => {
 
     req.logIn(user, (err) => {
       if (err) return next(err);
-      if (user.role === "Peserta") {
-        return res.redirect(`${process.env.CLIENT_URL}/peserta/pengumuman`);
-      } else {
-        return res.redirect(`${process.env.CLIENT_URL}/admin/pengumuman`);
-      }
+      req.session.save((err) => {
+        if (err) return next(err);
+        if (user.role === "Peserta") {
+          return res.redirect(`${process.env.CLIENT_URL}/peserta/pengumuman`);
+        } else {
+          return res.redirect(`${process.env.CLIENT_URL}/admin/pengumuman`);
+        }
+      });
     });
   })(req, res, next);
 };
