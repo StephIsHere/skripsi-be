@@ -140,7 +140,7 @@ class KelompokController {
         id_user: req.user.id_user,
         aksi: "UPDATE",
         entitas: "kelompok",
-        id_entitas: kelompok.id_kelompok,
+        id_entitas: id,
         deskripsi: "Menambahkan anggota ke kelompok",
       });
 
@@ -173,7 +173,7 @@ class KelompokController {
         id_user: req.user.id_user,
         aksi: "DELETE",
         entitas: "kelompok",
-        id_entitas: kelompok.id_kelompok,
+        id_entitas: id,
         deskripsi: "Menghapus anggota dari kelompok",
       });
       return res.status(200).json({

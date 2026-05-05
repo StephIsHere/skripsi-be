@@ -20,7 +20,7 @@ class KelompokService {
             include: [
               {
                 model: User,
-                attributes: ["nama", "email", "nomor_identitas"],
+                attributes: ["nama", "email", "nomor_identitas","foto"],
               },
             ],
           },
@@ -84,7 +84,6 @@ class KelompokService {
     const kelompok = await Kelompok.findOne({ where: { id_kelompok: id } });
     if (!kelompok) return null;
 
-    // lepaskan semua anggota dari kelompok sebelum kelompok dihapus
     await Peserta.update(
       { id_kelompok: null },
       { where: { id_kelompok: id } }
@@ -95,19 +94,16 @@ class KelompokService {
   }
 
   async addAnggota(idKelompok, idPeserta) {
-    // pastikan kelompok ada
     const kelompok = await Kelompok.findOne({
       where: { id_kelompok: idKelompok },
     });
     if (!kelompok) return { error: "Kelompok tidak ditemukan" };
 
-    // pastikan peserta ada
     const peserta = await Peserta.findOne({
       where: { id_peserta: idPeserta },
     });
     if (!peserta) return { error: "Peserta tidak ditemukan" };
 
-    // pastikan peserta berada di batch yang sama dengan kelompok
     if (peserta.id_batch !== kelompok.id_batch) {
       return { error: "Peserta tidak berada di batch yang sama dengan kelompok" };
     }

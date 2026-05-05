@@ -5,22 +5,14 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-// =====================
-// GET
-// =====================
-router.get('/penugasan/batch/:idBatch', auth('Kalab', "SA"), penugasanController.getPenugasanByIdBatch);
-router.get('/penugasan/kelompok/:idKelompok', auth('Kalab', "SA"), penugasanController.getPenugasanByIdKelompok);
-router.get('/penugasan/batch/:idBatch/peserta/:idPeserta', auth('Peserta', 'Admin', 'Kalab', "SA"), penugasanController.getPenugasanByIdBatchAndIdPeserta);
-router.get('/penugasan/:idPenugasan', auth('Peserta', 'Kalab', "SA"), penugasanController.getPenugasanByIdPenugasan);
+router.get('/penugasan/batch/:idBatch', auth('Admin','Kalab', "SA"), penugasanController.getPenugasanByIdBatch);
+router.get('/penugasan/kelompok/:idKelompok', auth('Admin','Kalab', "SA"), penugasanController.getPenugasanByIdKelompok);
+router.get('/penugasan/peserta/:idPeserta', auth('Admin', 'Kalab', "SA"), penugasanController.getPenugasanByIdPeserta);
+router.get('/penugasan/:idPenugasan', auth('Peserta', 'Admin','Kalab', "SA"), penugasanController.getPenugasanByIdPenugasan);
+router.get('/penugasan/riwayat/:idPeserta', auth('Peserta', 'Admin','Kalab', "SA"), penugasanController.getPenugasanPeserta);
 
-// =====================
-// UPLOAD
-// =====================
 router.patch('/penugasan/:idPenugasan/peserta/:idPeserta/upload', auth('Peserta', 'Kalab', "SA"), uploadPengumpulan, penugasanController.uploadFilePengumpulan);
 
-// =====================
-// CRUD
-// =====================
 router.post('/penugasan', auth('Kalab', "SA"), penugasanController.createPenugasan);
 router.patch('/penugasan/:idPenugasan', auth('Kalab', "SA"), penugasanController.updatePenugasan);
 router.delete('/penugasan/:idPenugasan', auth('Kalab', "SA"), penugasanController.deletePenugasan);

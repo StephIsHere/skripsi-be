@@ -72,7 +72,7 @@ app.use("/api", kelompokRoute);
 app.use("/api", logRoute);
 app.use("/uploads", express.static("public/uploads"));
 
-sequelize.sync({ alter: true })
+sequelize.sync()
   .then(() => {
     console.log("Database synced");
 

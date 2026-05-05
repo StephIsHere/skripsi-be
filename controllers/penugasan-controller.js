@@ -6,7 +6,7 @@ class PenugasanController {
 
   async getPenugasanByIdBatch(req, res) {
     try {
-      const { idBatch } = req.params; // ✅ was: req.params.id
+      const { idBatch } = req.params;
       const penugasan = await penugasanService.getPenugasanByIdBatch(idBatch);
       return res.json({ success: true, penugasan });
     } catch (error) {
@@ -16,7 +16,7 @@ class PenugasanController {
 
   async getPenugasanByIdKelompok(req, res) {
     try {
-      const { idKelompok } = req.params; // ✅ was: id_kelompok
+      const { idKelompok } = req.params;
       const penugasan = await penugasanService.getPenugasanByIdKelompok(idKelompok);
       if (!penugasan) {
         return res.status(404).json({ success: false, message: "Data penugasan kelompok tidak ditemukan" });
@@ -28,19 +28,16 @@ class PenugasanController {
     }
   }
 
-  async getPenugasanByIdBatchAndIdPeserta(req, res) {
+  async getPenugasanByIdPeserta(req, res) {
     try {
-      const { idBatch, idPeserta } = req.params;
-      const penugasan = await penugasanService.getPenugasanByIdBatchAndByIdPeserta(idBatch, idPeserta);
-      if(req.user.status === "Seleksi Berkas") {
-        return res.status(403).json({ success: false, message: "Unauthorized!" });
-      }
+      const { idPeserta } = req.params;
+      const penugasan = await penugasanService.getPenugasanByIdPeserta(idPeserta);
       if (!penugasan) {
-        return res.status(404).json({ success: false, message: "Data penugasan peserta tidak ditemukan pada batch tersebut" });
+        return res.status(404).json({ success: false, message: "Data penugasan tidak ditemukan" });
       }
       return res.status(200).json({ success: true, penugasan });
     } catch (error) {
-      console.error("Error di controller getPenugasanByIdBatchAndIdPeserta:", error);
+      console.error("Error di controller getPenugasanByIdPeserta:", error);
       return res.status(500).json({ success: false, message: "Terjadi kesalahan pada server", error: error.message });
     }
   }
@@ -48,18 +45,51 @@ class PenugasanController {
   async getPenugasanByIdPenugasan(req, res) {
     try {
       const { idPenugasan } = req.params;
-      const { role } = req.user;
-
-      // kurang auth buat peserta!
-
+      const { role, id_peserta, id_kelompok } = req.user;
       const penugasan = await penugasanService.getPenugasanByIdPenugasan(idPenugasan);
       if (!penugasan) {
         return res.status(404).json({ success: false, message: "Data penugasan tidak ditemukan" });
+      }
+
+      if (role === "Peserta") {
+        const tugasIdPeserta = penugasan.Pesertum?.id_peserta ?? null;
+        const tugasIdKelompok = penugasan.Kelompok?.id_kelompok ?? null;     
+
+        const isPemilikIndividu = tugasIdPeserta && Number(tugasIdPeserta) === Number(id_peserta);
+        const isAnggotaKelompok = tugasIdKelompok && Number(tugasIdKelompok) === Number(id_kelompok);
+
+
+        if (!isPemilikIndividu && !isAnggotaKelompok) {
+          return res.status(403).json({ success: false, message: "Tugas ini bukan milik Anda" });
+        }
       }
       return res.status(200).json({ success: true, penugasan });
 
     } catch (error) {
       console.error("Error di controller getPenugasanByIdPenugasan:", error);
+      return res.status(500).json({ success: false, message: "Terjadi kesalahan pada server", error: error.message });
+    }
+  }
+
+  async getPenugasanPeserta(req, res) {
+    try {
+      const { idBatch, idPeserta } = req.params;
+      const { id_peserta } = req.user;
+
+      if (Number(idPeserta) !== Number(id_peserta)) {
+        return res.status(403).json({ success: false, message: "Unauthorized!" });
+      }
+
+      const penugasan = await penugasanService.getPenugasanPeserta(idPeserta);
+      if (req.user.status === "Seleksi Berkas") {
+        return res.status(403).json({ success: false, message: "Unauthorized!" });
+      }
+      if (!penugasan) {
+        return res.status(404).json({ success: false, message: "Data penugasan peserta tidak ditemukan" });
+      }
+      return res.status(200).json({ success: true, penugasan });
+    } catch (error) {
+      console.error("Error di controller getPenugasanByIdBatchAndIdPeserta:", error);
       return res.status(500).json({ success: false, message: "Terjadi kesalahan pada server", error: error.message });
     }
   }

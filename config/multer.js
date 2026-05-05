@@ -3,13 +3,10 @@ import path from "path";
 import fs from "fs";
 import crypto from "crypto";
 
-// ── Helper ──────────────────────────────────────────────────────────
 const ensureDir = (dir) => fs.mkdirSync(dir, { recursive: true });
 
-// Generate filename
 const randomName = () => crypto.randomBytes(16).toString("hex");
 
-// ── Allowed MIME Types ──────────────────────────────────────────────
 const ALLOWED_IMAGE = ["image/jpeg", "image/png", "image/webp"];
 
 const ALLOWED_DOKUMEN = {
@@ -22,7 +19,6 @@ const ALLOWED_DOKUMEN = {
 
 const ALLOWED_PENGUMPULAN = ["application/pdf"];
 
-// ── Storage Configurations ──────────────────────────────────────────
 const storageTinymce = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = "public/uploads/TinyMce";
@@ -59,7 +55,6 @@ const storagePengumpulan = multer.diskStorage({
   },
 });
 
-// ── File Filters ────────────────────────────────────────────────────
 const filterTinymce = (req, file, cb) => {
   if (file.mimetype.startsWith("image/")) {
     cb(null, true);
@@ -85,7 +80,6 @@ const filterPengumpulan = (req, file, cb) => {
   }
 };
 
-// ── Multer Exports ──────────────────────────────────────────────────
 export const uploadTinymce = multer({
   storage: storageTinymce,
   fileFilter: filterTinymce,

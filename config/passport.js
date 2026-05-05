@@ -114,7 +114,7 @@ passport.deserializeUser(async (id, done) => {
             id_user: user.id_user,
             id_batch: activeBatch.id_batch,
           },
-          attributes: ["id_peserta", "id_batch", "status"],
+          attributes: ["id_peserta", "id_batch", "status","id_kelompok"],
         });
 
         if (peserta) {
@@ -122,6 +122,7 @@ passport.deserializeUser(async (id, done) => {
           sessionUser.id_batch = peserta.id_batch;
           sessionUser.nama_batch = activeBatch.nama_batch;
           sessionUser.status = peserta.status;
+          sessionUser.id_kelompok = peserta.id_kelompok;
         }
       }
     }
