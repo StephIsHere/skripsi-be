@@ -1,12 +1,9 @@
 import KomentarPengumuman from "../models/komentar_pengumuman-model.js";
 import Pengumuman from "../models/pengumuman-model.js";
 import User from "../models/user-model.js";
+import Batch from "../models/batch-model.js";
 
 class PengumumanService {
-
-  async getAllPengumuman() {
-    return await Pengumuman.findAll();
-  }
 
   async getPengumumanById(id) {
     const result = await Pengumuman.findOne({
@@ -21,7 +18,7 @@ class PengumumanService {
         {
           model: User,
           as: "pembuat",
-          attributes: ["id_user", "nama"],
+          attributes: ["id_user", "nama", "foto"],
         },
         {
           model: KomentarPengumuman,
@@ -29,43 +26,13 @@ class PengumumanService {
           include: [
             {
               model: User,
-              attributes: ["id_user", "nama"]
+              attributes: ["id_user", "nama", "foto"]
             }
           ]
         }
       ],
     });
     return result;
-  }
-
-  async getPengumumanByIdUser(id) {
-    return await Pengumuman.findAll({
-      include: [
-        {
-          model: User,
-          as: "penerima",
-          attributes: ["id_user", "nama"],
-          through: { attributes: [] },
-          required: true,
-          where: { id_user: id }
-        },
-        {
-          model: User,
-          as: "pembuat",
-          attributes: ["id_user", "nama"],
-        },
-        {
-          model: KomentarPengumuman,
-          attributes: ["id_komentar_pengumuman", "isi_komentar", "createdAt"],
-          include: [
-            {
-              model: User,
-              attributes: ["id_user", "nama"]
-            }
-          ]
-        }
-      ]
-    });
   }
 
   async getPengumumanByIdBatch(id) {
@@ -81,7 +48,37 @@ class PengumumanService {
         {
           model: User,
           as: "pembuat",
+          attributes: ["id_user", "nama", "foto"],
+        }
+      ],
+      order: [['createdAt', 'DESC']]
+    });
+  }
+
+  async getPengumumanPublic() {
+    return await Pengumuman.findAll({
+      where: {
+        '$penerima.id_user$': null
+      },
+      include: [
+        {
+          model: Batch,
+          as: "Batch",
+          where: { status: true }, 
+          attributes: ["id_batch", "status", "nama_batch"],
+          required: true
+        },
+        {
+          model: User,
+          as: "penerima",
           attributes: ["id_user", "nama"],
+          through: { attributes: [] },
+          required: false
+        },
+        {
+          model: User,
+          as: "pembuat",
+          attributes: ["id_user", "nama", "foto"],
         }
       ],
       order: [['createdAt', 'DESC']]
@@ -95,14 +92,14 @@ class PengumumanService {
         {
           model: User,
           as: "penerima",
-          where: {id_user: id_user},
-          attributes: ["id_user", "nama"],
+          where: { id_user: id_user },
+          attributes: ["id_user", "nama",],
           through: { attributes: [] }
         },
         {
           model: User,
           as: "pembuat",
-          attributes: ["id_user", "nama"],
+          attributes: ["id_user", "nama", "foto"],
         }
       ],
       order: [['createdAt', 'DESC']]

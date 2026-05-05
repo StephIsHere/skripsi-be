@@ -33,7 +33,14 @@ const Peserta = sequelize.define(
   },
   {
     tableName: "peserta",
+    indexes: [
+      {
+        unique: true,
+        fields: ["id_user", "id_batch"],
+        name: "unique_user_per_batch",
+      },
+    ],
   }
-)
+);
 
 export default Peserta;

@@ -1,22 +1,29 @@
 import express from 'express';
 import pengumumanController from '../controllers/pengumuman-controller.js';
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/pengumuman', pengumumanController.getPengumuman);
+// Buat ambil pengumuman public
+router.get('/pengumuman/public', pengumumanController.getPublicPengumuman);
 
-router.get('/pengumuman/:id', pengumumanController.getPengumumanById);
+// Buat ambil detail pengumuman
+router.get('/pengumuman/:id',auth("Peserta","Kalab","SA"), pengumumanController.getPengumumanById);
 
-router.get('/pengumuman/batch/:id', pengumumanController.getPengumumanByIdBatch);
+// Buat ambil riwayat pengumuman
+router.get('/pengumuman/batch/:idBatch/:idUser',auth("Peserta","Kalab","SA"), pengumumanController.getPengumumanByIdBatchAndIdUser);
 
-router.get('/pengumuman/batch/:idBatch/:idUser', pengumumanController.getPengumumanByIdBatchAndIdUser);
+// Buat ambil pengumuman di batch tertentu
+router.get('/pengumuman/batch/:id',auth("Admin","Kalab","SA"), pengumumanController.getPengumumanByIdBatch);
 
-router.get('/pengumuman/user/:id', pengumumanController.getPengumumanByIdUser);
 
-router.post('/pengumuman', pengumumanController.createPengumuman);
+// Post buat bikin pengumuman baru
+router.post('/pengumuman',auth("Admin","Kalab","SA"), pengumumanController.createPengumuman);
 
-router.patch('/pengumuman/:id', pengumumanController.updatePengumuman);
+// Patch buat edit pengumuman
+router.patch('/pengumuman/:id',auth("Admin","Kalab","SA"), pengumumanController.updatePengumuman);
 
-router.delete('/pengumuman/:id', pengumumanController.deletePengumuman);
+// Delete buat delete pengumuan
+router.delete('/pengumuman/:id',auth("Admin","Kalab","SA"), pengumumanController.deletePengumuman);
 
 export default router;

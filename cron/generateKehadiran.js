@@ -4,7 +4,15 @@ import Peserta from "../models/peserta-model.js";
 import { Op } from 'sequelize';
 
 const startKehadiranCron = () => {
+  // format schedule
+  // {menit 0-59}
+  // {jam 0-23}
+  // {tanggal 1-31}
+  // {bulan 1-12}
+  // {hari dalam minggu (1-5 artinya senin sampai jumat)}
   nodeCron.schedule('1 0 * * 1-5', async () => {
+    // testing
+    // nodeCron.schedule('22 21 * * *', async () => {
     const today = new Date();
     const day = today.getDay();
 

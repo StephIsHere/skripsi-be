@@ -1,18 +1,19 @@
 import express from 'express';
 import pesertaController from '../controllers/peserta-controller.js';
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/peserta', pesertaController.getPeserta);
+router.get('/peserta',auth("Kalab","SA"), pesertaController.getPeserta);
 
-router.get('/peserta/:id', pesertaController.getPesertaById);
+router.get('/peserta/:id',auth("Kalab","SA"), pesertaController.getPesertaById);
 
-router.post('/peserta/', pesertaController.createPeserta);
+router.post('/peserta/',auth("Kalab","SA"), pesertaController.createPeserta);
 
-router.patch('/peserta/:id', pesertaController.updatePeserta);
+router.patch('/peserta/:id',auth("Kalab","SA"), pesertaController.updatePeserta);
 
-router.delete('/peserta/:id', pesertaController.deletePeserta);
+router.delete('/peserta/:id',auth("Kalab","SA"), pesertaController.deletePeserta);
 
-router.get('/peserta/batch/:id', pesertaController.getPesertaByBatch);
+router.get('/peserta/batch/:id',auth("Kalab","SA"), pesertaController.getPesertaByBatch);
 
 export default router;

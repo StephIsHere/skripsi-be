@@ -29,7 +29,7 @@ class Batchservice {
       { status: false },
       { where: { id_batch: id } }
     );
-    return await this.getActiveBatch();
+    return await this.getBatchById(id);
   }
 
   async createBatch(data) {
