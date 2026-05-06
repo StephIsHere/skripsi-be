@@ -125,7 +125,10 @@ INSERT INTO "users" ("id_user", "nama", "email", "google_id", "foto", "role", "n
 (18, 'Laras Anindita',        '6182401004@student.unpar.ac.id', NULL, NULL, 'Peserta', '6182401004', '2026-01-22 09:15:00', '2026-01-22 09:15:00'),
 (19, 'Marvin Setiawan',       '6182401005@student.unpar.ac.id', NULL, NULL, 'Peserta', '6182401005', '2026-01-22 09:20:00', '2026-01-22 09:20:00'),
 (20, 'Naya Pradipta',         '6182401006@student.unpar.ac.id', NULL, NULL, 'Peserta', '6182401006', '2026-01-22 09:25:00', '2026-01-22 09:25:00'),
-(21, 'Oscar Wibowo',          '6182401007@student.unpar.ac.id', NULL, NULL, 'Peserta', '6182401007', '2026-01-22 09:30:00', '2026-01-22 09:30:00');
+(21, 'Oscar Wibowo',          '6182401007@student.unpar.ac.id', NULL, NULL, 'Peserta', '6182401007', '2026-01-22 09:30:00', '2026-01-22 09:30:00'),
+(22, 'Steven Febrian',        '6182201084@student.unpar.ac.id', NULL, NULL, 'SA',      '1231231233', '2024-01-05 07:05:00', '2024-01-05 07:05:00');
+
+
 
 -- =============================================
 -- 5. KELOMPOK
