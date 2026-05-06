@@ -34,7 +34,7 @@ class PesertaService {
       include: [
         {
           model: User,
-          attributes: ['nama', 'email', 'nomor_identitas']
+          attributes: ['nama', 'email', 'nomor_identitas','foto']
         }
       ],
       raw: false

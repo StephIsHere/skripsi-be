@@ -82,13 +82,14 @@ const filterPengumpulan = (req, file, cb) => {
 
 export const uploadTinymce = multer({
   storage: storageTinymce,
+  limits: { fileSize: 2 * 1024 * 1024 },
   fileFilter: filterTinymce,
 });
 
 export const uploadDokumen = multer({
   storage: storageDokumen,
   fileFilter: filterDokumen,
-  limits: { fileSize: 5 * 1024 * 1024 },
+  limits: { fileSize: 2 * 1024 * 1024 },
 }).fields([
   { name: "cv", maxCount: 1 },
   { name: "foto", maxCount: 1 },
