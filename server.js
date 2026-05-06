@@ -27,7 +27,12 @@ import "./config/relation.js";
 
 const app = express();
 
+
+// app.set("trust proxy", 1);
+
 generateKehadiranCron();
+
+app.set("trust proxy", 1);
 
 app.use(
   cors({
@@ -45,7 +50,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "lax", 
       maxAge: 1000 * 60 * 60 * 24 * 1,
     },
@@ -71,6 +76,13 @@ app.use("/api", dokumenRoute);
 app.use("/api", kelompokRoute);
 app.use("/api", logRoute);
 app.use("/uploads", express.static("public/uploads"));
+
+app.get("/api/debug-session", (req, res) => {
+  req.session.test = Date.now();
+  req.session.save(() => {
+    res.json({ saved: true, sessionID: req.sessionID });
+  });
+});
 
 sequelize.sync()
   .then(() => {
