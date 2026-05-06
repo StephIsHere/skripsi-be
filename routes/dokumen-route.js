@@ -7,7 +7,7 @@ import User from "../models/user-model.js";
 
 const router = express.Router();
 
-router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "SA"), uploadDokumen, async (req, res) => {
+router.post("/dokumen", auth("Peserta", "Admin", "Kalab", "SA"), uploadDokumen, async (req, res) => {
   try {
     const { id_peserta } = req.user;
 
@@ -25,13 +25,13 @@ router.post("/laporan/:id_peserta", auth("Peserta", "Admin", "Kalab", "SA"), upl
       motivation_letter: filePaths.motivation_letter,
     });
 
-    res.json({ message: "Upload berhasil", paths: filePaths });
+    res.json({ success: true, message: "Upload berhasil", paths: filePaths });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-router.get("/laporan/:id_peserta", auth("Peserta","Admin", "Kalab", "SA"), async (req, res) => {
+router.get("/dokumen/:id_peserta", auth("Peserta","Admin", "Kalab", "SA"), async (req, res) => {
   try {
     let id_peserta;
 
