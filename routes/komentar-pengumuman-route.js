@@ -8,6 +8,4 @@ router.get('/komentar-pengumuman/:id',auth("Peserta","Admin","Kalab","SA"), kome
 
 router.post('/komentar-pengumuman',auth("Peserta","Admin","Kalab","SA"), komentarPengumumanController.createKomentar);
 
-router.delete('/komentar-pengumuman/:id',auth("Kalab","Admin","SA"), komentarPengumumanController.deleteKomentarPengumuman);
-
 export default router;

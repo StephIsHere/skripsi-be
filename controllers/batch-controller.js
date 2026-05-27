@@ -104,35 +104,6 @@ class BatchController {
     }
   }
 
-  async deleteBatch(req, res) {
-    try {
-      const batch = await batchServices.deleteBatch(req.params.id);
-      if (!batch) {
-        return res.status(404).json({
-          success: false,
-          message: "Batch not found"
-        });
-      }
-      await log({
-        id_user: req.user.id_user,
-        aksi: "DELETE",
-        entitas: "batch",
-        id_entitas: batch.id_batch,
-        deskripsi: "Menghapus data batch",
-      });
-      return res.json({
-        success: true,
-        message: "Batch deleted successfully"
-      });
-
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: error.message
-      });
-    }
-  }
-
   async activateBatch(req, res) {
     try {
       const { id } = req.params;

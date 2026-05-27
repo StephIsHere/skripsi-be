@@ -44,29 +44,6 @@ class KomentarPengumumanController {
       })
     }
   }
-
-  async deleteKomentarPengumuman(req, res) {
-    try {
-      const komentar = await komentarPengumumanServices.deleteKomentar(req.params.id);
-      if (!komentar) {
-        return res.status(404).json({
-          success: false,
-          message: "Komentar not found"
-        });
-      }
-
-      return res.json({
-        success: true,
-        message: "Komentar deleted successfully"
-      });
-
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: error.message
-      });
-    }
-  }
 }
 
 export default new KomentarPengumumanController();
