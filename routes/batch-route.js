@@ -4,11 +4,11 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/batch', auth("Kalab","SA"), batchController.getBatch);
+router.get('/batch', auth("Admin","Kalab","SA"), batchController.getBatch);
 
-router.get('/batch/active',auth("Peserta","Kalab","SA"), batchController.getActiveBatch);
+router.get('/batch/active',auth("Peserta","Admin","Kalab","SA"), batchController.getActiveBatch);
 
-router.get('/batch/:id',auth("Kalab","SA"), batchController.getBatchById);
+router.get('/batch/:id',auth("Admin","Kalab","SA"), batchController.getBatchById);
 
 router.post('/batch',auth("Kalab","SA"), batchController.createBatch);
 

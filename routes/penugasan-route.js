@@ -13,9 +13,9 @@ router.get('/penugasan/riwayat/:idPeserta', auth('Peserta', 'Admin','Kalab', "SA
 
 router.patch('/penugasan/:idPenugasan/peserta/:idPeserta/upload', auth('Peserta', 'Kalab', "SA"), uploadPengumpulan, penugasanController.uploadFilePengumpulan);
 
-router.post('/penugasan', auth('Kalab', "SA"), penugasanController.createPenugasan);
-router.patch('/penugasan/:idPenugasan', auth('Kalab', "SA"), penugasanController.updatePenugasan);
-router.delete('/penugasan/:idPenugasan', auth('Kalab', "SA"), penugasanController.deletePenugasan);
+router.post('/penugasan', auth('Admin','Kalab', "SA"), penugasanController.createPenugasan);
+router.patch('/penugasan/:idPenugasan', auth('Admin','Kalab', "SA"), penugasanController.updatePenugasan);
+router.delete('/penugasan/:idPenugasan', auth('Admin','Kalab', "SA"), penugasanController.deletePenugasan);
 
 
 export default router;

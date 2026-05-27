@@ -4,12 +4,8 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/kehadiran/:id',auth("Peserta","Kalab","SA"), kehadiranController.getKehadiranByIdPeserta);
+router.get('/kehadiran/:id',auth("Peserta","Admin","Kalab","SA"), kehadiranController.getKehadiranByIdPeserta);
 
-router.post('/kehadiran',auth("Kalab","SA"), kehadiranController.createKehadiran);
-
-router.patch('/kehadiran/:id',auth("Peserta","Kalab","SA"), kehadiranController.updateKehadiran);
-
-router.delete('/kehadiran/:id',auth("Kalab","SA"), kehadiranController.deleteKehadiran);
+router.patch('/kehadiran/:id',auth("Peserta","Admin","Kalab","SA"), kehadiranController.updateKehadiran);
 
 export default router;

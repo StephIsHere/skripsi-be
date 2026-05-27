@@ -5,33 +5,23 @@ class KehadiranController {
 
   async getKehadiranByIdPeserta(req, res) {
     try {
-      const kehadiran = await kehadiranServices.getKehadiranByIdPeserta(req.params.id);
-      if (!kehadiran) {
-        return res.status(404).json({
-          success: false,
-          message: "Kehadiran not found"
-        });
+      if (req.user.role === "Peserta") {
+        if (req.user.status === "Seleksi Berkas" || Number(req.user.id_peserta) !== Number(req.params.id)) {
+          return res.status(403).json({ success: false, message: "Unauthorized!" });
+        }
       }
 
+      const kehadiran = await kehadiranServices.getKehadiranByIdPeserta(req.params.id);
+      if (!kehadiran || kehadiran.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Kehadiran tidak ditemukan"
+        });
+      }
       return res.json({
         success: true,
         kehadiran: kehadiran
       })
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: error.message
-      })
-    }
-  }
-
-  async createKehadiran(req, res) {
-    try {
-      const kehadiran = await kehadiranServices.createKehadiran(req.body);
-      return res.status(201).json({
-        success: true,
-        data: kehadiran
-      });
     } catch (error) {
       return res.status(500).json({
         success: false,
@@ -46,7 +36,7 @@ class KehadiranController {
       if (!kehadiran) {
         return res.status(404).json({
           success: false,
-          message: "Kehadiran not found"
+          message: "Kehadiran tidak ditemukan"
         });
       }
       await log({
@@ -59,35 +49,6 @@ class KehadiranController {
       return res.json({
         success: true,
         kehadiran: kehadiran
-      });
-
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: error.message
-      });
-    }
-  }
-
-  async deleteKehadiran(req, res) {
-    try {
-      const kehadiran = await kehadiranServices.deleteKehadiran(req.params.id);
-      if (!kehadiran) {
-        return res.status(404).json({
-          success: false,
-          message: "Kehadiran not found"
-        });
-      }
-      await log({
-        id_user: req.user.id_user,
-        aksi: "DELETE",
-        entitas: "kehadiran",
-        id_entitas: kehadiran.id_kehadiran,
-        deskripsi: "Menghapus detail kehadiran",
-      });
-      return res.json({
-        success: true,
-        message: "Kehadiran deleted successfully"
       });
 
     } catch (error) {

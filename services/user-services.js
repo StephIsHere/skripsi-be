@@ -2,7 +2,9 @@ import User from "../models/user-model.js";
 
 class UserService {
   async getAllUsers() {
-    return await User.findAll();
+    return await User.findAll({
+      order: [['createdAt', 'DESC']]
+    });
   }
 
   async getUserById(id) {

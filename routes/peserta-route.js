@@ -14,6 +14,6 @@ router.patch('/peserta/:id',auth("Kalab","SA"), pesertaController.updatePeserta)
 
 router.delete('/peserta/:id',auth("Kalab","SA"), pesertaController.deletePeserta);
 
-router.get('/peserta/batch/:id',auth("Kalab","SA"), pesertaController.getPesertaByBatch);
+router.get('/peserta/batch/:id',auth("Admin","Kalab","SA"), pesertaController.getPesertaByBatch);
 
 export default router;

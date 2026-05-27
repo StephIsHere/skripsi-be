@@ -4,18 +4,18 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/kelompok/batch/:id_batch",auth("Peserta","Admin","Kalab","SA"), kelompokController.getKelompokByBatch);
+router.get("/kelompok/batch/:id_batch",auth("Admin","Kalab","SA"), kelompokController.getKelompokByBatch);
 
-router.get("/kelompok/:id",auth("Peserta","Admin","Kalab","SA"), kelompokController.getKelompokById);
+router.get("/kelompok/:id",auth("Admin","Kalab","SA"), kelompokController.getKelompokById);
 
-router.post("/kelompok",auth("Peserta","Admin","Kalab","SA"), kelompokController.createKelompok);
+router.post("/kelompok",auth("Admin","Kalab","SA"), kelompokController.createKelompok);
 
-router.patch("/kelompok/:id",auth("Peserta","Admin","Kalab","SA"), kelompokController.updateKelompok);
+router.patch("/kelompok/:id",auth("Admin","Kalab","SA"), kelompokController.updateKelompok);
 
-router.delete("/kelompok/:id",auth("Peserta","Admin","Kalab","SA"), kelompokController.deleteKelompok);
+router.delete("/kelompok/:id",auth("Admin","Kalab","SA"), kelompokController.deleteKelompok);
 
-router.patch("/kelompok/:id/anggota/:id_peserta",auth("Peserta","Admin","Kalab","SA"), kelompokController.addAnggota);
+router.patch("/kelompok/:id/anggota/:id_peserta",auth("Admin","Kalab","SA"), kelompokController.addAnggota);
 
-router.delete("/kelompok/:id/anggota/:id_peserta",auth("Peserta","Admin","Kalab","SA"), kelompokController.removeAnggota);
+router.delete("/kelompok/:id/anggota/:id_peserta",auth("Admin","Kalab","SA"), kelompokController.removeAnggota);
 
 export default router;

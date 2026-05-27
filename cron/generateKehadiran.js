@@ -5,7 +5,7 @@ import Batch from "../models/batch-model.js";
 import { Op } from 'sequelize';
 
 const startKehadiranCron = () => {
-  nodeCron.schedule('1 0 * * 1-5', async () => {
+  nodeCron.schedule('35 21 * * 1-5', async () => {
     const today = new Date();
     const day = today.getDay();
     if (day === 0 || day === 6) return;

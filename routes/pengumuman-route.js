@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/pengumuman/public', pengumumanController.getPublicPengumuman);
 
 // Buat ambil detail pengumuman
-router.get('/pengumuman/:id',auth("Peserta","Kalab","SA"), pengumumanController.getPengumumanById);
+router.get('/pengumuman/:id',auth("Peserta","Admin","Kalab","SA"), pengumumanController.getPengumumanById);
 
 // Buat ambil riwayat pengumuman
 router.get('/pengumuman/batch/:idBatch/:idUser',auth("Peserta","Kalab","SA"), pengumumanController.getPengumumanByIdBatchAndIdUser);

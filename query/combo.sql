@@ -12,75 +12,91 @@
 -- =============================================
 ALTER SEQUENCE "sistem_operasi_id_so_seq" RESTART WITH 1;
 INSERT INTO "sistem_operasi" ("id_so", "nama", "bobot", "createdAt", "updatedAt") VALUES
-(1,  'Ubuntu',         2, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(2,  'Arch Linux',     5, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(3,  'Linux Mint',     1, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(4,  'CentOS',         3, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(5,  'Rocky Linux',    3, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(6,  'Fedora',         3, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(7,  'Debian',         4, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(8,  'openSUSE',       3, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(9,  'Windows 11',     2, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(10, 'Windows Server', 4, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(11, 'macOS Ventura',  2, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(12, 'Kali Linux',     4, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(13, 'Manjaro',        2, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(14, 'Alpine Linux',   5, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07'),
-(15, 'Pop!_OS',        2, '2025-01-06 00:00:00+07', '2025-01-06 00:00:00+07');
+(1,  'Ubuntu',         2, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(2,  'Arch Linux',     5, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(3,  'Linux Mint',     1, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(4,  'CentOS',         3, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(5,  'Rocky Linux',    3, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(6,  'Fedora',         3, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(7,  'Debian',         4, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(8,  'openSUSE',       3, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(9,  'Windows 11',     2, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(10, 'Windows Server', 4, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(11, 'macOS Ventura',  2, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(12, 'Kali Linux',     4, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(13, 'Manjaro',        2, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(14, 'Alpine Linux',   5, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07'),
+(15, 'Pop!_OS',        2, '2026-06-01 00:00:00+07', '2026-06-01 00:00:00+07');
 
 -- =============================================
 -- 2. SOAL
 -- =============================================
 ALTER SEQUENCE "soal_id_soal_seq" RESTART WITH 1;
+
 INSERT INTO "soal" ("id_soal", "judul", "deskripsi", "bobot", "createdAt", "updatedAt") VALUES
 (1, 'LAMP Stack',
-  '<ul><li>Pelajari LAMP Stack (Linux, Apache, MySQL, PHP)</li><li>Instalasi Linux, Apache, MySQL, PHP</li><li>Running web server</li><li>Testing web server dengan koneksi database PHP sederhana</li></ul>',
-  2, '2025-03-01 08:12:45+07', '2025-03-02 10:15:20+07'),
+ '<p>LAMP Stack merupakan kumpulan perangkat lunak yang terdiri dari Linux, Apache, MySQL, dan PHP yang umum digunakan untuk membangun dan menjalankan aplikasi web berbasis server. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari LAMP Stack (Linux, Apache, MySQL, PHP)</li><li>Instalasi Linux, Apache, MySQL, PHP</li><li>Running web server</li><li>Testing web server dengan koneksi database PHP sederhana</li></ul>',
+ 2, '2026-06-01 08:12:45+07', '2026-06-01 10:15:20+07'),
+
 (2, 'File Sharing Samba',
-  '<ul><li>Pelajari Samba</li><li>Instalasi dan konfigurasi</li><li>Membuat drive Z mahasiswa (kuota 200MB tiap user)</li><li>Membuat folder untuk grup tertentu</li><li>Membuat folder public</li><li>Testing akses Samba dari PC berbeda</li></ul>',
-  3, '2025-03-03 09:21:10+07', '2025-03-04 11:45:33+07'),
+ '<p>Samba merupakan layanan berbagi file dan printer yang memungkinkan sistem operasi Linux berkomunikasi dengan perangkat berbasis Windows dalam satu jaringan. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari Samba</li><li>Instalasi dan konfigurasi</li><li>Membuat drive Z mahasiswa (kuota 200MB tiap user)</li><li>Membuat folder untuk grup tertentu</li><li>Membuat folder public</li><li>Testing akses Samba dari PC berbeda</li></ul>',
+ 3, '2026-06-01 09:21:10+07', '2026-06-01 11:45:33+07'),
+
 (3, 'Reverse Proxy dengan Nginx',
-  '<ul><li>Install dua VM menggunakan KVM/Proxmox/Openstack</li><li>Instalasi Nginx pada host OS</li><li>Instalasi Apache pada kedua VM</li><li>Membuat dua website sederhana</li><li>Konfigurasi reverse proxy Nginx dan DNS</li><li>Akses website menggunakan domain</li></ul>',
-  4, '2025-03-05 13:05:44+07', '2025-03-06 14:22:18+07'),
+ '<p>Reverse proxy menggunakan Nginx memungkinkan pengelolaan beberapa layanan web melalui satu pintu akses sehingga trafik dapat diteruskan ke server tujuan yang berbeda. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Install dua VM menggunakan KVM/Proxmox/Openstack</li><li>Instalasi Nginx pada host OS</li><li>Instalasi Apache pada kedua VM</li><li>Membuat dua website sederhana</li><li>Konfigurasi reverse proxy Nginx dan DNS</li><li>Akses website menggunakan domain</li></ul>',
+ 4, '2026-06-01 13:05:44+07', '2026-06-01 14:22:18+07'),
+
 (4, 'Active Directory (AD)',
-  '<ul><li>Pelajari Windows Server</li><li>Instalasi Windows Server</li><li>Konfigurasi Forest</li><li>Konfigurasi Active Directory (AD)</li><li>Konfigurasi Profile</li><li>Konfigurasi Group Policy Objects (GPO)</li><li>Konfigurasi DNS</li><li>Konfigurasi NTP</li><li>Membuat dokumentasi</li></ul>',
-  4, '2025-03-07 07:55:12+07', '2025-03-08 09:30:40+07'),
+ '<p>Active Directory merupakan layanan direktori pada Windows Server yang digunakan untuk mengelola user, komputer, dan kebijakan jaringan secara terpusat dalam sebuah domain. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari Windows Server</li><li>Instalasi Windows Server</li><li>Konfigurasi Forest</li><li>Konfigurasi Active Directory (AD)</li><li>Konfigurasi Profile</li><li>Konfigurasi Group Policy Objects (GPO)</li><li>Konfigurasi DNS</li><li>Konfigurasi NTP</li><li>Membuat dokumentasi</li></ul>',
+ 4, '2026-06-01 07:55:12+07', '2026-06-01 09:30:40+07'),
+
 (5, 'DNS dan FTP',
-  '<ul><li>Pelajari DNS dan FTP</li><li>Instalasi DNS dan FTP</li><li>Konfigurasi DNS dan FTP</li><li>Menjalankan DNS dan FTP</li><li>Testing FTP upload dan download</li><li>Testing akses FTP melalui domain</li></ul>',
-  3, '2025-03-09 10:10:10+07', '2025-03-10 12:20:25+07'),
+ '<p>DNS dan FTP merupakan layanan jaringan yang digunakan untuk menerjemahkan nama domain serta melakukan transfer file antar perangkat melalui jaringan. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari DNS dan FTP</li><li>Instalasi DNS dan FTP</li><li>Konfigurasi DNS dan FTP</li><li>Menjalankan DNS dan FTP</li><li>Testing FTP upload dan download</li><li>Testing akses FTP melalui domain</li></ul>',
+ 3, '2026-06-01 10:10:10+07', '2026-06-01 12:20:25+07'),
+
 (6, 'Jaringan Mikrotik',
-  '<ul><li>Reset router dan switch ke default configuration</li><li>Konfigurasi switch (IP, VLAN, port access & trunk)</li><li>Konfigurasi router (IP gateway)</li><li>Set semua IP static</li><li>Konfigurasi PC (IP dan gateway)</li><li>Testing koneksi jaringan menggunakan ping</li></ul>',
-  4, '2025-03-11 08:40:55+07', '2025-03-12 11:11:11+07'),
+ '<p>Mikrotik merupakan perangkat jaringan yang dapat digunakan untuk mengatur routing, VLAN, dan manajemen jaringan pada suatu infrastruktur komputer. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Reset router dan switch ke default configuration</li><li>Konfigurasi switch (IP, VLAN, port access & trunk)</li><li>Konfigurasi router (IP gateway)</li><li>Set semua IP static</li><li>Konfigurasi PC (IP dan gateway)</li><li>Testing koneksi jaringan menggunakan ping</li></ul>',
+ 4, '2026-06-01 08:40:55+07', '2026-06-01 11:11:11+07'),
+
 (7, 'Server Monitoring dengan Cacti',
-  '<ul><li>Install Apache Web Server</li><li>Konfigurasi firewall</li><li>Install Cacti</li><li>Membuat user monitoring</li><li>Konfigurasi server Cacti</li><li>Konfigurasi SNMP</li><li>Testing akses web Cacti</li><li>Membuat dashboard monitoring</li></ul>',
-  4, '2025-03-13 14:00:00+07', '2025-03-14 16:25:30+07'),
+ '<p>Cacti merupakan aplikasi monitoring berbasis web yang digunakan untuk memantau performa server dan perangkat jaringan menggunakan protokol SNMP. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Install Apache Web Server</li><li>Konfigurasi firewall</li><li>Install Cacti</li><li>Membuat user monitoring</li><li>Konfigurasi server Cacti</li><li>Konfigurasi SNMP</li><li>Testing akses web Cacti</li><li>Membuat dashboard monitoring</li></ul>',
+ 4, '2026-06-01 14:00:00+07', '2026-06-01 16:25:30+07'),
+
 (8, 'Microsoft SQL Server',
-  '<ul><li>Pelajari Microsoft SQL Server</li><li>Instalasi SQL Server</li><li>Konfigurasi SQL Server</li><li>Import database AdventureWorks</li><li>Membuat beberapa user</li><li>Isolasi database per user</li><li>Membatasi delete database</li><li>Membuat script otomatis user dan database berdasarkan NPM</li></ul>',
-  3, '2025-03-15 09:09:09+07', '2025-03-16 10:10:10+07'),
+ '<p>Microsoft SQL Server merupakan sistem manajemen basis data relasional yang digunakan untuk penyimpanan, pengelolaan, dan pengamanan data pada aplikasi skala kecil hingga besar. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari Microsoft SQL Server</li><li>Instalasi SQL Server</li><li>Konfigurasi SQL Server</li><li>Import database AdventureWorks</li><li>Membuat beberapa user</li><li>Isolasi database per user</li><li>Membatasi delete database</li><li>Membuat script otomatis user dan database berdasarkan NPM</li></ul>',
+ 3, '2026-06-01 09:09:09+07', '2026-06-01 10:10:10+07'),
+
 (9, 'Monitoring dengan Prometheus dan Grafana',
-  '<ul><li>Install Prometheus</li><li>Membuat user monitoring</li><li>Konfigurasi server Prometheus</li><li>Menjadikan Prometheus sebagai service (systemd)</li><li>Install Grafana</li><li>Tambahkan Prometheus sebagai datasource</li><li>Membuat dashboard monitoring</li><li>Import dashboard dari komunitas</li><li>Konfigurasi node exporter</li><li>Monitoring di Grafana</li></ul>',
-  4, '2025-03-17 07:30:45+07', '2025-03-18 08:45:50+07'),
+ '<p>Prometheus dan Grafana merupakan kombinasi tools monitoring yang digunakan untuk mengumpulkan, menyimpan, dan memvisualisasikan data performa server secara realtime. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Install Prometheus</li><li>Membuat user monitoring</li><li>Konfigurasi server Prometheus</li><li>Menjadikan Prometheus sebagai service (systemd)</li><li>Install Grafana</li><li>Tambahkan Prometheus sebagai datasource</li><li>Membuat dashboard monitoring</li><li>Import dashboard dari komunitas</li><li>Konfigurasi node exporter</li><li>Monitoring di Grafana</li></ul>',
+ 4, '2026-06-01 07:30:45+07', '2026-06-01 08:45:50+07'),
+
 (10, 'Docker dan Judge System',
-  '<ul><li>Install Docker</li><li>Install MariaDB</li><li>Install PhpMyAdmin</li><li>Konfigurasi Reverse Proxy</li><li>Install Judge (semua fitur harus berjalan)</li></ul>',
-  4, '2025-03-19 11:11:11+07', '2025-03-20 13:13:13+07'),
+ '<p>Docker merupakan platform containerization yang memungkinkan aplikasi dijalankan dalam lingkungan terisolasi sehingga mempermudah proses deployment dan pengelolaan layanan. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Install Docker</li><li>Install MariaDB</li><li>Install PhpMyAdmin</li><li>Konfigurasi Reverse Proxy</li><li>Install Judge (semua fitur harus berjalan)</li></ul>',
+ 4, '2026-06-01 11:11:11+07', '2026-06-01 13:13:13+07'),
+
 (11, 'Gitlab dengan Docker',
-  '<ul><li>Install Docker</li><li>Install Gitlab Server dalam Docker</li><li>Membuat user (admin dan user)</li><li>Test create repository</li><li>Test clone, pull, push</li><li>Create runner CI/CD</li><li>Test CI/CD</li></ul>',
-  4, '2025-03-21 15:20:10+07', '2025-03-22 17:30:25+07'),
+ '<p>GitLab merupakan platform manajemen repository berbasis Git yang mendukung kolaborasi pengembangan perangkat lunak serta integrasi CI/CD. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Install Docker</li><li>Install Gitlab Server dalam Docker</li><li>Membuat user (admin dan user)</li><li>Test create repository</li><li>Test clone, pull, push</li><li>Create runner CI/CD</li><li>Test CI/CD</li></ul>',
+ 4, '2026-06-01 15:20:10+07', '2026-06-01 17:30:25+07'),
+
 (12, 'VPN Server dengan WireGuard',
-  '<ul><li>Pelajari konsep VPN dan WireGuard</li><li>Instalasi WireGuard pada server Ubuntu/Debian</li><li>Generate public dan private key untuk server dan client</li><li>Konfigurasi interface server dan IP forwarding</li><li>Membuat file konfigurasi untuk peer (client)</li><li>Testing koneksi VPN dari client ke server (ping IP lokal)</li></ul>',
-  3, '2025-03-23 09:00:00+07', '2025-03-24 10:00:00+07'),
+ '<p>WireGuard merupakan protokol VPN modern yang dirancang untuk menyediakan koneksi jaringan aman dengan konfigurasi yang ringan dan sederhana. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari konsep VPN dan WireGuard</li><li>Instalasi WireGuard pada server Ubuntu/Debian</li><li>Generate public dan private key untuk server dan client</li><li>Konfigurasi interface server dan IP forwarding</li><li>Membuat file konfigurasi untuk peer (client)</li><li>Testing koneksi VPN dari client ke server (ping IP lokal)</li></ul>',
+ 3, '2026-06-01 09:00:00+07', '2026-06-01 10:00:00+07'),
+
 (13, 'CI/CD Pipeline dengan Jenkins',
-  '<ul><li>Pelajari konsep Continuous Integration & Deployment (CI/CD)</li><li>Instalasi Jenkins menggunakan Docker Container</li><li>Konfigurasi akses Docker dari dalam container Jenkins</li><li>Membuat Git repository sederhana berisi aplikasi web</li><li>Membuat Jenkinsfile untuk mendefinisikan tahapan pipeline</li><li>Testing otomatisasi build dan push Docker image ke registry lokal</li></ul>',
-  4, '2025-03-25 10:30:15+07', '2025-03-26 12:45:20+07'),
+ '<p>Jenkins merupakan automation server yang umum digunakan untuk implementasi Continuous Integration dan Continuous Deployment (CI/CD) pada proses pengembangan aplikasi. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari konsep Continuous Integration & Deployment (CI/CD)</li><li>Instalasi Jenkins menggunakan Docker Container</li><li>Konfigurasi akses Docker dari dalam container Jenkins</li><li>Membuat Git repository sederhana berisi aplikasi web</li><li>Membuat Jenkinsfile untuk mendefinisikan tahapan pipeline</li><li>Testing otomatisasi build dan push Docker image ke registry lokal</li></ul>',
+ 4, '2026-06-01 10:30:15+07', '2026-06-01 12:45:20+07'),
+
 (14, 'Load Balancing dengan HAProxy',
-  '<ul><li>Pelajari konsep Load Balancing dan High Availability</li><li>Install dua VM sebagai backend server</li><li>Instalasi HAProxy pada node/VM utama</li><li>Konfigurasi backend dan frontend pada file haproxy.cfg</li><li>Setup algoritma Round Robin</li><li>Testing distribusi traffic web ke kedua backend server</li></ul>',
-  4, '2025-03-27 13:15:00+07', '2025-03-28 15:20:10+07'),
+ '<p>HAProxy merupakan perangkat lunak load balancer yang digunakan untuk mendistribusikan trafik jaringan ke beberapa server backend guna meningkatkan ketersediaan layanan. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari konsep Load Balancing dan High Availability</li><li>Install dua VM sebagai backend server</li><li>Instalasi HAProxy pada node/VM utama</li><li>Konfigurasi backend dan frontend pada file haproxy.cfg</li><li>Setup algoritma Round Robin</li><li>Testing distribusi traffic web ke kedua backend server</li></ul>',
+ 4, '2026-06-01 13:15:00+07', '2026-06-01 15:20:10+07'),
+
 (15, 'Centralized Logging dengan ELK Stack',
-  '<ul><li>Pelajari arsitektur Elasticsearch, Logstash, dan Kibana</li><li>Instalasi ELK Stack menggunakan Docker Compose</li><li>Instalasi Filebeat pada target server (VM terpisah)</li><li>Konfigurasi Filebeat untuk mengirim log system/Nginx ke Logstash</li><li>Membuat index pattern pada dashboard Kibana</li><li>Membuat visualisasi dan monitoring log secara realtime di Kibana</li></ul>',
-  4, '2025-03-29 08:45:30+07', '2025-03-30 09:55:40+07'),
+ '<p>ELK Stack merupakan kombinasi Elasticsearch, Logstash, dan Kibana yang digunakan untuk mengumpulkan, memproses, dan memvisualisasikan log secara terpusat. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari arsitektur Elasticsearch, Logstash, dan Kibana</li><li>Instalasi ELK Stack menggunakan Docker Compose</li><li>Instalasi Filebeat pada target server (VM terpisah)</li><li>Konfigurasi Filebeat untuk mengirim log system/Nginx ke Logstash</li><li>Membuat index pattern pada dashboard Kibana</li><li>Membuat visualisasi dan monitoring log secara realtime di Kibana</li></ul>',
+ 4, '2026-06-01 08:45:30+07', '2026-06-01 09:55:40+07'),
+
 (16, 'Container Orchestration dengan Docker Swarm',
-  '<ul><li>Pelajari konsep Container Orchestration</li><li>Siapkan 3 VM Docker (1 Manager, 2 Worker)</li><li>Inisialisasi Docker Swarm pada node Manager</li><li>Join Worker node ke dalam kluster Swarm menggunakan token</li><li>Deploy service web server ke dalam kluster</li><li>Scale up replica menjadi 5 instance</li><li>Testing failover dengan mematikan salah satu node worker</li></ul>',
-  4, '2025-03-31 11:10:00+07', '2025-04-01 13:25:35+07');
+ '<p>Docker Swarm merupakan fitur orchestration pada Docker yang digunakan untuk mengelola kumpulan container dalam bentuk cluster agar deployment aplikasi menjadi lebih terstruktur dan scalable. Silahkan melakukan eksplorasi beberapa poin berikut:</p><ul><li>Pelajari konsep Container Orchestration</li><li>Siapkan 3 VM Docker (1 Manager, 2 Worker)</li><li>Inisialisasi Docker Swarm pada node Manager</li><li>Join Worker node ke dalam kluster Swarm menggunakan token</li><li>Deploy service web server ke dalam kluster</li><li>Scale up replica menjadi 5 instance</li><li>Testing failover dengan mematikan salah satu node worker</li></ul>',
+ 4, '2026-06-01 11:10:00+07', '2026-06-01 13:25:35+07');
 
 -- =============================================
 -- 3. BATCH
@@ -89,16 +105,16 @@ ALTER SEQUENCE "batch_id_batch_seq" RESTART WITH 1;
 INSERT INTO "batch" ("id_batch", "nama_batch", "status", "tanggal_mulai", "tanggal_selesai", "createdAt", "updatedAt") VALUES
 (1, 'Batch 2024',       false, '2024-02-01 00:00:00', '2024-08-31 23:59:59', '2024-01-15 08:00:00', '2024-09-01 00:00:00'),
 (2, 'Batch 2025',       false,  '2025-02-01 00:00:00', '2025-08-31 23:59:59', '2025-01-15 08:00:00', '2025-02-01 00:00:00'),
-(3, 'Batch 2026 Ganjil',false, '2026-02-01 00:00:00', '2026-08-31 23:59:59', '2026-01-20 08:00:00', '2026-01-20 08:00:00'),
-(4, 'Batch 2026 Genap', true, '2026-09-01 00:00:00', '2027-02-28 23:59:59', '2026-04-10 08:00:00', '2026-04-10 08:00:00');
+(3, 'Batch 2026 Ganjil',false, '2026-02-01 00:00:00', '2026-03-31 23:59:59', '2026-02-01 00:00:00', '2026-03-31 23:59:59'),
+(4, 'Batch 2026 Genap', true, '2026-06-01 00:00:00', '2026-07-31 23:59:59', '2026-06-01 00:00:00', '2026-07-31 23:59:59');
 
 -- =============================================
 -- 4. USERS
 -- =============================================
 ALTER SEQUENCE "users_id_user_seq" RESTART WITH 1;
 INSERT INTO "users" ("id_user", "nama", "email", "google_id", "foto", "role", "nomor_identitas", "createdAt", "updatedAt") VALUES
-(1,  'Steven Febrian',        '6182201084@student.unpar.ac.id', '7777777', NULL, 'SA',      '7777777',    '2024-01-05 07:00:00', '2024-01-05 07:00:00'),
-(2,  'Raymond Chandra',       'raymond.chandra@unpar.ac.id',    NULL,      NULL, 'Kalab',   '1241301',    '2024-01-05 07:05:00', '2024-01-05 07:05:00'),
+(1,  'Steven SA',             '6182201084@student.unpar.ac.id', NULL,      NULL, 'SA',      '7777777777', '2024-01-05 07:00:00', '2024-01-05 07:00:00'),
+(2,  'Raymond Chandra',       'raymond.chandra@unpar.ac.id',    NULL,      NULL, 'Kalab',   '1111111111', '2024-01-05 07:05:00', '2024-01-05 07:05:00'),
 (3,  'Fabrianus Pujanugraha', '6181901075@unpar.ac.id',         NULL,      NULL, 'Admin',   '6181901075', '2024-01-05 07:20:00', '2024-01-05 07:20:00'),
 (4,  'Erwin Darsono',         '6182001075@unpar.ac.id',         NULL,      NULL, 'Admin',   '6181901075', '2024-01-05 07:20:00', '2024-01-05 07:20:00'),
 (5,  'Vico Pratama',          '6182101075@unpar.ac.id',         NULL,      NULL, 'Admin',   '6181901075', '2024-01-05 07:20:00', '2024-01-05 07:20:00'),
@@ -108,15 +124,16 @@ INSERT INTO "users" ("id_user", "nama", "email", "google_id", "foto", "role", "n
 (9,  'Zakky',                 '6186601001@unpar.ac.id',         NULL,      NULL, 'Peserta', '6186601001', '2024-01-05 07:15:00', '2024-01-05 07:15:00'),
 (10, 'Manuel',                '6186601002@unpar.ac.id',         NULL,      NULL, 'Peserta', '6186601002', '2024-01-05 07:15:00', '2024-01-05 07:15:00'),
 (11, 'Juan',                  '6186601003@unpar.ac.id',         NULL,      NULL, 'Peserta', '6186601003', '2024-01-05 07:15:00', '2024-01-05 07:15:00'),
-(12, 'Alfonsus',              '6187701001@unpar.ac.id',         NULL,      NULL, 'Peserta', '18223001',   '2024-01-20 09:00:00', '2024-01-20 09:00:00'),
-(13, 'Andrew',                '6187701002@unpar.ac.id',         NULL,      NULL, 'Peserta', '18223002',   '2024-01-20 09:05:00', '2024-01-20 09:05:00'),
-(14, 'Christofer',            '6187701003@unpar.ac.id',         NULL,      NULL, 'Peserta', '18223003',   '2024-01-20 09:10:00', '2024-01-20 09:10:00'),
-(15, 'Gregorius',             '6187701004@unpar.ac.id',         NULL,      NULL, 'Peserta', '18223004',   '2024-01-20 09:15:00', '2024-01-20 09:15:00'),
-(16, 'Kenneth',               '6187701005@unpar.ac.id',         NULL,      NULL, 'Peserta', '18223005',   '2024-01-20 09:20:00', '2024-01-20 09:20:00'),
-(17, 'Lelipaly',              '6187701006@unpar.ac.id',         NULL,      NULL, 'Peserta', '18223006',   '2024-01-20 09:25:00', '2024-01-20 09:25:00'),
-(18, 'Rafael',                '6187701007@unpar.ac.id',         NULL,      NULL, 'Peserta', '18223007',   '2024-01-20 09:30:00', '2024-01-20 09:30:00'),
-(19, 'Vandyka',               '6187701008@unpar.ac.id',         NULL,      NULL, 'Peserta', '18224001',   '2025-01-18 09:00:00', '2025-01-18 09:00:00'),
-(20, 'Febrian',               'febriansteven1@gmail.com',       NULL,      NULL, 'Peserta', '6188888888',   '2025-01-18 09:00:00', '2025-01-18 09:00:00');
+(12, 'Alfonsus',              '6187701001@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701001', '2024-01-20 09:00:00', '2024-01-20 09:00:00'),
+(13, 'Andrew',                '6187701002@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701002', '2024-01-20 09:05:00', '2024-01-20 09:05:00'),
+(14, 'Christofer',            '6187701003@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701003', '2024-01-20 09:10:00', '2024-01-20 09:10:00'),
+(15, 'Gregorius',             '6187701004@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701004', '2024-01-20 09:15:00', '2024-01-20 09:15:00'),
+(16, 'Kenneth',               '6187701005@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701005', '2024-01-20 09:20:00', '2024-01-20 09:20:00'),
+(17, 'Lelipaly',              '6187701006@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701006', '2024-01-20 09:25:00', '2024-01-20 09:25:00'),
+(18, 'Rafael',                '6187701007@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701007', '2024-01-20 09:30:00', '2024-01-20 09:30:00'),
+(19, 'Vandyka',               '6187701008@unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701008', '2025-01-18 09:00:00', '2025-01-18 09:00:00'),
+(20, 'Steven Admin',          'febriansteven1@gmail.com',       NULL,      NULL, 'Peserta', '6666666666', '2025-01-18 09:00:00', '2025-01-18 09:00:00'),
+(21, 'Steven Peserta',        'stevenfebrian401@gmail.com',     NULL,      NULL, 'Peserta', '5555555555', '2025-01-18 09:00:00', '2025-01-18 09:00:00');
 
 -- =============================================
 -- 5. KELOMPOK

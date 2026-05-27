@@ -4,10 +4,10 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/komentar-pengumuman/:id',auth("Peserta","Kalab","SA"), komentarPengumumanController.getKomentarPengumuman);
+router.get('/komentar-pengumuman/:id',auth("Peserta","Admin","Kalab","SA"), komentarPengumumanController.getKomentarPengumuman);
 
-router.post('/komentar-pengumuman',auth("Peserta","Kalab","SA"), komentarPengumumanController.createKomentar);
+router.post('/komentar-pengumuman',auth("Peserta","Admin","Kalab","SA"), komentarPengumumanController.createKomentar);
 
-router.delete('/komentar-pengumuman/:id',auth("Kalab","SA"), komentarPengumumanController.deleteKomentarPengumuman);
+router.delete('/komentar-pengumuman/:id',auth("Kalab","Admin","SA"), komentarPengumumanController.deleteKomentarPengumuman);
 
 export default router;
