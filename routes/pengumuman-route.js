@@ -16,7 +16,6 @@ router.get('/pengumuman/batch/:idBatch/:idUser',auth("Peserta","Kalab","SA"), pe
 // Buat ambil pengumuman di batch tertentu
 router.get('/pengumuman/batch/:id',auth("Admin","Kalab","SA"), pengumumanController.getPengumumanByIdBatch);
 
-
 // Post buat bikin pengumuman baru
 router.post('/pengumuman',auth("Admin","Kalab","SA"), pengumumanController.createPengumuman);
 

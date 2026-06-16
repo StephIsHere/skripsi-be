@@ -5,10 +5,11 @@ import Batch from "../models/batch-model.js";
 import { Op } from 'sequelize';
 
 const startKehadiranCron = () => {
-  nodeCron.schedule('35 21 * * 1-5', async () => {
+  nodeCron.schedule('07 13 * * 1-6', async () => {
     const today = new Date();
     const day = today.getDay();
-    if (day === 0 || day === 6) return;
+    // if (day === 0 || day === 6) return;
+    if (day === 0 || day === 5) return;
 
     try {
       const activeBatch = await Batch.findOne({ where: { status: true } });

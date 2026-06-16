@@ -18,14 +18,6 @@ class KomentarPengumumanService {
   async createKomentar(data) {
     return await KomentarPengumuman.create(data);
   }
-
-  async deleteKomentar(id) {
-    const komentar = await KomentarPengumuman.findOne({ where: { id_komentar_pengumuman: id } });
-    if (!komentar) return null;
-    await komentar.destroy();
-    return komentar;
-  }
-
 }
 
 export default new KomentarPengumumanService();

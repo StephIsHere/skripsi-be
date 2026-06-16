@@ -2,7 +2,7 @@ import Kehadiran from "../models/kehadiran-model.js";
 
 class KehadiranService {
   async getKehadiranByIdPeserta(id) {
-    const kehadiran = await Kehadiran.findAll({ where: { id_peserta: id } });
+    const kehadiran = await Kehadiran.findAll({ where: { id_peserta: id }, order: [['createdAt', 'DESC']] });
     if (!kehadiran) return null;
     return kehadiran; 
   }

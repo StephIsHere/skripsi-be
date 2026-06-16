@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/batch', auth("Admin","Kalab","SA"), batchController.getBatch);
 
-router.get('/batch/active',auth("Peserta","Admin","Kalab","SA"), batchController.getActiveBatch);
+router.get('/batch/active', auth(),batchController.getActiveBatch);
 
 router.get('/batch/:id',auth("Admin","Kalab","SA"), batchController.getBatchById);
 

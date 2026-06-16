@@ -12,7 +12,7 @@ class KehadiranController {
       }
 
       const kehadiran = await kehadiranServices.getKehadiranByIdPeserta(req.params.id);
-      if (!kehadiran || kehadiran.length === 0) {
+      if (!kehadiran) {
         return res.status(404).json({
           success: false,
           message: "Kehadiran tidak ditemukan"

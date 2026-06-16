@@ -5,7 +5,7 @@ class KomentarTugasService {
 
   async getKomentarByIdTugas(id) {
     return await KomentarTugas.findAll({
-      where: { id_pengumuman: id },
+      where: { id_penugasan: id },
       include: [
         {
           model: User,
@@ -17,13 +17,6 @@ class KomentarTugasService {
 
   async createKomentar(data) {
     return await KomentarTugas.create(data);
-  }
-
-  async deleteKomentar(id) {
-    const komentar = await KomentarTugas.findOne({ where: { id_komentar_tugas: id } });
-    if (!komentar) return null;
-    await komentar.destroy();
-    return komentar;
   }
 }
 

@@ -29,7 +29,7 @@ export const googleCallback = (req, res, next) => {
 
 export const me = (req, res) => {
   if (!req.user) {
-    return res.status(401).json({ message: "Belum Login" });
+    return res.status(401).json({ message: "Pengguna belum login" });
   }
   return res.json({ user: req.user });
 };

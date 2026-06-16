@@ -5,7 +5,7 @@ import Pengumuman from "./pengumuman-model.js";
 
 const KomentarPengumuman = sequelize.define(
   "KomentarPengumuman", {
-    id_komentar_pengumuman: {
+  id_komentar_pengumuman: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
@@ -34,9 +34,9 @@ const KomentarPengumuman = sequelize.define(
     type: DataTypes.TEXT('long'),
     allowNull: false
   }
-  }, {
-    tableName: "komentar_pengumuman"
-  }
+}, {
+  tableName: "komentar_pengumuman"
+}
 )
 
 export default KomentarPengumuman;

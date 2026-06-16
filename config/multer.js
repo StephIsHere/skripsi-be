@@ -10,11 +10,11 @@ const randomName = () => crypto.randomBytes(16).toString("hex");
 const ALLOWED_IMAGE = ["image/jpeg", "image/png", "image/webp"];
 
 const ALLOWED_DOKUMEN = {
-  cv:               ["application/pdf", ...ALLOWED_IMAGE],
-  foto:             ["application/pdf",...ALLOWED_IMAGE],
-  ktm:              ["application/pdf", ...ALLOWED_IMAGE],
-  transkrip:        ["application/pdf"],
-  motivation_letter:["application/pdf"],
+  cv: ["application/pdf", ...ALLOWED_IMAGE],
+  foto: ["application/pdf", ...ALLOWED_IMAGE],
+  ktm: ["application/pdf", ...ALLOWED_IMAGE],
+  transkrip: ["application/pdf"],
+  motivation_letter: ["application/pdf"],
 };
 
 const ALLOWED_PENGUMPULAN = ["application/pdf"];
@@ -27,7 +27,7 @@ const storageTinymce = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, `${randomName()}${ext}`); 
+    cb(null, `${randomName()}${ext}`);
   },
 });
 
@@ -39,7 +39,7 @@ const storageDokumen = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, `${randomName()}${ext}`); 
+    cb(null, `${randomName()}${ext}`);
   },
 });
 
@@ -51,15 +51,23 @@ const storagePengumpulan = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, `${randomName()}${ext}`); 
+    cb(null, `${randomName()}${ext}`);
   },
 });
 
 const filterTinymce = (req, file, cb) => {
-  if (file.mimetype.startsWith("image/")) {
+  const allowedMimeTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/jpg",
+    "image/gif",
+    "application/pdf" 
+  ];
+
+  if (allowedMimeTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error("File harus gambar!"), false);
+    cb(new Error("Format file tidak didukung! Hanya upload Gambar atau PDF."), false);
   }
 };
 

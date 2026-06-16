@@ -5,13 +5,17 @@ import Soal from "../models/soal-model.js";
 import KomentarTugas from "../models/komentar-tugas-model.js";
 import SistemOperasi from "../models/sistem-operasi-model.js";
 import Kelompok from "../models/kelompok-model.js"
+import { Op } from "sequelize";
 
 class PenugasanService {
   async getPenugasanByIdBatch(idBatch) {
     try {
       const dataPesertaBatch = await Peserta.findAll({
         where: {
-          id_batch: idBatch, status: "Pelatihan"
+          id_batch: idBatch,
+          status: {
+            [Op.ne]: 'Seleksi Berkas'
+          }
         },
         include: [
           {
@@ -58,7 +62,7 @@ class PenugasanService {
     }
   }
 
-    async getPenugasanByIdKelompok(idKelompok) {
+  async getPenugasanByIdKelompok(idKelompok) {
     try {
       const kelompok = await Kelompok.findOne({
         where: { id_kelompok: idKelompok },
@@ -68,7 +72,7 @@ class PenugasanService {
             include: [
               {
                 model: User,
-                attributes: ["nama", "email", "nomor_identitas","foto"],
+                attributes: ["nama", "email", "nomor_identitas", "foto"],
               },
             ],
           },
@@ -111,7 +115,7 @@ class PenugasanService {
     }
   }
 
-    async getPenugasanPeserta(idPeserta) {
+  async getPenugasanPeserta(idPeserta) {
     try {
       const peserta = await Peserta.findOne({
         where: { id_peserta: idPeserta },
