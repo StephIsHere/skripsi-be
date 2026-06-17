@@ -8,8 +8,7 @@ const startKehadiranCron = () => {
   nodeCron.schedule('12 00 * * 1-6', async () => {
     const today = new Date();
     const day = today.getDay();
-    // if (day === 0 || day === 6) return;
-    if (day === 0 || day === 5) return;
+    if (day === 0 || day === 6) return;
 
     try {
       const activeBatch = await Batch.findOne({ where: { status: true } });

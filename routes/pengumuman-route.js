@@ -4,25 +4,25 @@ import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Buat ambil pengumuman public
+// Mengambil daftar pengumuman public
 router.get('/pengumuman/public', pengumumanController.getPublicPengumuman);
 
-// Buat ambil detail pengumuman
+// Mengambil detail suatu pengumuman
 router.get('/pengumuman/:id',auth("Peserta","Admin","Kalab","SA"), pengumumanController.getPengumumanById);
 
-// Buat ambil riwayat pengumuman
-router.get('/pengumuman/batch/:idBatch/:idUser',auth("Peserta","Kalab","SA"), pengumumanController.getPengumumanByIdBatchAndIdUser);
+// Mengambil riwayat pengumuman peserta
+router.get('/pengumuman/batch/:idBatch/:idUser',auth("Peserta","Admin","Kalab","SA"), pengumumanController.getPengumumanByIdBatchAndIdUser);
 
-// Buat ambil pengumuman di batch tertentu
+// Mengambil daftar pengumuman pada suatu batch
 router.get('/pengumuman/batch/:id',auth("Admin","Kalab","SA"), pengumumanController.getPengumumanByIdBatch);
 
-// Post buat bikin pengumuman baru
+// Membuat pengumuman baru
 router.post('/pengumuman',auth("Admin","Kalab","SA"), pengumumanController.createPengumuman);
 
-// Patch buat edit pengumuman
+// Mengubah data suatu pengumuman 
 router.patch('/pengumuman/:id',auth("Admin","Kalab","SA"), pengumumanController.updatePengumuman);
 
-// Delete buat delete pengumuan
+// Menghapus data suatu pengumuman
 router.delete('/pengumuman/:id',auth("Admin","Kalab","SA"), pengumumanController.deletePengumuman);
 
 export default router;

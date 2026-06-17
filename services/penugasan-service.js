@@ -247,6 +247,9 @@ class PenugasanService {
             ],
           },
         ],
+        order: [
+          [Penugasan, 'createdAt', 'DESC']
+        ]
       });
       if (!peserta) return null;
       const tugas = peserta.Penugasans || [];
