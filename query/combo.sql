@@ -155,6 +155,7 @@ INSERT INTO "peserta" ("id_peserta", "id_user", "id_batch", "id_kelompok", "stat
 (4,  9,  1, 2, 'Pelatihan', '2026-06-01 00:00:00', '2026-06-01 00:00:00', '2026-06-01 00:00:00'),
 (5, 10,  1, 2, 'Pelatihan', '2026-06-01 00:00:00', '2026-06-01 00:00:00', '2026-06-01 00:00:00'),
 (6, 11,  1, 2, 'Pelatihan', '2026-06-01 00:00:00', '2026-06-01 00:00:00', '2026-06-01 00:00:00'),
+(15, 20, 1, 1, 'Seleksi Berkas', '2026-06-01 00:00:00', '2026-06-01 00:00:00', '2026-06-01 00:00:00'),
 
 (7,  12, 2, NULL,    'Seleksi Berkas', '2024-01-22 10:05:00', '2024-01-22 10:05:00', '2024-09-01 00:00:00'),
 (8,  13, 2, NULL,    'Seleksi Berkas', '2024-01-22 10:05:00', '2024-01-22 10:05:00', '2024-09-01 00:00:00'),
@@ -368,7 +369,14 @@ INSERT INTO "kehadiran" ("id_kehadiran", "id_peserta", "laporan", "is_verified",
 (27, 6, '<p>Samba file sharing di Ubuntu. Konfigurasi smb.conf untuk share drive Z mahasiswa. Bikin user pakai smbpasswd. Test akses dari Windows berhasil mount, tapi belum sempat setting kuota 200MB karena bingung pakai quota tools.</p>', true, '2026-06-02 09:00:00', '2026-06-02 12:45:00', '2026-06-02 09:00:00', '2026-06-02 12:45:00'),
 (28, 6, '<p>Reverse proxy Nginx di Debian. VM dengan KVM agak lambat, alternatif pakai LXC tapi belum familiar. Akhirnya pakai 2 container Apache. Konfigurasi reverse proxy sudah jalan untuk satu domain, multi-site belum.</p>', true, '2026-06-03 09:00:00', '2026-06-03 13:30:00', '2026-06-03 09:00:00', '2026-06-03 13:30:00'),
 (29, 6, '<p>Coba Active Directory di Windows Server. Install dan konfigurasi domain controller. Bikin OU dan beberapa user. GPO untuk disable USB drive sudah test dan jalan di client. Profile dan NTP belum dikonfigurasi.</p>', true, '2026-06-04 09:00:00', '2026-06-04 13:00:00', '2026-06-04 09:00:00', '2026-06-04 13:00:00'),
-(30, 6, '<p>Setup DNS pakai bind9 di Debian dan FTP pakai proftpd. DNS jalan untuk forward dan reverse zone. FTP login berhasil, tapi upload file besar suka putus. Belum sempat troubleshoot lebih dalam.</p>', true, '2026-06-05 09:00:00', '2026-06-05 13:15:00', '2026-06-05 09:00:00', '2026-06-05 13:15:00');
+(30, 6, '<p>Setup DNS pakai bind9 di Debian dan FTP pakai proftpd. DNS jalan untuk forward dan reverse zone. FTP login berhasil, tapi upload file besar suka putus. Belum sempat troubleshoot lebih dalam.</p>', true, '2026-06-05 09:00:00', '2026-06-05 13:15:00', '2026-06-05 09:00:00', '2026-06-05 13:15:00'),
+
+(31, 15, '<p>Tugas LAMP di CentOS. Install httpd, mariadb-server, dan php via yum. Sempat lupa enable service supaya autostart waktu boot. Test PHP via halaman test.php sudah keluar phpinfo, tapi koneksi ke database masih error access denied.</p>', true, '2026-06-01 09:00:00', '2026-06-01 13:00:00', '2026-06-01 09:00:00', '2026-06-01 13:00:00'),
+(32, 15, '<p>Samba file sharing di Ubuntu. Konfigurasi smb.conf untuk share drive Z mahasiswa. Bikin user pakai smbpasswd. Test akses dari Windows berhasil mount, tapi belum sempat setting kuota 200MB karena bingung pakai quota tools.</p>', true, '2026-06-02 09:00:00', '2026-06-02 12:45:00', '2026-06-02 09:00:00', '2026-06-02 12:45:00'),
+(33, 15, '<p>Reverse proxy Nginx di Debian. VM dengan KVM agak lambat, alternatif pakai LXC tapi belum familiar. Akhirnya pakai 2 container Apache. Konfigurasi reverse proxy sudah jalan untuk satu domain, multi-site belum.</p>', true, '2026-06-03 09:00:00', '2026-06-03 13:30:00', '2026-06-03 09:00:00', '2026-06-03 13:30:00'),
+(34, 15, '<p>Coba Active Directory di Windows Server. Install dan konfigurasi domain controller. Bikin OU dan beberapa user. GPO untuk disable USB drive sudah test dan jalan di client. Profile dan NTP belum dikonfigurasi.</p>', true, '2026-06-04 09:00:00', '2026-06-04 13:00:00', '2026-06-04 09:00:00', '2026-06-04 13:00:00'),
+(35, 15, '<p>Setup DNS pakai bind9 di Debian dan FTP pakai proftpd. DNS jalan untuk forward dan reverse zone. FTP login berhasil, tapi upload file besar suka putus. Belum sempat troubleshoot lebih dalam.</p>', true, '2026-06-05 09:00:00', '2026-06-05 13:15:00', '2026-06-05 09:00:00', '2026-06-05 13:15:00'),
+(36, 15, null, false, null, null, '2026-06-18 09:00:00', '2026-06-18 13:15:00');
 
 -- =============================================
 -- 11. PENUGASAN
