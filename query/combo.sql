@@ -132,7 +132,7 @@ INSERT INTO "users" ("id_user", "nama", "email", "google_id", "foto", "role", "n
 (17, 'Lelipaly',              '6187701006@student.unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701006', '2024-01-20 09:25:00', '2024-01-20 09:25:00'),
 (18, 'Rafael',                '6187701007@student.unpar.ac.id',         NULL,      NULL, 'Peserta', '6187701007', '2024-01-20 09:30:00', '2024-01-20 09:30:00'),
 (19, 'Vandyka',               '6187701008@student.npar.ac.id',         NULL,      NULL, 'Peserta', '6187701008', '2025-01-18 09:00:00', '2025-01-18 09:00:00'),
-(20, 'Febrian Steven',          'febriansteven1@gmail.com',       NULL,      NULL, 'Peserta', '3619048275', '2025-01-18 09:00:00', '2025-01-18 09:00:00');
+(20, 'Steven Peserta',          'stevenfebrian401@gmail.com',       NULL,      NULL, 'Peserta', '3619048275', '2025-01-18 09:00:00', '2025-01-18 09:00:00');
 
 -- =============================================
 -- 5. KELOMPOK
