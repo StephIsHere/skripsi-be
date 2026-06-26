@@ -376,7 +376,7 @@ INSERT INTO "kehadiran" ("id_kehadiran", "id_peserta", "laporan", "is_verified",
 (33, 15, '<p>Reverse proxy Nginx di Debian. VM dengan KVM agak lambat, alternatif pakai LXC tapi belum familiar. Akhirnya pakai 2 container Apache. Konfigurasi reverse proxy sudah jalan untuk satu domain, multi-site belum.</p>', true, '2026-06-03 09:00:00', '2026-06-03 13:30:00', '2026-06-03 09:00:00', '2026-06-03 13:30:00'),
 (34, 15, '<p>Coba Active Directory di Windows Server. Install dan konfigurasi domain controller. Bikin OU dan beberapa user. GPO untuk disable USB drive sudah test dan jalan di client. Profile dan NTP belum dikonfigurasi.</p>', true, '2026-06-04 09:00:00', '2026-06-04 13:00:00', '2026-06-04 09:00:00', '2026-06-04 13:00:00'),
 (35, 15, '<p>Setup DNS pakai bind9 di Debian dan FTP pakai proftpd. DNS jalan untuk forward dan reverse zone. FTP login berhasil, tapi upload file besar suka putus. Belum sempat troubleshoot lebih dalam.</p>', true, '2026-06-05 09:00:00', '2026-06-05 13:15:00', '2026-06-05 09:00:00', '2026-06-05 13:15:00'),
-(36, 15, null, false, null, null, '2026-06-18 09:00:00', '2026-06-18 13:15:00');
+(36, 15, null, false, null, null, '2026-06-18 09:00:00', '2026-06-18 13:15:00'),
 (37, 15, null, false, null, null, '2026-06-19 09:00:00', '2026-06-19 13:15:00');
 
 -- =============================================
